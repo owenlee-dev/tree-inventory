@@ -1,0 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora&display=swap');
+@import "./assets/colors.scss";
+.App{
+  display: flex;
+  color:$text;
+  justify-content: center;
+  background:linear-gradient( 145deg, $darkGreen,$lightGreen);
+  font-family: 'Lora', serif;
+}
