@@ -1,19 +1,20 @@
-@import "./assets/colors.scss";
+@font-face {
+  font-family: "Railey";
+  src: url("./fonts/Railey-PersonalUse.ttf");
+}
 
-.body-container {
+.home-container {
   background-color: $white;
   z-index: 1;
   margin-top: 9em;
   width: 90%;
-  height: 100vh;
-  border-radius: 5px;
+  min-height: 100vh;
+  border-radius: $borderRadius;
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
-
-
 }
 
 @media (max-width: 945px) {
-  .body-container {
+  .home-container {
     width: 100%;
   }
 }

@@ -11,7 +11,7 @@
   left: 0;
   height: calc(9em + (30 - 9) * ((100vw - 945px) / (945 - 480)));
   min-height: 9em;
-  border-radius: 5px;
+  border-radius: $borderRadius;
 
   @media (max-width: 590px) {
     gap: 2em;
@@ -29,6 +29,8 @@
       //mobile
       @media (max-width: 590px) {
         height: 15vw;
+        align-self: flex-start;
+        margin-top: 5px;
         width: auto;
       }
     }
@@ -42,16 +44,26 @@
     gap: 2.5em;
 
     .header-link {
+      color: $text;
+      text-decoration: none;
       cursor: pointer;
-    }
+      text-decoration: none;
+      transition: 0.3s ease-in-out;
 
+      &:hover {
+        color: $lightBrown;
+      }
+    }
+    .active {
+      color: $lightBrown;
+    }
     // sidebar
-    @media (max-width: 945px) {
+    @media (max-width: 1000px) {
       // background:linear-gradient(175deg, $lightBrown,$lightBrown, $orange);
       background-color: $lightBrown;
       opacity: 0.9;
       position: fixed;
-      border-left:4px solid #372613a4;
+      border-left: 4px solid #372613a4;
       top: 0;
       right: 0;
       height: 100%;
@@ -61,6 +73,8 @@
       padding: 4em;
       padding-top: 10em;
       transform: translateX(100%);
+      transition: 0.5s ease;
+      z-index: 200;
       .close-icon {
         position: absolute;
         top: 0.5em;
@@ -83,7 +97,7 @@
 }
 
 //when screen is small
-@media (max-width: 945px) {
+@media (max-width: 1000px) {
   .header {
     width: 100%;
     justify-content: space-between;
@@ -93,7 +107,7 @@
 }
 
 //when screen is big
-@media (min-width: 945px) {
+@media (min-width: 1000px) {
   .header {
     height: 30vw; /* Header height is fixed at 30vw for screens larger than 945px */
   }

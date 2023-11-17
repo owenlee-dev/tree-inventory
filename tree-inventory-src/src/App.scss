@@ -1,9 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Lora&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lora&display=swap");
 @import "./assets/colors.scss";
-.App{
+.App {
   display: flex;
-  color:$text;
+  color: $text;
   justify-content: center;
-  background:linear-gradient( 145deg, $darkGreen,$lightGreen);
-  font-family: 'Lora', serif;
+  // background: linear-gradient(180deg, $darkBrown, $lightBrown, $accent);
+  background-image: linear-gradient(to bottom, #c7c7b7, #aaaa9c, #a3b18a);
+  font-family: "Lora", serif;
 }

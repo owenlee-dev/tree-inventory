@@ -1,0 +1,42 @@
+@import "../../assets/colors.scss";
+@import "../../assets/page-layout.scss";
+
+.store-hero-container {
+  background: linear-gradient(290deg, $accent, $lightGreen);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-radius: $borderRadius;
+  padding: 7vw 0vw;
+  gap: 1em;
+  position: relative;
+  .__tree-sales {
+    position: absolute;
+    left: 2em;
+    bottom: 0;
+    width: 40vw;
+    border-radius: 20px;
+    max-width: 450px;
+  }
+}
+
+.title-container {
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  width: 100%;
+  .title {
+    width: 50%;
+    font-size: 60px;
+    color: rgb(62, 94, 81);
+    font-family: "Railey";
+    justify-self: flex-end;
+  }
+  .subtitle {
+    width: 50%;
+    color: $gray;
+    font-size: 16 px;
+  }
+}
