@@ -1,0 +1,122 @@
+@import "../assets/colors.scss";
+
+.header {
+  background-color: $accent;
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  gap: 6em;
+  padding: 2em;
+  padding-right: 3em;
+  left: 0;
+  height: calc(9em + (30 - 9) * ((100vw - 945px) / (945 - 480)));
+  min-height: 9em;
+  border-radius: $borderRadius;
+
+  @media (max-width: 590px) {
+    gap: 2em;
+  }
+
+  .logo-container {
+    height: 6em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .__maple-grove-permaculture {
+      height: 5em;
+      width: 100%;
+      object-fit: cover;
+      //mobile
+      @media (max-width: 590px) {
+        height: 15vw;
+        align-self: flex-start;
+        margin-top: 5px;
+        width: auto;
+      }
+    }
+  }
+  .links-container {
+    display: flex;
+    height: 5em;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5em;
+
+    .header-link {
+      color: $text;
+      text-decoration: none;
+      cursor: pointer;
+      font-size:1vw;
+      text-align: center;
+      text-decoration: none;
+
+      &:hover {
+        color: $lightBrown;
+      }
+    }
+    .active {
+      color: $lightBrown;
+    }
+    // sidebar
+    @media (max-width: 1000px) {
+      // background:linear-gradient(175deg, $lightBrown,$lightBrown, $orange);
+      background-color: $lightBrown;
+      opacity: 0.9;
+      position: fixed;
+      border-left: 4px solid #372613a4;
+      top: 0;
+      right: 0;
+      height: 100%;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 4em;
+      padding-top: 10em;
+      transform: translateX(100%);
+      transition: 0.5s ease;
+      z-index: 200;
+      .close-icon {
+        position: absolute;
+        top: 0.5em;
+        right: 0.5em;
+        font-size: 35px;
+        cursor: pointer;
+      }
+    }
+    &.active {
+      z-index: 200;
+      transform: translateX(0);
+    }
+  }
+
+  .hamburger-icon {
+    cursor: pointer;
+    align-self: center;
+    font-size: 35px;
+  }
+}
+
+//when screen is small
+@media (max-width: 1000px) {
+  .header {
+    width: 100%;
+    justify-content: space-between;
+    height: 9em;
+    transition: height 0.3s ease;
+  }
+}
+
+//when screen is big
+@media (min-width: 1000px) {
+  .header {
+    height: 30vw; /* Header height is fixed at 30vw for screens larger than 945px */
+  }
+  .hamburger-icon {
+    display: none;
+  }
+  .close-icon {
+    display: none;
+  }
+}

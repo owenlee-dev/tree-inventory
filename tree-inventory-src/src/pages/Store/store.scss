@@ -2,41 +2,150 @@
 @import "../../assets/page-layout.scss";
 
 .store-hero-container {
-  background: linear-gradient(290deg, $accent, $lightGreen);
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
+  justify-content: space-around;
   border-radius: $borderRadius;
-  padding: 7vw 0vw;
-  gap: 1em;
   position: relative;
-  .__tree-sales {
-    position: absolute;
-    left: 2em;
-    bottom: 0;
-    width: 40vw;
-    border-radius: 20px;
-    max-width: 450px;
+
+  .store-title {
+    font-size: 4vw;
+    align-self: flex-start;
+    margin-left: 2em;
+    margin-top: 1em;
+    font-weight: 300;
+  }
+  .store-title-container {
+    margin-top: -3em;
+    display: flex;
+    width: 80%;
+    gap: 2em;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    @media screen and (max-width: 1050px) {
+      margin-top: 0;
+    }
+    .__store-hero {
+      width: 50%;
+    }
+    .store-subtitle {
+      font-size: max(1vw, 16px);
+      width: 60%;
+      max-width: 400px;
+    }
   }
 }
 
-.title-container {
-  padding: 2em;
+.store-content-container {
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: flex-end;
   width: 100%;
-  .title {
-    width: 50%;
-    font-size: 60px;
-    color: rgb(62, 94, 81);
-    font-family: "Railey";
-    justify-self: flex-end;
+  height: 80vh;
+  .store-sidebar {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2em 1em;
+    height: 100%;
+    background-color: $blue;
+    .sidebar-top {
+      display: flex;
+      flex-direction: column;
+      gap: 2em;
+      width: 90%;
+      .search-container {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        .search-input {
+          width: 100%;
+          border-radius: $borderRadius;
+          border: 2px solid $text;
+          outline: none;
+          padding: 0.5em;
+          padding-right: 30px;
+        }
+        .search-icon {
+          background-color: transparent;
+          position: absolute;
+          right: 20px;
+          top: 0.5em;
+          border: none;
+          cursor: pointer;
+          .__search {
+            width: 30px;
+            opacity: 0.8;
+            height: 30px;
+          }
+        }
+      }
+
+      .store-categories {
+        font-size: 1.5vw;
+        font-weight: 400;
+        .category-list {
+          display: flex;
+          padding-left: 0.5em;
+          flex-direction: column;
+          li {
+            color: $lightBrown;
+            border-radius: $borderRadius;
+            padding: 0.25em;
+            margin:0.25em 0em;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            &:hover {
+              background-color: $accent;
+            }
+          }
+          li.active {
+            color: $accent;
+            background-color: #d28b289f;
+          }
+        }
+      }
+    }
+    .sidebar-bottom {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      .checkout-button {
+        display: flex;
+        cursor:pointer;
+        width: 80%;
+        background-color: $accent;
+        gap:1em;
+        align-items: center;
+        padding: 0.75em 1.25em;
+        border-radius: $borderRadius;
+        transition:gap 0.3s ease-in-out;
+        .__checkout {
+          height: 40px;
+        }
+        &:hover{
+          gap:10%;
+        }
+      }
+    }
   }
-  .subtitle {
-    width: 50%;
-    color: $gray;
-    font-size: 16 px;
+  .store-content {
+    .cards-container {
+
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2em;
+    }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: $lightBrown;
+    flex: 3;
+    overflow-y: scroll;
   }
 }

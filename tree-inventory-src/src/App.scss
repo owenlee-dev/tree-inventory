@@ -1,10 +1,44 @@
 @import url("https://fonts.googleapis.com/css2?family=Lora&display=swap");
 @import "./assets/colors.scss";
+@import url('https://fonts.googleapis.com/css2?family=Schoolbell&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400&display=swap');
 .App {
   display: flex;
   color: $text;
   justify-content: center;
   // background: linear-gradient(180deg, $darkBrown, $lightBrown, $accent);
-  background-image: linear-gradient(to bottom, #c7c7b7, #aaaa9c, #a3b18a);
-  font-family: "Lora", serif;
+  background-image: url("./assets/images/green-bg.png");
+  font-family:"Montserrat", sans-serif;
+  font-weight: 200;
+}
+
+/* CSS for fade-out */
+.fade-out {
+  animation: fadeOut 0.5s ease forwards;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.remove-hero{
+  display:none;
+}
+/* CSS for fade-in */
+.fade-in {
+  animation: fadeIn ease 0.5s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

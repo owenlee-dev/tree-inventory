@@ -1,0 +1,699 @@
+{
+  "fruit trees": {
+    "apple trees": [
+      {
+        "variety": "Ashmead's Kernel",
+        "size": "Whip 1M +",
+        "rootstock": "B118 Semi-Dwarf",
+        "pollination": "Needs Pollinator",
+        "price": 100,
+        "inventory": null,
+        "description": "The Ashmead's Kernel is a traditional English apple variety, renowned for its distinctive, rich and aromatic flavor with a balance of sharpness and sweetness.",
+        "form": null,
+        "img-path": "./store-images/ashmeads-kernel.png"
+      },
+      {
+        "variety": "Belle de Boskoop ",
+        "size": "Whip 1M +",
+        "rootstock": "B118 Semi-Dwarf",
+        "pollination": "Needs Pollinator",
+        "price": null,
+        "inventory": null,
+        "description": null,
+        "form": null,
+        "img-path": "./store-images/belle-de-boskoop.png"
+      },
+      {
+        "variety": "Cortland Nova Red",
+        "size": "Whip 1M +",
+        "rootstock": "EMLA 106 Semi-Dwarf",
+        "pollination": "Needs Pollinator",
+        "price": null,
+        "inventory": null,
+        "description": null,
+        "form": null,
+        "img-path": "./store-images/cortland-nova-red.png"
+      },
+      {
+        "variety": "Cox's Orange Pippin",
+        "size": "Whip 50-80cm",
+        "rootstock": "EMLA 111 Semi-Dwarf",
+        "pollination": "Needs Pollinator",
+        "price": null,
+        "inventory": null,
+        "description": null,
+        "form": null,
+        "img-path": "./store-images/cox-orange-pippin.png"
+      },
+      {
+        "variety": "Florina",
+        "size": "Whip 1M +",
+        "rootstock": "EMLA 106 Semi-Dwarf",
+        "pollination": "Needs Pollinator",
+        "price": null,
+        "inventory": null,
+        "description": null,
+        "form": null,
+        "img-path": "./store-images/florina.png"
+      },
+      {
+        "variety": "Freedom",
+        "size": "Whip 1M +",
+        "rootstock": "EMLA 106 Semi-Dwarf",
+        "pollination": "Needs Pollinator",
+        "price": null,
+        "inventory": null,
+        "description": null,
+        "form": null,
+        "img-path": "./store-images/freedom.png"
+      },
+      {
+        "variety": "Golden Russet",
+        "size": "Whip 1M +",
+        "rootstock": "B118 Semi-Dwarf",
+        "pollination": "Needs Pollinator",
+        "price": null,
+        "inventory": null,
+        "description": null,
+        "form": null,
+        "img-path": "./store-images/golden-russet.png"
+      },
+      {
+        "variety": "Northern Spy",
+        "size": "Whip 1M +",
+        "rootstock": "B118 Semi-Dwarf",
+        "pollination": "Needs Pollinator",
+        "price": null,
+        "inventory": null,
+        "description": null,
+        "form": null,
+        "img-path": "./store-images/northern-spy.png"
+      },
+      {
+        "variety": "Pink Pearl",
+        "size": "Whip 1M +",
+        "rootstock": "EMLA 106 Semi-Dwarf",
+        "pollination": "Needs Pollinator",
+        "price": null,
+        "inventory": null,
+        "description": null,
+        "form": null,
+        "img-path": "./store-images/pink-pearl.png"
+      },
+      {
+        "variety": "Wealthy",
+        "size": "Whip 1M +",
+        "rootstock": "EMLA 106 Semi-Dwarf",
+        "pollination": "Needs Pollinator",
+        "price": null,
+        "inventory": null,
+        "description": null,
+        "form": null,
+        "img-path": "./store-images/wealthy.png"
+      }
+    ],
+    "pear trees": [
+      {
+        "variety": "Bartlett",
+        "price": 35.0,
+        "inventory": 150.0,
+        "size": "Whip 1M +",
+        "pollination": "Self Pollinating",
+        "rootstock": null,
+        "description": null,
+        "form": null,
+        "img-path": "./store-images/bartlett.png"
+      },
+      {
+        "variety": "Flemish Beauty",
+        "price": 35.0,
+        "inventory": 100.0,
+        "pollination": "Needs Pollinator",
+        "size": null,
+        "rootstock": null,
+        "description": null,
+        "form": null,
+        "img-path": "./store-images/flemish-beauty.png"
+      },
+      {
+        "variety": "Clapp's Favorite",
+        "price": 35.0,
+        "inventory": 100.0,
+        "pollination": "Needs Pollinator",
+        "size": null,
+        "rootstock": null,
+        "description": null,
+        "form": null,
+        "img-path": "./store-images/clapps-favorite.png"
+      }
+    ],
+    "peach trees": [
+      {
+        "variety": "Redhaven",
+        "price": 40.0,
+        "inventory": 40.0,
+        "pollination": "Self Polinnating",
+        "size": null,
+        "rootstock": null,
+        "description": null,
+        "form": null,
+        "img-path": "./store-images/redhaven.png"
+      }
+    ],
+    "sour cherry trees": [
+      {
+        "variety": "Montmorency (1 year old)",
+        "price": 35.0,
+        "inventory": 75.0,
+        "pollination": "Self Polinating",
+        "unnamed: 16": 100.0,
+        "size": null,
+        "rootstock": null,
+        "description": null,
+        "form": null,
+        "img-path": "./store-images/montmorency-oneyear.png"
+      },
+      {
+        "variety": "Montmorency (2 years old)",
+        "price": 40.0,
+        "inventory": 42.0,
+        "size": null,
+        "rootstock": null,
+        "pollination": null,
+        "description": null,
+        "form": null,
+        "img-path": "./store-images/montmorency-twoyear.png"
+      },
+      {
+        "variety": "English Morello",
+        "price": 35.0,
+        "inventory": 37.0,
+        "size": null,
+        "rootstock": null,
+        "pollination": null,
+        "description": null,
+        "form": null,
+        "img-path": "./store-images/english-morello.png"
+      }
+    ],
+    "apricot trees": [
+      {
+        "variety": "Goldcot",
+        "price": 40.0,
+        "inventory": 30.0,
+        "size": null,
+        "rootstock": null,
+        "pollination": null,
+        "description": null,
+        "form": null,
+        "img-path": "./store-images/goldcot.png"
+      },
+      {
+        "variety": "Moorpark",
+        "price": 40.0,
+        "inventory": 40.0,
+        "unnamed: 16": 50.0,
+        "size": null,
+        "rootstock": null,
+        "pollination": null,
+        "description": null,
+        "form": null,
+        "img-path": "./store-images/moorpark.png"
+      },
+      {
+        "variety": "Harlayne",
+        "price": 40.0,
+        "inventory": 25.0,
+        "size": null,
+        "rootstock": null,
+        "pollination": null,
+        "description": null,
+        "form": null,
+        "img-path": "./store-images/harlayne.png"
+      },
+      {
+        "variety": "Harojoy",
+        "price": 40.0,
+        "inventory": 25.0,
+        "size": null,
+        "rootstock": null,
+        "pollination": null,
+        "description": null,
+        "form": null,
+        "img-path": "./store-images/harojoy.png"
+      }
+    ],
+    "sweet cherry trees": [
+      {
+        "variety": "Van",
+        "price": 40.0,
+        "inventory": 30.0,
+        "size": null,
+        "rootstock": null,
+        "pollination": null,
+        "description": null,
+        "form": null,
+        "img-path": "./store-images/van.png"
+      },
+      {
+        "variety": "Tehranivee",
+        "price": 40.0,
+        "inventory": 15.0,
+        "size": null,
+        "rootstock": null,
+        "pollination": null,
+        "description": null,
+        "form": null,
+        "img-path": "./store-images/tehranivee.png"
+      },
+      {
+        "variety": "Vogue",
+        "price": 40.0,
+        "inventory": 24.0,
+        "size": null,
+        "rootstock": null,
+        "pollination": null,
+        "description": null,
+        "form": null,
+        "img-path": "./store-images/vogue.png"
+      }
+    ],
+    "plum trees": [
+      {
+        "variety": "Mount Royal",
+        "price": 40.0,
+        "inventory": 25.0,
+        "size": null,
+        "rootstock": null,
+        "pollination": null,
+        "description": null,
+        "form": null,
+        "img-path": "./store-images/mount-royal.png"
+      },
+      {
+        "variety": "Toka",
+        "price": 40.0,
+        "inventory": 25.0,
+        "size": null,
+        "rootstock": null,
+        "pollination": null,
+        "description": null,
+        "form": null,
+        "img-path": "./store-images/toka.png"
+      },
+      {
+        "variety": "Damson",
+        "price": 40.0,
+        "inventory": 25.0,
+        "size": null,
+        "rootstock": null,
+        "pollination": null,
+        "description": null,
+        "form": null,
+        "img-path": "./store-images/damson.png"
+      },
+      {
+        "variety": "Italian",
+        "price": 40.0,
+        "inventory": 25.0,
+        "size": null,
+        "rootstock": null,
+        "pollination": null,
+        "description": null,
+        "form": null,
+        "img-path": "./store-images/italian.png"
+      },
+      {
+        "variety": "Victory",
+        "price": 40.0,
+        "inventory": 17.0,
+        "size": null,
+        "rootstock": null,
+        "pollination": null,
+        "description": null,
+        "form": null,
+        "img-path": "./store-images/victory.png"
+      }
+    ]
+  },
+  "nut and others": [
+    {
+      "variety": "Black Walnut",
+      "size": null,
+      "rootstock": null,
+      "pollination": null,
+      "price": null,
+      "inventory": null,
+      "description": null,
+      "form": null,
+      "img-path": "./store-images/black-walnut.png"
+    },
+    {
+      "variety": "English Walnut",
+      "size": null,
+      "rootstock": null,
+      "pollination": null,
+      "price": null,
+      "inventory": null,
+      "description": null,
+      "form": null,
+      "img-path": "./store-images/english-walnut.png"
+    },
+    {
+      "variety": "Black Locust",
+      "size": null,
+      "rootstock": null,
+      "pollination": null,
+      "price": null,
+      "inventory": null,
+      "description": null,
+      "form": null,
+      "img-path": "./store-images/black-locust.png"
+    },
+    {
+      "variety": "Sugar Maple",
+      "size": null,
+      "rootstock": null,
+      "pollination": null,
+      "price": null,
+      "inventory": null,
+      "description": null,
+      "form": null,
+      "img-path": "./store-images/sugar-maple.png"
+    },
+    {
+      "variety": "Paw Paw",
+      "size": null,
+      "rootstock": null,
+      "pollination": null,
+      "price": null,
+      "inventory": null,
+      "description": null,
+      "form": null,
+      "img-path": "./store-images/paw-paw.png"
+    },
+    {
+      "variety": "Persimmons",
+      "size": null,
+      "rootstock": null,
+      "pollination": null,
+      "price": null,
+      "inventory": null,
+      "description": null,
+      "form": null,
+      "img-path": "./store-images/persimmons.png"
+    },
+    {
+      "variety": "Ultra Northern Pecan",
+      "size": null,
+      "rootstock": null,
+      "pollination": null,
+      "price": null,
+      "inventory": null,
+      "description": null,
+      "form": null,
+      "img-path": "./store-images/ultra-northern-pecan.png"
+    },
+    {
+      "variety": "Swamp White Oak",
+      "size": null,
+      "rootstock": null,
+      "pollination": null,
+      "price": null,
+      "inventory": null,
+      "description": null,
+      "form": null,
+      "img-path": "./store-images/swamp-white-oak.png"
+    },
+    {
+      "variety": "Kentucky Coffee",
+      "size": null,
+      "rootstock": null,
+      "pollination": null,
+      "price": null,
+      "inventory": null,
+      "description": null,
+      "form": null,
+      "img-path": "./store-images/kentucky-coffee.png"
+    },
+    {
+      "variety": "Hazelnut",
+      "size": null,
+      "rootstock": null,
+      "pollination": null,
+      "price": null,
+      "inventory": null,
+      "description": null,
+      "form": null,
+      "img-path": "./store-images/hazlenut.png"
+    }
+  ],
+  "perennials, berries and bushes": [
+    {
+      "variety": "Aronia (Viking)",
+      "size": null,
+      "rootstock": null,
+      "pollination": null,
+      "price": null,
+      "inventory": null,
+      "description": null,
+      "form": null,
+      "img-path": "./store-images/aronia-viking.png"
+    },
+    {
+      "variety": "Aronia (McKenzie)",
+      "size": null,
+      "rootstock": null,
+      "pollination": null,
+      "price": null,
+      "inventory": null,
+      "description": null,
+      "form": null,
+      "img-path": "./store-images/aronia-mckenzie.png"
+    },
+    {
+      "variety": "Sea Buckthorn",
+      "size": null,
+      "rootstock": null,
+      "pollination": null,
+      "price": null,
+      "inventory": null,
+      "description": null,
+      "form": null,
+      "img-path": "./store-images/sea-buckthorn.png"
+    },
+    {
+      "variety": "Arctic Kiwi",
+      "size": null,
+      "rootstock": null,
+      "pollination": null,
+      "price": null,
+      "inventory": null,
+      "description": null,
+      "form": null,
+      "img-path": "./store-images/arctic-kiwi.png"
+    },
+    {
+      "variety": "Elderberry (Scotia)",
+      "price": 30.0,
+      "description": null,
+      "form": "3 Gallon Pot",
+      "size": null,
+      "rootstock": null,
+      "pollination": null,
+      "inventory": null,
+      "img-path": "./store-images/elderberry-scotia.png"
+    },
+    {
+      "variety": "Elderberry (Kent)",
+      "price": 30.0,
+      "description": null,
+      "form": "3 Gallon Pot",
+      "size": null,
+      "rootstock": null,
+      "pollination": null,
+      "inventory": null,
+      "img-path": "./store-images/elderberry-kent.png"
+    },
+    {
+      "variety": "Elderberry (Wild)",
+      "price": 25.0,
+      "description": null,
+      "form": "2 Gallon Pot",
+      "size": null,
+      "rootstock": null,
+      "pollination": null,
+      "inventory": null,
+      "img-path": "./store-images/elderberry-wild.png"
+    },
+    {
+      "variety": "Black Current (Titania)",
+      "description": null,
+      "form": "4 Gallon Pot",
+      "size": null,
+      "rootstock": null,
+      "pollination": null,
+      "price": null,
+      "inventory": null,
+      "img-path": "./store-images/black-current.png"
+    },
+    {
+      "variety": "Red Current (Red Lake)",
+      "description": null,
+      "form": "4 Gallon Pot",
+      "size": null,
+      "rootstock": null,
+      "pollination": null,
+      "price": null,
+      "inventory": null,
+      "img-path": "./store-images/red-current.png"
+    },
+    {
+      "variety": "Quince (Giant Zagreb)",
+      "size": null,
+      "rootstock": null,
+      "pollination": null,
+      "price": null,
+      "inventory": null,
+      "description": null,
+      "form": null,
+      "img-path": "./store-images/quince.png"
+    },
+    {
+      "variety": "Rhubarb",
+      "price": 15.0,
+      "size": "3 Crowns",
+      "description": null,
+      "form": "Tubor",
+      "rootstock": null,
+      "pollination": null,
+      "inventory": null,
+      "img-path": "./store-images/rhubarb.png"
+    },
+    {
+      "variety": "Jerusalem Artichoke",
+      "price": 15.0,
+      "size": "2Lbs +",
+      "description": null,
+      "form": "Tubor",
+      "rootstock": null,
+      "pollination": null,
+      "inventory": null,
+      "img-path": "./store-images/jerusalem-artichoke.png"
+    },
+    {
+      "variety": "Comfrey",
+      "price": 15.0,
+      "size": "4 Crowns",
+      "description": null,
+      "form": "Tubor",
+      "rootstock": null,
+      "pollination": null,
+      "inventory": null,
+      "img-path": "./store-images/comfrey.png"
+    },
+    {
+      "variety": "Lilac",
+      "price": 10.0,
+      "size": "6-12\"",
+      "description": null,
+      "form": "Bare Root",
+      "rootstock": null,
+      "pollination": null,
+      "inventory": null,
+      "img-path": "./store-images/lilac.png"
+    },
+    {
+      "variety": "Horseradish",
+      "price": 15.0,
+      "size": "3 Crowns",
+      "description": null,
+      "form": "Tubor",
+      "rootstock": null,
+      "pollination": null,
+      "inventory": null,
+      "img-path": "./store-images/horseradish.png"
+    },
+    {
+      "variety": "Mint",
+      "price": 10.0,
+      "size": "1-3\" Root Mass",
+      "description": null,
+      "form": "Bare Root",
+      "rootstock": null,
+      "pollination": null,
+      "inventory": null,
+      "img-path": "./store-images/mint.png"
+    },
+    {
+      "variety": "Spearmint",
+      "price": 10.0,
+      "size": "1-3\" Root Mass",
+      "description": null,
+      "form": "Bare Root",
+      "rootstock": null,
+      "pollination": null,
+      "inventory": null,
+      "img-path": "./store-images/spearmint.png"
+    }
+  ],
+  "rootstock": [
+    {
+      "variety": "Cherry Rootstock",
+      "price": 5.0,
+      "size": "5/8\" + Thick",
+      "description": null,
+      "form": "Bare Root",
+      "rootstock": "Mazzard",
+      "pollination": null,
+      "inventory": null,
+      "img-path": "./store-images/rootstock.png"
+    },
+    {
+      "variety": "Plum Rootstock",
+      "price": 5.0,
+      "size": "1/2 \" + Thick",
+      "description": null,
+      "form": "Bare Root",
+      "rootstock": "Myrobalan",
+      "pollination": null,
+      "img-path": "./store-images/rootstock.png",
+      "inventory": null
+    }
+  ],
+  "supplies": [
+    {
+      "variety": "Tree Guards",
+      "price": 4.0,
+      "size": null,
+      "rootstock": null,
+      "pollination": null,
+      "inventory": null,
+      "description": null,
+      "form": null,
+      "img-path": "./store-images/rootstock.png"
+    },
+    {
+      "variety": "Jute Mulch Pads",
+      "price": 2.0,
+      "size": null,
+      "rootstock": null,
+      "pollination": null,
+      "inventory": null,
+      "description": null,
+      "form": null,
+      "img-path": "./store-images/rootstock.png"
+    },
+    {
+      "variety": "Tree Stakes",
+      "price": 5.0,
+      "size": null,
+      "rootstock": null,
+      "pollination": null,
+      "inventory": null,
+      "description": null,
+      "form": null,
+      "img-path": "./store-images/rootstock.png"
+    }
+  ]
+}
