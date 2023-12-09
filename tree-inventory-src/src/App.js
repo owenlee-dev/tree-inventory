@@ -11,7 +11,8 @@ import Header from "./components/Header";
 import HeroMobile from "./pages/Hero/HeroMobile";
 import Hero from "./pages/Hero/Hero";
 import Store from "./pages/Store/Store";
-
+import Footer from "./components/Footer";
+import Admin from "./pages/Admin/Admin";
 function App() {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1000);
   useEffect(() => {
@@ -33,9 +34,11 @@ function App() {
           {isMobile && <Route index element={<HeroMobile />} />}
           <Route path="/store" element={<Store />} />
           <Route path="/events" element={<Store />} />{" "}
-          <Route path="/contact" element={<Store />} />
+          <Route path="/services" element={<Store />} />
           <Route path="/about" element={<Store />} />
+          <Route path="/admin" element={<Admin />} />
         </Routes>
+        <Footer />
       </Router>
     </div>
   );

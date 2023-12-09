@@ -1,6 +1,7 @@
 // store.js
 import { configureStore } from "@reduxjs/toolkit";
-import headerAnimationSlice from "./slices/headerAnimationSlice";
+import storeDataReducer from "./slices/StoreSlice";
+import appDataReducer from "./slices/AppSlice";
 
 //useSelector hook to access the values in the store
 // const count = useSelector((state) => state.counter.value);
@@ -10,6 +11,7 @@ import headerAnimationSlice from "./slices/headerAnimationSlice";
 
 export const store = configureStore({
   reducer: {
-    counter: headerAnimationSlice,
+    storeSlice: storeDataReducer,
+    appSlice: appDataReducer,
   },
 });

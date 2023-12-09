@@ -1,0 +1,170 @@
+@import "../../assets/colors.scss";
+@import "../../assets/page-layout.scss";
+
+.cart-container {
+  background-color: $accent;
+  padding-bottom: 2em;
+  padding-top: 2em;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: $borderRadius;
+  gap: 4em;
+  justify-content: center;
+  align-items: center;
+  .cart-title-container {
+    margin: 1em;
+    margin-bottom: 0;
+    margin-left: 5%;
+    align-self: flex-start;
+
+    .back-to-shop-btn {
+      margin-top: 1em;
+      display: flex;
+      cursor: pointer;
+      background-color: $blue;
+      color: $accent;
+      align-items: center;
+      padding: 0.5em 0.75em;
+      border-radius: $borderRadius;
+    }
+  }
+  .cart-content-container {
+    display: flex;
+    padding: 1em;
+    height: 55vh;
+    width: 100%;
+    gap: 1em;
+    justify-content: center;
+    .default-msg {
+      margin-left: 5%;
+    }
+    .items-in-cart-container {
+      overflow-y: scroll;
+      padding: 1em;
+      padding-top: 0;
+      width: 55%;
+      display: flex;
+      flex-direction: column;
+      gap: 1em;
+      .cart-card {
+        display: flex;
+        border-radius: $borderRadius;
+        background-color: #f9f9f9;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        .cart-image-container {
+          width: auto;
+          overflow: hidden;
+          border-radius: 8px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex: 2;
+          img {
+            width: 80px;
+            height: auto;
+            object-fit: cover;
+          }
+        }
+        .cart-info-container {
+          flex: 8;
+          .cart-card-top {
+            align-items: center;
+            justify-content: space-between;
+            border-radius: $borderRadius;
+            padding-top: 1em;
+            padding-left: 1em;
+            padding-right: 1em;
+            display: flex;
+            flex-direction: row;
+            .cart-item-title {
+              flex: 4;
+              font-size: 24px;
+              font-weight: 400;
+            }
+            .size {
+              font-size: 16px;
+            }
+
+            .num-items-container {
+              display: flex;
+              flex: 2;
+              input[type="number"] {
+                width: 4em;
+                font-weight: 400;
+                text-align: center;
+                border-radius: $borderRadius;
+              }
+              input[type="number"]::-webkit-inner-spin-button {
+                opacity: 1;
+              }
+            }
+            p {
+              font-weight: 400;
+            }
+          }
+
+          .cart-card-bot {
+            width: 100%;
+            display: flex;
+            padding: 1em;
+            justify-content: flex-end;
+            align-items: flex-end;
+            .remove-btn {
+              display: flex;
+              background-color: $blue;
+              color: $accent;
+              align-items: center;
+              padding: 0.25em 0.5em;
+              border-radius: $borderRadius;
+            }
+          }
+        }
+      }
+    }
+    .order-summary-container {
+      border-radius: $borderRadius;
+      background-color: rgb(190, 190, 190);
+      font-weight: 400;
+      display: flex;
+      flex-direction: column;
+      gap: 1em;
+      justify-content: space-evenly;
+      padding:2em;
+      height:100%;
+      .order-summary-title-container {
+        border-bottom: 2px solid $darkBrown;
+        padding-bottom: 1em;
+      }
+      .order-financial-info {
+        padding-top: 1em;
+        gap: 1em;
+        display: flex;
+        flex-direction: column;
+        & > div {
+          display: flex;
+          font-size: 0.8rem;
+          justify-content: space-between;
+        }
+        .total {
+          border-top: 2px solid $darkBrown;
+          font-size: 1.2rem;
+          display: flex;
+          justify-content: space-between;
+        }
+      }
+      .proceed-to-checkout-btn {
+        margin-top: 1em;
+        justify-content: center;
+        display: flex;
+        color:$accent;
+        cursor: pointer;
+        background-color: $blue;
+        align-items: center;
+        padding: 0.5em 0.75em;
+        border-radius: $borderRadius;
+      }
+    }
+  }
+}

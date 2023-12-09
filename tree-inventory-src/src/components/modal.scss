@@ -1,4 +1,22 @@
 @import "../assets/colors.scss";
+.overlay {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
+  background-color: rgba(0, 0, 0, 0.75);
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  font-size: 1.5em;
+  z-index: 1000;
+  text-align: center;
+  opacity: 0;
+  animation: fadeInOutPop 2s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+}
+
+
 .modal-backdrop {
   position: fixed;
   top: 0;
@@ -13,53 +31,57 @@
 }
 
 .modal {
-  background-color: white;
+  background-color: $accent;
   padding: 20px;
   border-radius: 5px;
-  max-width: 500px;
+  max-width: 600px;
   width: 100%;
-  gap:1em;
+  gap: 2em;
   display: flex;
   position: relative;
-
   .modal-left {
-    width:60%;
+    width: 50%;
     display: flex;
     flex-direction: column;
-    gap:1em;
-    .available{
+    gap: 1em;
+    .price {
+      color: $orange;
+      font-size: 1.4rem;
       font-weight: 400;
-      color:$lightGreen;
     }
-    .unavailable{
+    .available {
       font-weight: 400;
-      color:$red;
+      color: $lightGreen;
     }
-    .quantity-input-container{
+    .unavailable {
+      font-weight: 400;
+      color: $red;
+    }
+    .quantity-input-container {
       display: flex;
-      justify-content: center;
+      justify-content: flex-start;
       align-items: center;
-      gap:1em;
-      p{
-        font-weight:400;
-      }
-      input{
+      gap: 1em;
+      padding: 1em;
+
+      input {
+        font-weight: 400;
         text-align: center;
-        border:2px solid $lightBrown;
-        width:4em;
+        border: 2px solid $lightBrown;
+        width: 4em;
         border-radius: $borderRadius;
       }
       button {
         padding: 5px 10px;
         border: none;
         border-radius: $borderRadius;
-        background-color: $lightBrown;
+        background-color: $orange;
         color: white;
         cursor: pointer;
-        transition: background-color 0.3s;
-  
+        transition: background-color 0.3s ease-in-out;
+
         &:hover {
-          background-color: $orange;
+          background-color: $lightBrown;
         }
       }
     }
@@ -80,9 +102,21 @@
 .close-button {
   position: absolute;
   top: 10px;
-  right: 10px;
+  right: 20px;
   border: none;
   background: none;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 40px;
+}
+@keyframes fadeInOutPop {
+  0%,
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+  30% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.2); /* Scale up for the 'pop' */
+  }
+  
 }

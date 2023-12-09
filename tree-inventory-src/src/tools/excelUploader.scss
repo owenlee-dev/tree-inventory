@@ -1,0 +1,59 @@
+@import "../assets/colors.scss";
+@import "../assets/page-layout.scss";
+
+.excel-uploader {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1em;
+
+  
+  .file-upload-label {
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    background-color: $accent;
+    padding: 0.5em 1em;
+    border-radius: 0.3em;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    margin-bottom: 1em;
+    
+    img {
+      width: 3em;
+      height: 3em;
+      margin-right: 0.5em;
+    }
+
+    span {
+      font-size: 1em;
+    }
+  }
+
+  .file-info {
+    display: flex;
+    gap: 2em;
+    border-radius: $borderRadius;
+    align-items: center;
+    padding: 0.5em;
+    border:2px solid #ffffff00;
+      transition:border 0.2s ease;
+      &:hover{
+        border:2px solid #3333333a;
+      }
+
+    img {
+      height: 5em;
+      width: 5em;
+    }
+  }
+
+  .upload-button {
+    padding: 0.5em 0.5em;
+    text-wrap: nowrap;
+    border: none;
+    border-radius: 0.3em;
+    cursor: pointer;
+    background-color: $accent;
+    
+  }
+}

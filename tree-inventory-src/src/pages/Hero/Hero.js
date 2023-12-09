@@ -7,10 +7,12 @@ import storeButton from "../../assets/images/store-button.png";
 import eventsButton from "../../assets/images/about-button.png";
 import contactButton from "../../assets/images/store-button.png";
 import aboutButton from "../../assets/images/about-button.png";
-
+import { changeTab } from "../../__redux/slices/AppSlice";
+import { useDispatch } from "react-redux";
 function Hero() {
   const [divHeight, setDivHeight] = useState("80vh"); // Default height
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   useEffect(() => {
     const handleResize = () => {
       const screenWidth = window.innerWidth;
@@ -35,6 +37,25 @@ function Hero() {
     };
   }, []);
 
+  const handleLinkClick = (linkName) => {
+    dispatch(changeTab(linkName));
+    switch (linkName) {
+      case "Store":
+        navigate("/store");
+        break;
+      case "Events":
+        navigate("/events");
+        break;
+      case "About Us":
+        navigate("/about");
+        break;
+      case "Services":
+        navigate("/services");
+        break;
+      default:
+        navigate("/store");
+    }
+  };
   return (
     <div className="hero-container">
       <div className="hero-top" style={{ height: divHeight }}>
@@ -59,18 +80,14 @@ function Hero() {
           <div className="hero-link-row">
             <div
               className="link-button"
-              onClick={() => {
-                navigate("/store");
-              }}
+              onClick={() => handleLinkClick("Store")}
             >
               <img src={storeButton} alt="Store Button" />
               <div className="text-overlay">Store</div>
             </div>
             <div
               className="link-button"
-              onClick={() => {
-                navigate("/events");
-              }}
+              onClick={() => handleLinkClick("Events")}
             >
               <img src={eventsButton} alt="Events Button" />
               <div className="text-overlay">Events</div>
@@ -79,21 +96,17 @@ function Hero() {
           <div className="hero-link-row">
             <div
               className="link-button"
-              onClick={() => {
-                navigate("/about");
-              }}
+              onClick={() => handleLinkClick("About Us")}
             >
               <img src={aboutButton} alt="About Button" />
               <div className="text-overlay">About Us</div>
             </div>
             <div
               className="link-button"
-              onClick={() => {
-                navigate("/contact");
-              }}
+              onClick={() => handleLinkClick("Services")}
             >
-              <img src={contactButton} alt="Contact Button" />
-              <div className="text-overlay">Contact</div>
+              <img src={contactButton} alt="Services Button" />
+              <div className="text-overlay">Services</div>
             </div>
           </div>
         </div>

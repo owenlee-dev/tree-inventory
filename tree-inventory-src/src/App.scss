@@ -4,12 +4,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400&display=swap');
 .App {
   display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  align-items: center;
   color: $text;
-  justify-content: center;
-  // background: linear-gradient(180deg, $darkBrown, $lightBrown, $accent);
-  background-image: url("./assets/images/green-bg.png");
+  background: linear-gradient(180deg, $lightBrown, $darkBrown);
+  // background-image: url("./assets/images/green-bg.png");
   font-family:"Montserrat", sans-serif;
-  font-weight: 200;
 }
 
 /* CSS for fade-out */

@@ -3,18 +3,21 @@ import "./header.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import MapleGroveLogo from "../assets/images/maple-grove-permaculture.png";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { changeTab } from "../__redux/slices/AppSlice";
 
 const Header = forwardRef((props, ref) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [activeLink, setActiveLink] = useState(null);
+  const dispatch = useDispatch();
+  const currentTab = useSelector((state) => state.appSlice.tabSelected);
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
   const handleLinkChange = (newLink) => {
-    setActiveLink(newLink);
+    dispatch(changeTab(newLink));
   };
 
   return (
@@ -36,36 +39,29 @@ const Header = forwardRef((props, ref) => {
         </div>
         <Link
           to="/store"
-          className={`header-link ${activeLink === "Store" ? `active` : ``}`}
+          className={`header-link ${currentTab === "Store" ? `active` : ``}`}
         >
           <h2 onClick={() => handleLinkChange("Store")}>Store</h2>
         </Link>
         <Link
-          to="/"
-          className={`header-link ${activeLink === "Contact" ? `active` : ``}`}
+          to="/services"
+          className={`header-link ${currentTab === "Services" ? `active` : ``}`}
         >
-          <h2 onClick={() => handleLinkChange("Stay With Us")}>Stay With Us</h2>
+          <h2 onClick={() => handleLinkChange("Services")}>Services</h2>
         </Link>
+
         <Link
-          to="/"
-          className={`header-link ${activeLink === "Contact" ? `active` : ``}`}
-        >
-          <h2 onClick={() => handleLinkChange("Massage/Reiki")}>
-            Massage & Reiki
-          </h2>
-        </Link>
-        <Link
-          to="/"
-          className={`header-link ${activeLink === "Events" ? `active` : ``}`}
+          to="/events"
+          className={`header-link ${currentTab === "Events" ? `active` : ``}`}
         >
           <h2 onClick={() => handleLinkChange("Events")}>Events</h2>
         </Link>
 
         <Link
-          to="/"
-          className={`header-link ${activeLink === "About" ? `active` : ``}`}
+          to="/about"
+          className={`header-link ${currentTab === "About Us" ? `active` : ``}`}
         >
-          <h2 onClick={() => handleLinkChange("About")}>About</h2>
+          <h2 onClick={() => handleLinkChange("About Us")}>About Us</h2>
         </Link>
       </div>
       <div className="hamburger-icon" onClick={toggleSidebar}>

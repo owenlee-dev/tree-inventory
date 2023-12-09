@@ -8,6 +8,7 @@
   gap: 6em;
   padding: 2em;
   padding-right: 3em;
+  top:0;
   left: 0;
   height: calc(9em + (30 - 9) * ((100vw - 945px) / (945 - 480)));
   min-height: 9em;
@@ -111,7 +112,7 @@
 //when screen is big
 @media (min-width: 1000px) {
   .header {
-    height: 30vw; /* Header height is fixed at 30vw for screens larger than 945px */
+    height: 30vw;
   }
   .hamburger-icon {
     display: none;

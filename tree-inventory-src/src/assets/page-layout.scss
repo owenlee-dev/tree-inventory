@@ -3,19 +3,35 @@
   src: url("./fonts/Railey-PersonalUse.ttf");
 }
 
-.home-container {
+.content-container {
   background-color: $white;
   z-index: 1;
   margin-top: 9em;
-  margin-bottom:2em;
+  margin-bottom: 2em;
   width: 90%;
   min-height: 100vh;
   border-radius: $borderRadius;
-  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 @media (max-width: 945px) {
-  .home-container {
+  .content-container {
     width: 100%;
+  }
+}
+.button-animation {
+  transition: filter 0.3s, transform 0.3s;
+  -webkit-filter: drop-shadow(1px 1px 5px #808080);
+  filter: drop-shadow(1px 1px 3px #808080);
+
+  &:hover {
+    -webkit-filter: drop-shadow(2px 2px 5px #808080);
+    filter: drop-shadow(2px 2px 5px#808080);
+    transform: translateY(2px);
+  }
+
+  &:active {
+    -webkit-filter: drop-shadow(2px 2px 5px #808080);
+    filter: drop-shadow(2px 2px 5px #808080);
+    transform: translateY(4px);
   }
 }
