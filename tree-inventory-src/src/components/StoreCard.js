@@ -12,7 +12,6 @@ const StoreCard = ({ index, productInfo, onCardClick, onAddToCart }) => {
   const titleRef = useRef(null);
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.storeSlice.cartContents);
-
   useEffect(() => {
     if (titleRef.current) {
       const height = titleRef.current.clientHeight;
@@ -23,7 +22,6 @@ const StoreCard = ({ index, productInfo, onCardClick, onAddToCart }) => {
       }
     }
   }, [productInfo.title]);
-
   const handleMouseEnter = () => {
     // Generate a random degree between -20 and 20
     const randomDegree = random.boolean()
@@ -59,7 +57,9 @@ const StoreCard = ({ index, productInfo, onCardClick, onAddToCart }) => {
     setShowOverlay(true);
     setTimeout(() => setShowOverlay(false), 2000);
   };
-
+  const handleImageError = (e) => {
+    e.target.src = "./store-images/rootstock.png";
+  };
   return (
     <div
       key={index}
@@ -70,14 +70,25 @@ const StoreCard = ({ index, productInfo, onCardClick, onAddToCart }) => {
     >
       {showOverlay && <div className="overlay">Added to Cart</div>}
       <div className="img-container">
-        <img style={imageStyle} src={productInfo.imagePath} alt="Product" />
+        <img
+          style={imageStyle}
+          src={productInfo.imagePath}
+          onError={handleImageError}
+          alt="Product"
+        />
       </div>
       <h3 ref={titleRef}>{productInfo.title}</h3>
       <p className={productInfo.inStock ? "available" : "unavailable"}>
         {productInfo.inStock ? "In Stock" : "Unavailable"}
       </p>
       <div className="card-bot" style={{ marginTop: bottomPadding }}>
-        <button onClick={handleAddToCart}>Add to Cart</button>
+        <button
+          className="add-to-cart-btn"
+          onClick={handleAddToCart}
+          disabled={!productInfo.inStock}
+        >
+          Add to Cart
+        </button>
         <p className="price">{productInfo.price}$</p>
       </div>
     </div>

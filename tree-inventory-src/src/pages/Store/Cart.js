@@ -5,15 +5,13 @@ import {
   removeFromCart,
   updateCartItemQuantity,
 } from "../../__redux/slices/StoreSlice";
-
+import { Link } from "react-router-dom";
 //Thoughts on an etransfer checkout process
 const Cart = ({ toggleShopCheckout }) => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.storeSlice.cartContents);
-  console.log(cartItems);
 
   const handleItemRemove = (product) => {
-    console.log(product);
     dispatch(removeFromCart(product.title));
   };
 
@@ -27,31 +25,51 @@ const Cart = ({ toggleShopCheckout }) => {
   const getTotalItemCount = () => {
     return cartItems.reduce((total, item) => total + item.numInCart, 0);
   };
+  const handleImageError = (e) => {
+    e.target.src = "./store-images/rootstock.png";
+  };
+
+  const formatCurrency = (value) => {
+    return new Intl.NumberFormat("en-CA", {
+      style: "currency",
+      currency: "CAD",
+    }).format(value);
+  };
+
+  const getTotals = () => {
+    let totals = { subtotal: 0, taxes: 0, total: 0 };
+    console.log(cartItems);
+    cartItems.forEach((item) => {
+      totals.subtotal += parseInt(item.price);
+    });
+    totals.taxes = totals.subtotal * 0.15;
+    totals.total = totals.taxes + totals.subtotal;
+    return totals;
+  };
 
   return (
     <div className="cart-container">
       <div className="cart-title-container">
         <h1>Your garden is going to be stunning!</h1>
-        <button
-          className="back-to-shop-btn button-animation"
-          onClick={() => {
-            toggleShopCheckout();
-          }}
-        >
+        <Link to="/store" className="back-to-shop-btn button-animation">
           Return to Shop
-        </button>
+        </Link>
       </div>
       <div className="cart-content-container">
-        {cartItems.length === 0 && (
-          <h2 className="default-msg">
-            Looks like you dont have any items in your cart yet...
-          </h2>
-        )}
         <div className="items-in-cart-container">
+          {cartItems.length === 0 && (
+            <h2 className="default-msg">
+              Looks like you dont have any items in your cart yet...
+            </h2>
+          )}
           {cartItems.map((item) => (
             <div className="cart-card" key={item.key}>
               <div className="cart-image-container">
-                <img src={item.imagePath} alt={item.title} />
+                <img
+                  src={item.imagePath}
+                  alt={item.title}
+                  onError={handleImageError}
+                />
               </div>
               <div className="cart-info-container">
                 <div className="cart-card-top">
@@ -92,30 +110,28 @@ const Cart = ({ toggleShopCheckout }) => {
             <div>
               <h2>Subtotal:</h2>{" "}
               <span className="subtotal">
-                <h2>123$</h2>
+                <h2>{formatCurrency(getTotals().subtotal)}</h2>
               </span>
             </div>
             <div>
               <h2>Estimated Taxes:</h2>{" "}
               <span className="est-taxes">
-                <h2>123$</h2>
+                <h2>{formatCurrency(getTotals().taxes)}</h2>
               </span>
             </div>
             <div className="total">
               <h2>Total: </h2>{" "}
               <span>
-                <h2>123$</h2>
+                <h2>{formatCurrency(getTotals().total)}</h2>
               </span>
             </div>
           </div>
-          <button
+          <Link
+            to="/store/checkout"
             className="proceed-to-checkout-btn button-animation"
-            onClick={() => {
-              toggleShopCheckout();
-            }}
           >
             Proceed to Checkout
-          </button>
+          </Link>
         </div>
       </div>
     </div>

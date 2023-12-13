@@ -59,7 +59,6 @@ const ExcelUploader = () => {
   const handleFileUpload = async () => {
     if (selectedFile) {
       let data = await readExcelFile(selectedFile);
-      console.log(data);
       // let organizedData = await organizeData(data);
       // dispatch(uploadDataFile(organizedData));
       setSelectedFile(null);

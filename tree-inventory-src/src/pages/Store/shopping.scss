@@ -1,0 +1,186 @@
+
+@import "../../assets/colors.scss";
+@import "../../assets/page-layout.scss";
+.store-content-container {
+  display: flex;
+  width: 100%;
+  height: 80vh;
+  //MOBILE
+  @media screen and (max-width: 850px) {
+    flex-direction: column;
+    height: fit-content;
+  }
+
+  .store-sidebar {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1em;
+    height: 100%;
+    border-radius: $borderRadius 0 0 $borderRadius;
+    background-color: $blue;
+    .sidebar-top {
+      display: flex;
+      flex-direction: column;
+      gap: 2em;
+      width: 90%;
+
+      .store-categories {
+        font-size: min(1.5vw, 24px);
+        font-weight: 400;
+        //MOBILE
+        @media screen and (max-width: 850px) {
+          font-size: 18px;
+        }
+        .category-list {
+          display: flex;
+          padding-left: 0.5em;
+          flex-direction: column;
+          li {
+            color: $lightBrown;
+            border-radius: $borderRadius;
+            padding: 0.25em;
+            margin: 0.25em 0em;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            &:hover {
+              color: $darkBrown;
+              background-color: $accent;
+            }
+          }
+          li.active {
+            color: $accent;
+            background-color: #d28b289f;
+          }
+        }
+      }
+    }
+    .sidebar-bottom {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+
+      .checkout-button {
+      text-decoration: none;
+        color:$text;
+        display: flex;
+        cursor: pointer;
+        width: 80%;
+        background-color: $accent;
+        gap: 1em;
+        align-items: center;
+        padding: 0.75em 1.25em;
+        border-radius: $borderRadius;
+        justify-content: space-around;
+        .__checkout {
+          height: 40px;
+        }
+      }
+
+      //MOBILE
+      @media screen and (max-width: 850px) {
+        flex-direction: column;
+        .checkout-button {
+          display: none;
+        }
+      }
+    }
+  }
+  .store-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 0 $borderRadius $borderRadius 0;
+    background-color: #ccc8c0;
+    flex: 3;
+    overflow-y: scroll;
+    .content-header-container {
+      background-color: $blue;
+      width: 100%;
+      color: $accent;
+      justify-content: space-between;
+      display: flex;
+      gap: 2em;
+      padding: 1em;
+      align-items: center;
+      font-weight: 400;
+      .search-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        .search-input {
+          background-color: $accent;
+          width: 100%;
+          border-radius: $borderRadius;
+          border: 2px solid $text;
+          outline: none;
+          padding: 0.5em;
+          padding-left: 50px;
+        }
+        .search-icon {
+          background-color: transparent;
+          position: absolute;
+          cursor: text;
+          left: 10px;
+          top: 0.5em;
+          border: none;
+          .__search {
+            width: 30px;
+            opacity: 0.8;
+            height: 30px;
+          }
+        }
+      }
+      //MOBILE
+      @media screen and (max-width: 850px) {
+        flex-direction: column;
+        .sort-by {
+          display: none;
+        }
+      }
+      div {
+        align-items: center;
+        display: flex;
+        gap: 1em;
+      }
+      .sort-select {
+        border-radius: $borderRadius;
+        padding: 0.5em;
+        background-color: $accent;
+        &:active,
+        &:focus {
+          outline: 1px solid $darkBrown;
+        }
+        option:hover {
+          background-color: #33373f; /* Dark gray background */
+          color: white; /* Light color text */
+        }
+      }
+      .availability-checkbox:checked {
+        accent-color: $orange; /* This sets the checkbox color when checked */
+      }
+    }
+    .cards-container {
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2em;
+
+      .fruit-basket {
+        width: 100%;
+        display: flex;
+        padding-bottom: 1em;
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+    .basket-title {
+      background-color: $lightBrown;
+      border-radius: $borderRadius;
+      text-align: center;
+    }
+  }
+}

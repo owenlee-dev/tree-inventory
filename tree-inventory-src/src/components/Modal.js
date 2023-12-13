@@ -16,7 +16,6 @@ const Modal = ({ product, onClose }) => {
 
   const handleAddToCart = (event) => {
     event.stopPropagation();
-    console.log("q: ", quantity);
     const productDataForCart = {
       title: product.title,
       price: product.price,
@@ -26,7 +25,6 @@ const Modal = ({ product, onClose }) => {
       form: product.form,
       key: Math.random() * 11,
     };
-    console.log("p: ", productDataForCart);
     dispatch(addToCart(productDataForCart));
     setShowOverlay(true);
     setTimeout(() => setShowOverlay(false), 2000);
@@ -49,6 +47,9 @@ const Modal = ({ product, onClose }) => {
     };
   }, [onClose]);
 
+  const handleImageError = (e) => {
+    e.target.src = "./store-images/rootstock.png";
+  };
   return (
     <div className="modal-backdrop">
       <div className="modal" ref={modalRef}>
@@ -81,7 +82,7 @@ const Modal = ({ product, onClose }) => {
           </div>
         </div>
         <div className="modal-right">
-          <img src={product.imagePath} alt="Modal" />
+          <img src={product.imagePath} onError={handleImageError} alt="Modal" />
         </div>
       </div>
     </div>

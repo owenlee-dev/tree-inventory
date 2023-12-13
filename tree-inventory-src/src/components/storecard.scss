@@ -20,6 +20,11 @@
     border-radius: $borderRadius;
     border: 2px solid $blue;
     background-color: #f7f7f7;
+    @media screen and (max-width: 850px) {
+      width:150px;
+      height:200px;
+      padding:10px;
+    }
     .overlay {
       position: fixed;
       top: 50%;
@@ -33,10 +38,8 @@
       z-index: 1000;
       text-align: center;
       opacity: 0;
-    }
-
-    .overlay {
       animation: fadeInOutPop 2s cubic-bezier(0.34, 1.56, 0.64, 1);
+
     }
     &:hover {
       img {
@@ -52,16 +55,21 @@
       align-items: center;
       -webkit-filter: drop-shadow(5px 5px 5px #222);
       filter: drop-shadow(5px 5px 5px #222);
+      @media screen and (max-width: 850px) {
+        width:70px;
+        height:70px;
+      }
       img {
         border-radius: $borderRadius;
         transition: transform 0.3s;
         transform: scale(1) rotate(0deg);
       }
     }
-
+    
     h3 {
       margin-top: 15px;
       font-size: 16px;
+      
     }
     .price {
       font-size: 18px;
@@ -74,7 +82,7 @@
       align-items: center;
       margin-top: 15px; //change this padding
     }
-    button {
+    .add-to-cart-btn {
       padding: 2px 4px;
       border: none;
       font-size: 14px;
@@ -83,20 +91,44 @@
       color: white;
       cursor: pointer;
       transition: background-color 0.3s;
-
+      &:disabled{
+        background-color: #7a7a7a;
+        opacity:0.8;
+        color:#333;
+        cursor:default;
+        &:hover{
+          background-color: #7a7a7a;
+        }
+      }
       &:hover {
         background-color: $orange;
+      }
+    }
+    //MOBILE
+    @media screen and (max-width: 850px) {
+      button{
+        font-size:12px;
+        
+      }
+      .available, .unavailable{
+        font-size:12px;
+      }
+      h3{
+        font-size:14px;
       }
     }
   }
   .available {
     color: $lightGreen;
     font-weight: 400;
+    
   }
   .unavailable {
     font-weight: 400;
     color: $red;
+   
   }
+  
 }
 
 // ANIMATIONS
