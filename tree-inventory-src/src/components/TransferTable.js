@@ -2,7 +2,7 @@ import React, { useState, useMemo, useEffect } from "react";
 import { useTable } from "react-table";
 import "./transferTable.scss";
 import { Modal } from "../pages/Admin/Admin";
-
+import { updateInventory, getOrderDetails } from "./api/api";
 const TransferTable = ({ data, onSelectedRowsChange }) => {
   const [selectedRows, setSelectedRows] = useState([]);
   const [tableData, setTableData] = useState(data);
@@ -76,6 +76,18 @@ const TransferTable = ({ data, onSelectedRowsChange }) => {
     onSelectedRowsChange(selectedRows);
   }, [selectedRows, onSelectedRowsChange]);
 
+  // Helper function to tranform the string retrieved from google sheets to an object
+  function parseItemsFromString(itemsString) {
+    const itemsArray = itemsString.split("\n");
+    const itemsObject = {};
+
+    itemsArray.forEach((item) => {
+      const [title, quantity] = item.match(/(.*?)\s\((\d+)\)/).slice(1);
+      itemsObject[title] = parseInt(quantity, 10);
+    });
+    return itemsObject;
+  }
+
   const removeOrder = async (orderID) => {
     // remove order from Pending Etransfers on Google Sheets
     try {
@@ -104,9 +116,15 @@ const TransferTable = ({ data, onSelectedRowsChange }) => {
     });
     setTableData(newData);
 
-    await removeOrder(IDtoRemove);
     //Remove row from Google Sheets
+    await removeOrder(IDtoRemove);
+
+    // get order data -> how many items are purchased -> inventory adjustment
+    const orderDetails = await getOrderDetails(IDtoRemove);
+
     //Adjust Inventory
+    let itemsPurchased = parseItemsFromString(orderDetails["Items Purchased"]);
+    await updateInventory(itemsPurchased, false); //false signifies increase inventory
   };
 
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =

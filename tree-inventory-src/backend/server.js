@@ -6,6 +6,8 @@ const {
   authorize,
   readStore,
   readDataFromSheet,
+  getOrderDetails,
+  updateInventory,
   appendData,
   confirmOrders,
   removeOrder,
@@ -50,6 +52,27 @@ app.get("/google-sheets/pickup-locations", async (req, res) => {
         error
     );
     res.status(500).send("Error retrieving pickup locations");
+  }
+});
+
+app.post("/google-sheets/get-order-details", async (req, res) => {
+  try {
+    const orderID = req.body.orderID;
+    if (!orderID) {
+      return res.status(400).send("OrderID is required");
+    }
+
+    const auth = await authorize();
+    const orderDetails = await getOrderDetails(auth, orderID);
+
+    if (orderDetails) {
+      res.json(orderDetails);
+    } else {
+      res.status(404).send("Order not found");
+    }
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).send("Internal Server Error");
   }
 });
 
@@ -132,6 +155,25 @@ app.post("/google-sheets/add-report", async (req, res) => {
   }
 });
 
+app.post("/google-sheets/update-inventory", async (req, res) => {
+  try {
+    const itemsPurchased = req.body.itemsPurchased;
+    const reduceInventory = req.body.reduceInventory;
+
+    if (!itemsPurchased || reduceInventory === undefined) {
+      return res.status(400).send("Missing required parameters");
+    }
+
+    const auth = await authorize();
+    await updateInventory(auth, itemsPurchased, reduceInventory);
+
+    res.json({ message: "Inventory updated successfully" });
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
 //TODO make sure everything gets added in lower case
 app.post("/google-sheets/add-pending-etransfer", async (req, res) => {
   try {
@@ -148,7 +190,6 @@ app.post("/google-sheets/add-pending-etransfer", async (req, res) => {
 });
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 //STRIPE
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 app.get("/config", (req, res) => {

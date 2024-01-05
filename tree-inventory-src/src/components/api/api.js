@@ -1,8 +1,5 @@
 import emailjs from "emailjs-com";
 
-//THIS FILE CONTAINS ONLY GET API CALLS, POST REQUESTS ARE IN THE FILES THEY ARE USED IN
-// NOT CLEAN, IK, SUCK IT UP
-
 export const postFormData = async (formData, setIsSubmitting) => {
   try {
     const response = await fetch(
@@ -52,7 +49,57 @@ export const postPendingEtransfer = async (formData) => {
     console.log("posted etransfer data to google sheets: ", formData);
     return data;
   } catch (error) {
-    console.error("api.js: Error submitting report:", error);
+    console.error("api.js: Error posting etransfer:", error);
+  }
+};
+
+export const updateInventory = async (itemsPurchased, reduceInventory) => {
+  try {
+    const response = await fetch(
+      "http://localhost:8080/google-sheets/update-inventory",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          itemsPurchased: itemsPurchased,
+          reduceInventory: reduceInventory,
+        }),
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    console.log("successfully updated inventory: ", itemsPurchased);
+  } catch (error) {
+    console.error("api.js: Error updating inventory:", error);
+  }
+};
+
+export const getOrderDetails = async (orderID) => {
+  try {
+    const response = await fetch(
+      "http://localhost:8080/google-sheets/get-order-details",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          orderID: orderID,
+        }),
+      }
+    );
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("api.js: Error retrieving order details:", error);
   }
 };
 

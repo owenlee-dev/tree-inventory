@@ -135,6 +135,15 @@ async function readDataFromSheet(auth, pageName) {
   return dataAsObjects;
 }
 
+async function getOrderDetails(auth, orderID) {
+  const pageName = "Order-Reports";
+  const data = await readDataFromSheet(auth, pageName);
+
+  // Filter for the row with the given OrderID
+  const orderDetails = data.find((row) => row["Order ID"] === orderID);
+  return orderDetails || null; // Return the row, or null if not found
+}
+
 // This function removes pending etransfers from google sheets when confirmed on front end
 async function confirmOrders(auth, pageName, ordersToRemove) {
   const sheets = google.sheets({ version: "v4", auth });
@@ -297,9 +306,56 @@ async function appendData(auth, pageName, values) {
   }
 }
 
+// Function to make alterations to the inventory of items in the store tab
+// @param itemsPurchased = {title: 3, title2: 4} reduceInventory =true
+async function updateInventory(auth, itemsPurchased, reduceInventory) {
+  const sheets = google.sheets({ version: "v4", auth });
+  const spreadsheetId = "1IZ6oZOa7XAHnQV0ZNSGX9aujS6ugAwc_rUjcGESuYmM";
+  const storePageName = "Store";
+
+  try {
+    // Step 1: Read the current inventory
+    const range = `${storePageName}!A:Z`; // Adjust the range as necessary
+    const response = await sheets.spreadsheets.values.get({
+      spreadsheetId,
+      range: range,
+    });
+    let inventoryData = response.data.values;
+
+    // Step 2: Update inventory
+    inventoryData.forEach((row) => {
+      const variety = row[0];
+      const inventoryIndex = 2;
+      if (itemsPurchased[variety]) {
+        const quantityChange = itemsPurchased[variety];
+        const currentInventory = parseInt(row[inventoryIndex], 10);
+        row[inventoryIndex] = reduceInventory
+          ? currentInventory - quantityChange
+          : currentInventory + quantityChange;
+      }
+    });
+
+    // Step 3: Write back to Google Sheets
+    await sheets.spreadsheets.values.update({
+      spreadsheetId,
+      range: range,
+      valueInputOption: "USER_ENTERED",
+      resource: {
+        values: inventoryData,
+      },
+    });
+
+    console.log("Inventory updated successfully");
+  } catch (error) {
+    console.error("Error updating inventory:", error);
+  }
+}
+
 module.exports = {
+  updateInventory,
   appendData,
   readStore,
+  getOrderDetails,
   readDataFromSheet,
   confirmOrders,
   removeOrder,
