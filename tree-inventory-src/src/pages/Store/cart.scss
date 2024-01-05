@@ -2,17 +2,17 @@
 @import "../../assets/page-layout.scss";
 
 .cart-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1em;
+  align-items: center;
+  width: 100%;
   background-color: $accent;
   padding-bottom: 2em;
   padding-top: 2em;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
   border-radius: $borderRadius;
-  gap: 4em;
-  justify-content: center;
-  align-items: center;
   .cart-title-container {
     margin: 1em;
     margin-bottom: 0;
@@ -22,7 +22,7 @@
     .back-to-shop-btn {
       margin-top: 1em;
       display: flex;
-      width:fit-content;
+      width: fit-content;
       cursor: pointer;
       text-decoration: none;
       background-color: $blue;
@@ -35,12 +35,16 @@
   .cart-content-container {
     display: flex;
     padding: 1em;
-    height: 55vh;
+    height: 100%;
     width: 100%;
     gap: 1em;
     justify-content: center;
+    @media screen and (max-width: 945px) {
+      flex-direction: column;
+      align-items: center;
+    }
     .default-msg {
-      width:80%;
+      width: 80%;
     }
     .items-in-cart-container {
       overflow-y: scroll;
@@ -50,11 +54,17 @@
       display: flex;
       flex-direction: column;
       gap: 1em;
+      @media screen and (max-width: 945px) {
+        width: 100%;
+        min-height: 60%;
+        order: 1;
+      }
       .cart-card {
         display: flex;
         border-radius: $borderRadius;
         background-color: #f9f9f9;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 1em;
         .cart-image-container {
           width: auto;
           overflow: hidden;
@@ -64,13 +74,19 @@
           align-items: center;
           flex: 2;
           img {
+            -webkit-filter: drop-shadow(2px 2px 2px #222);
+            filter: drop-shadow(2px 2px 2px #222);
             width: 80px;
             height: auto;
+            overflow:visible;
             object-fit: cover;
           }
         }
         .cart-info-container {
           flex: 8;
+          display: flex;
+          flex-direction: column;
+          justify-content:space-between;
           .cart-card-top {
             align-items: center;
             justify-content: space-between;
@@ -92,6 +108,10 @@
             .num-items-container {
               display: flex;
               flex: 2;
+              gap:1em;
+              @media screen and (max-width: 945px) {
+                flex-direction: column;
+              }
               input[type="number"] {
                 width: 4em;
                 font-weight: 400;
@@ -117,9 +137,13 @@
               display: flex;
               background-color: $blue;
               color: $accent;
+              border: none;
               align-items: center;
               padding: 0.25em 0.5em;
               border-radius: $borderRadius;
+              @media screen and (max-width: 945px) {
+                padding: 0.25em;
+              }
             }
           }
         }
@@ -132,16 +156,19 @@
       display: flex;
       flex-direction: column;
       gap: 1em;
-      justify-content: space-evenly;
-      padding:2em;
-      height:100%;
+      padding: 2em;
+      width: 30%;
+      height: 100%;
+      @media screen and (max-width: 945px) {
+
+        width: calc(100% - 1em);
+        order: 1;
+      }
       .order-summary-title-container {
         border-bottom: 2px solid $darkBrown;
         padding-bottom: 1em;
       }
       .order-financial-info {
-        padding-top: 1em;
-        gap: 1em;
         display: flex;
         flex-direction: column;
         & > div {
@@ -150,22 +177,55 @@
           justify-content: space-between;
         }
         .total {
-          border-top: 2px solid $darkBrown;
-          font-size: 1.2rem;
+          font-size: 1rem;
           display: flex;
-          justify-content: space-between;
         }
+      }
+      .conditional-coupon{
+        color:$lightGreen;
+      }
+      .coupon-container {
+        display:flex;
+        flex-direction: column;
+        #coupon-input {
+          max-width:150px;
+          border-radius: $borderRadius;
+          border: none;
+          margin: 0.5em 0em;
+          padding: 0.25em;
+          &:focus {
+            border: none;
+            outline: none;
+          }
+        }
+        .apply-coupon-btn {
+          width:30%;
+          border-radius: $borderRadius;
+          border: none;
+          padding: 0em 0.25em;
+        }
+      }
+      .spacer {
+        flex-grow: 1;
       }
       .proceed-to-checkout-btn {
         margin-top: 1em;
+        text-decoration: none;
         justify-content: center;
         display: flex;
-        color:$accent;
+        color: $accent;
         cursor: pointer;
         background-color: $blue;
-        align-items: center;
+        text-align: center;
         padding: 0.5em 0.75em;
         border-radius: $borderRadius;
+        margin-top: auto;
+      }
+      .link-disabled {
+        pointer-events: none;
+        color: grey;
+        text-decoration: none;
+        cursor: default;
       }
     }
   }

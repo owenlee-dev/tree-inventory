@@ -2,14 +2,11 @@ import React, { useState, useEffect } from "react";
 import "./store.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { Routes, Route, Outlet } from "react-router-dom";
-import StoreCard from "../../components/StoreCard";
 import storeHero from "../../assets/images/store-hero.png";
-import shoppingCartIcon from "../../assets/icons/checkout.png";
-import magnifyingGlass from "../../assets/icons/search.png";
-import Modal from "../../components/Modal";
 import Cart from "./Cart";
 import Shopping from "./Shopping";
 import Checkout from "./Checkout";
+import ThankYou from "./ThankYou";
 
 function Store() {
   const numItemsInCart = useSelector(
@@ -24,7 +21,6 @@ function Store() {
 
   //END OF FROM GOOGLE SHEETS
   //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
   return (
     <div className="content-container">
       <div className="store-hero-container">
@@ -50,6 +46,7 @@ function Store() {
         <Routes>
           <Route index element={<Shopping storeData={data} />} />
           <Route path="review-cart" element={<Cart />} />
+          <Route path="thank-you" element={<ThankYou />} />
           <Route path="checkout" element={<Checkout />} />
           <Route path="*" element={<Outlet />} />
         </Routes>

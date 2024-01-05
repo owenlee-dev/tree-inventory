@@ -1,0 +1,144 @@
+@import "../../assets/colors.scss";
+@import "../../assets/page-layout.scss";
+
+.about-grid {
+  display: grid;
+  border-radius: $borderRadius;
+  justify-content: center;
+  align-items: center;
+
+  margin-top: 2em;
+  .grid-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: $borderRadius;
+    padding: 1em;
+    margin: 1em;
+  }
+  .about-title {
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    grid-row: 1;
+    text-align: center;
+    width: 18vw;
+    height: 20vw;
+    font-size: min(2rem, 4vw);
+    font-weight: 600;
+    background: linear-gradient(45deg, #7e792e, #f6e9d7);
+  }
+  .small-img {
+    justify-self: center;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    grid-row: 2;
+    width: 18vw;
+    height: 30vw;
+    background-image: url("../../assets/images/luka.jpg");
+    background-size: cover;
+    background-position: center;
+    padding: 0;
+    margin: 0;
+  }
+  .big-img {
+    margin: 0 1em;
+    padding: 0;
+    grid-row: 1 / 3;
+    width: 50vw;
+    height: 100%;
+  }
+}
+.about-content-container {
+  margin-top: 2em;
+  margin-inline: 10%;
+}
+.meet-the-gang {
+  margin-top: 2em;
+  margin-inline: 10%;
+  h2 {
+    padding-bottom: 1em;
+    text-align: center;
+  }
+  .gang-container {
+    display: flex;
+    justify-content: center;
+    gap: 2em;
+    .gang-member {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      p {
+        text-align: center;
+        width: 90%;
+      }
+    }
+    .member-img {
+      width: 30vw;
+      height: 30vw;
+      background-size: cover;
+      background-position: center;
+    }
+    // .morghain {
+    //   background-image: url("../../assets/images/morghain.JPG");
+    // }
+    // .aaron {
+    //   background-image: url("../../assets/images/aaron.JPG");
+    // }
+  }
+}
+.come-visit{
+  h2{
+    margin-top:2em ;
+  }
+}
+.come-visit-section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap:2em;
+  h2{
+    margin-top:2em;
+  }
+  p{
+    flex:1;
+  }
+  .come-visit-img {
+    border-radius: $borderRadius;
+    box-shadow: $box-shadow;
+    flex: 2;
+    margin:3em;
+    min-height:20vw;
+    margin-right:0;
+    background-size: cover;
+    background-position: center;
+    background-image: url("../../assets/images/come-visit.png");
+  }
+}
+.google-maps-section{
+  margin-top:2em;
+  margin-bottom:2em;
+  display:flex;
+  gap:2em;
+  justify-content: center;
+  align-items: center;
+  margin-inline:10%;
+  border-radius: $borderRadius;
+  iframe{
+    border-radius: $borderRadius;
+  }
+  .map-container{
+    flex:2;
+    border-radius: $borderRadius;
+  }
+}
+    
+@media (max-width:750px){
+  .come-visit-section{
+    flex-direction: column;
+    align-items: center;
+    .come-visit-img{
+      min-height: 30vw;
+      width:80vw;
+      margin:0;
+    }
+  }
+}

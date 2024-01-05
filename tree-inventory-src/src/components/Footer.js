@@ -29,9 +29,9 @@ const Footer = () => {
           <img src={IGIcon} alt="Instagram" className="ig-icon" />
         </div>
       </div>
-      {/* <Link className="admin-link" to="/admin">
+      <Link className="admin-link" to="/admin">
         <p>Admin</p>
-      </Link> */}
+      </Link>
     </footer>
   );
 };

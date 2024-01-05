@@ -20,17 +20,16 @@
     }
     h2 {
       font-weight: 300;
-      font-size: 2vw;
     }
     //MOBILE
-    @media screen and (max-width: 850px) {
+    @media screen and (max-width: 950px) {
       justify-content: center;
       align-items: center;
       text-align: center;
       margin-top: 3em;
       margin-left: 0em;
       h2 {
-        font-size: 3vw;
+        font-size: max(3vw, 16px);
       }
       .store-title {
         font-size: 6vw;
@@ -60,7 +59,7 @@
     }
 
     //MOBILE
-    @media screen and (max-width: 850px) {
+    @media screen and (max-width: 950px) {
       flex-direction: column;
       .__store-hero {
         order: 1;
@@ -71,6 +70,14 @@
       }
     }
   }
+  .store-content-container {
+    display: flex;
+    width: 100%;
+    height: 80vh;
+    //MOBILE
+    @media screen and (max-width: 950px) {
+      flex-direction: column;
+      height: fit-content;
+    }
+  }
 }
-
-

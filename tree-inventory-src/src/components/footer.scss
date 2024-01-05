@@ -2,6 +2,7 @@
   background-color: #f0f0f0; // Example background color
   padding: 20px 10vw;
   width: 100%;
+  position:relative;
   display: flex;
   justify-content: space-between;  
   align-items: center;
@@ -36,6 +37,7 @@
 
   .admin-link{
     position:absolute;
-    
+    bottom:0;
+    right:0;
   }
 }

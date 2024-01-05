@@ -1,0 +1,97 @@
+@import "../assets/colors.scss";
+@import "../assets/page-layout.scss";
+
+.coupon-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(105, 96, 96, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  .coupon-modal-content {
+    max-width: 550px;
+    max-height:80%;
+    overflow-y:scroll;
+    background-color: $accent;
+    padding: 1em;
+    border-radius: $borderRadius;
+    box-shadow: $box-shadow;
+
+    .coupon-modal-header {
+      margin-bottom: 1em;
+    }
+
+    .coupon-modal-body {
+      .coupon-form-group {
+        margin-top: 1em;
+        display: flex;
+        flex-direction: column;
+        .savings-container {
+          display: flex;
+          gap: 1em;
+          margin-bottom: 2em;
+          #dollarsSaved {
+            width: 50%;
+          }
+        }
+      }
+      .conditions-container {
+        margin-top:1em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1em;
+        .when-buying-container {
+          position: relative;
+          border-radius: $borderRadius;
+          resize: vertical;
+          min-height:100px;
+          padding: 0.25em;
+          background-color: #f4f4f4;
+          height: 8em;
+          overflow-y: scroll;
+          border: 1px solid $darkBrown;
+          input {
+            margin-right: 0.5em;
+          }
+          .when-buying-header{
+            width:100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-bottom:1px solid $darkBrown;
+            .remove-condition-button {
+              cursor: pointer;
+              font-size: 24px;
+              border-radius: $borderRadius;
+              top: 0;
+              right: 0;
+              color: $darkBrown;
+              border: none;
+            }
+          }
+        }
+        .plus-btn {
+          width: 50px;
+          height: 50px;
+          border-radius: 50px;
+          border: none;
+        }
+      }
+    }
+
+    .coupon-modal-footer {
+      text-align: right;
+      margin-top: 1em;
+      button {
+        padding: 0.25em;
+        margin-left: 1em;
+      }
+    }
+  }
+}

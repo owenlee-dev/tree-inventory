@@ -21,17 +21,16 @@
     border: 2px solid $blue;
     background-color: #f7f7f7;
     @media screen and (max-width: 850px) {
-      width:150px;
-      height:200px;
-      padding:10px;
+      width: 80%;
+      height: 250px;
     }
     .overlay {
       position: fixed;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%) scale(0.9);
-      background-color: rgba(0, 0, 0, 0.75);
-      color: white;
+      background-color: rgba(53, 75, 64, 0.75);
+      color: $accent;
       padding: 20px;
       border-radius: 10px;
       font-size: 1.5em;
@@ -39,7 +38,6 @@
       text-align: center;
       opacity: 0;
       animation: fadeInOutPop 2s cubic-bezier(0.34, 1.56, 0.64, 1);
-
     }
     &:hover {
       img {
@@ -56,8 +54,8 @@
       -webkit-filter: drop-shadow(5px 5px 5px #222);
       filter: drop-shadow(5px 5px 5px #222);
       @media screen and (max-width: 850px) {
-        width:70px;
-        height:70px;
+        width: 70px;
+        height: 70px;
       }
       img {
         border-radius: $borderRadius;
@@ -65,11 +63,10 @@
         transform: scale(1) rotate(0deg);
       }
     }
-    
+
     h3 {
       margin-top: 15px;
       font-size: 16px;
-      
     }
     .price {
       font-size: 18px;
@@ -81,6 +78,9 @@
       justify-content: space-between;
       align-items: center;
       margin-top: 15px; //change this padding
+      @media screen and (max-width: 850px) {
+        flex-direction: column;
+      }
     }
     .add-to-cart-btn {
       padding: 2px 4px;
@@ -91,12 +91,15 @@
       color: white;
       cursor: pointer;
       transition: background-color 0.3s;
-      &:disabled{
+      @media screen and (max-width: 850px) {
+        order: 2;
+      }
+      &:disabled {
         background-color: #7a7a7a;
-        opacity:0.8;
-        color:#333;
-        cursor:default;
-        &:hover{
+        opacity: 0.8;
+        color: #333;
+        cursor: default;
+        &:hover {
           background-color: #7a7a7a;
         }
       }
@@ -106,29 +109,29 @@
     }
     //MOBILE
     @media screen and (max-width: 850px) {
-      button{
-        font-size:12px;
-        
+      button {
+        font-size: 12px;
+        margin-top:0.5em;
       }
-      .available, .unavailable{
-        font-size:12px;
+      .available,
+      .unavailable {
+        align-self: center;
+        font-size: 14px;
       }
-      h3{
-        font-size:14px;
+      h3 {
+        align-self: center;
+        font-size: 16px;
       }
     }
   }
   .available {
     color: $lightGreen;
     font-weight: 400;
-    
   }
   .unavailable {
     font-weight: 400;
     color: $red;
-   
   }
-  
 }
 
 // ANIMATIONS
@@ -142,5 +145,4 @@
     opacity: 1;
     transform: translate(-50%, -50%) scale(1.2); /* Scale up for the 'pop' */
   }
-  
 }

@@ -5,9 +5,9 @@ import groveDome from "../../assets/images/grove-dome.png";
 import mapleGrovePermaculture from "../../assets/images/maple-grove-permaculture.png";
 
 import storeButton from "../../assets/images/store-button.png";
-import eventsButton from "../../assets/images/about-button.png";
-import contactButton from "../../assets/images/store-button.png";
-import aboutButton from "../../assets/images/about-button.png";
+// import eventsButton from "../../assets/images/about-button.png";
+// import contactButton from "../../assets/images/store-button.png";
+// import aboutButton from "../../assets/images/about-button.png";
 
 function HeroMobile() {
   const [divHeight, setDivHeight] = useState("80vh"); // Default height

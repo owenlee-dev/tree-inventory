@@ -7,6 +7,7 @@ import {
   BrowserRouter as Router,
   useLocation,
 } from "react-router-dom";
+import About from "./pages/About/About";
 import Header from "./components/Header";
 import HeroMobile from "./pages/Hero/HeroMobile";
 import Hero from "./pages/Hero/Hero";
@@ -14,7 +15,12 @@ import Store from "./pages/Store/Store";
 import Footer from "./components/Footer";
 import Admin from "./pages/Admin/Admin";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchStoreData } from "./__redux/slices/StoreSlice";
+import Loader from "./components/Loader";
+import {
+  fetchPickupLocations,
+  fetchStoreData,
+  fetchValidCoupons,
+} from "./__redux/slices/StoreSlice";
 
 function App() {
   const { data, status } = useSelector((state) => ({
@@ -26,6 +32,8 @@ function App() {
 
   useEffect(() => {
     dispatch(fetchStoreData());
+    dispatch(fetchPickupLocations());
+    dispatch(fetchValidCoupons());
   }, [dispatch]);
 
   // useEffect(() => {
@@ -43,7 +51,7 @@ function App() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
   if (status === "loading") {
-    return <h1>LOADING</h1>;
+    return <Loader />;
   }
 
   return (
@@ -56,7 +64,7 @@ function App() {
           <Route path="/store/*" element={<Store />} />
           <Route path="/events" element={<Store />} />{" "}
           <Route path="/services" element={<Store />} />
-          <Route path="/about" element={<Store />} />
+          <Route path="/about" element={<About />} />
           <Route path="/admin" element={<Admin />} />
         </Routes>
         <Footer />

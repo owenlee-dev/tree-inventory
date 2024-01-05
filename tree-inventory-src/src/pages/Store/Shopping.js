@@ -14,6 +14,7 @@ import { Link } from "react-router-dom";
 const Shopping = ({ storeData }) => {
   const [storeTab, setStoreTab] = useState("Everything");
   const [activeProduct, setActiveProduct] = useState(null);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(true);
   const [sortType, setSortType] = useState("alphabetical");
   const [showOnlyAvailable, setShowOnlyAvailable] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
@@ -165,40 +166,47 @@ const Shopping = ({ storeData }) => {
   };
 
   return (
-    <>
+    <div className="shopping-container">
       <div className="store-sidebar">
         <div className="sidebar-top">
           <div className="store-categories">
-            <ul className="category-list">
-              {[
-                "Everything",
-                "Fruit Trees",
-                "Nut and Other",
-                "Perennials, Berries and Bushes",
-                "Rootstock",
-                "Supplies",
-              ].map((tabName) => (
-                <li
-                  key={tabName}
-                  className={storeTab === tabName ? "active" : ""}
-                  onClick={() => handleTabClick(tabName)}
-                >
-                  {tabName}
-                </li>
-              ))}
-            </ul>
+            <button
+              className="dropdown-btn"
+              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+            >
+              {storeTab} &nbsp;&nbsp; {isDropdownOpen ? "▲" : "▼"}
+            </button>
+            {isDropdownOpen && (
+              <ul className="category-list">
+                {[
+                  "Everything",
+                  "Fruit Trees",
+                  "Nut and Other",
+                  "Perennials, Berries and Bushes",
+                  "Rootstock",
+                  "Supplies",
+                ].map((tabName) => (
+                  <li
+                    key={tabName}
+                    className={storeTab === tabName ? "active" : ""}
+                    onClick={() => handleTabClick(tabName)}
+                  >
+                    {tabName}
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
         </div>
         <div className="sidebar-bottom">
           <Link to="review-cart" className="checkout-button button-animation">
             <h3>Your Cart</h3>
-            <div className="spacer"></div>
-            <p>{numItemsInCart}</p>
             <img
               className="__checkout"
               src={shoppingCartIcon}
               alt="shopping cart icon"
             />
+            <p className="updating-cart-items">{numItemsInCart} items</p>
           </Link>
         </div>
       </div>
@@ -221,7 +229,8 @@ const Shopping = ({ storeData }) => {
                 />
               </button>
             </div>
-
+          </div>
+          <div>
             <div className="available-container">
               <label htmlFor="availableItems">In Stock</label>
               <input
@@ -231,8 +240,6 @@ const Shopping = ({ storeData }) => {
                 onChange={handleAvailableChange}
               />
             </div>
-          </div>
-          <div>
             <div className="sort-container">
               <label className="sort-by" htmlFor="sort">
                 Sort by:
@@ -257,7 +264,7 @@ const Shopping = ({ storeData }) => {
           <Modal product={activeProduct} onClose={handleCloseModal} />
         )}
       </div>
-    </>
+    </div>
   );
 };
 

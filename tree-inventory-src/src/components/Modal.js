@@ -65,6 +65,13 @@ const Modal = ({ product, onClose }) => {
             {product.inStock ? "In Stock" : "Currently Unavailable"}
           </p>
           <p className="price">{product.price}$</p>
+          <div className="mobile-product-img">
+            <img
+              src={product.imagePath}
+              onError={handleImageError}
+              alt="Modal"
+            />
+          </div>
           <div>
             <p>{product.pollination ? `**${product.pollination}` : ""}</p>
             <p>{product.description}</p>

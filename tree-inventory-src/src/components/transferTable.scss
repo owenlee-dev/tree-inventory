@@ -1,0 +1,31 @@
+@import "../assets/colors.scss";
+@import "../assets/page-layout.scss";
+.transfer-table {
+  width: 100%;
+  border-collapse: collapse;
+  th,
+  td {
+    font-size: min(3vw, 18px);
+    border: 1px solid $darkBrown;
+    background-color: $accent;
+    padding: 0.5em;
+    text-align: center;
+  }
+
+  th {
+    background-color: #f4f4f4;
+  }
+  .remove-btn {
+    padding: 0.25em;
+    border-radius: $borderRadius;
+    border: none;
+    transition: 0.5s ease;
+    &:hover {
+      box-shadow: $box-shadow;
+    }
+  }
+}
+.no-pending-etransfers{
+  width:50vw;
+  text-align: center;
+}

@@ -4,9 +4,9 @@ import "./hero.scss";
 import groveDome from "../../assets/images/grove-dome.png";
 import mapleGrovePermaculture from "../../assets/images/maple-grove-permaculture.png";
 import storeButton from "../../assets/images/store-button.png";
-import eventsButton from "../../assets/images/about-button.png";
+import eventsButton from "../../assets/images/about_1.png";
 import contactButton from "../../assets/images/store-button.png";
-import aboutButton from "../../assets/images/about-button.png";
+import aboutButton from "../../assets/images/about_1.png";
 import { changeTab } from "../../__redux/slices/AppSlice";
 import { useDispatch } from "react-redux";
 function Hero() {

@@ -4,11 +4,27 @@ import {
   createSelector,
 } from "@reduxjs/toolkit";
 import { baseStoreData } from "../BaseStoreData";
+import Coupon from "../../components/classes/Coupon";
 
 export const fetchStoreData = createAsyncThunk(
   "storeData/fetchStoreData",
   async () => {
-    const response = await fetch("http://localhost:3001/api/store-data");
+    const response = await fetch(
+      "http://localhost:8080/google-sheets/store-data"
+    );
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    const data = await response.json();
+    return data;
+  }
+);
+export const fetchPickupLocations = createAsyncThunk(
+  "storeData/fetchPickupLocations",
+  async () => {
+    const response = await fetch(
+      "http://localhost:8080/google-sheets/pickup-locations"
+    );
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
@@ -17,10 +33,35 @@ export const fetchStoreData = createAsyncThunk(
   }
 );
 
+export const fetchValidCoupons = createAsyncThunk(
+  "storeData/fetchValidCoupons",
+  async () => {
+    const response = await fetch(
+      "http://localhost:8080/google-sheets/valid-coupons"
+    );
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    const couponsRaw = await response.json();
+    let coupons = [];
+    couponsRaw.forEach((couponData) => {
+      coupons.push({
+        code: couponData["CODE"],
+        whenBuying: stringToArrayOfArrays(couponData["WHEN BUYING"]),
+        dollarsSaved: couponData["DOLLARS SAVED"],
+        description: couponData["DESCRIPTION"],
+      });
+    });
+    return coupons;
+  }
+);
+
 export const storeSlice = createSlice({
   name: "storeData",
   initialState: {
     googleSheetData: baseStoreData,
+    pickupLocations: [],
+    validCoupons: [],
     cartContents: [],
     numItemsInCart: 0,
     status: "idle",
@@ -28,21 +69,19 @@ export const storeSlice = createSlice({
   reducers: {
     addToCart: (state, action) => {
       // make sure that there is inventory of the item before adding it to the cart
-      if (action.payload.inventory > 0) {
-        const existingItem = state.cartContents.find(
-          (item) => item.title === action.payload.title
-        );
-        if (existingItem) {
-          // increment
-          existingItem.numInCart =
-            (existingItem.numInCart || 0) + action.payload.numInCart;
-          state.numItemsInCart += action.payload.numInCart;
-        } else {
-          // add new item to cart
-          const newItem = { ...action.payload };
-          state.numItemsInCart += action.payload.numInCart;
-          state.cartContents.push(newItem);
-        }
+      const existingItem = state.cartContents.find(
+        (item) => item.title === action.payload.title
+      );
+      if (existingItem) {
+        // increment
+        existingItem.numInCart =
+          (existingItem.numInCart || 0) + action.payload.numInCart;
+        state.numItemsInCart += action.payload.numInCart;
+      } else {
+        // add new item to cart
+        const newItem = { ...action.payload };
+        state.numItemsInCart += action.payload.numInCart;
+        state.cartContents.push(newItem);
       }
     },
     removeFromCart: (state, action) => {
@@ -65,6 +104,7 @@ export const storeSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      // STORE DATA
       .addCase(fetchStoreData.pending, (state) => {
         state.status = "loading";
       })
@@ -73,6 +113,28 @@ export const storeSlice = createSlice({
         state.status = "succeeded";
       })
       .addCase(fetchStoreData.rejected, (state) => {
+        state.status = "failed";
+      })
+      // PICKUP LOCATIONS
+      .addCase(fetchPickupLocations.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(fetchPickupLocations.fulfilled, (state, action) => {
+        state.pickupLocations = action.payload;
+        state.status = "succeeded";
+      })
+      .addCase(fetchPickupLocations.rejected, (state) => {
+        state.status = "failed";
+      })
+      // COUPONS
+      .addCase(fetchValidCoupons.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(fetchValidCoupons.fulfilled, (state, action) => {
+        state.validCoupons = action.payload;
+        state.status = "succeeded";
+      })
+      .addCase(fetchValidCoupons.rejected, (state) => {
         state.status = "failed";
       });
   },
@@ -88,8 +150,21 @@ export const storeSlice = createSlice({
 // );
 
 // Export actions
-export const { addToCart, removeFromCart, updateCartItemQuantity } =
-  storeSlice.actions;
+export const {
+  addToCart,
+  removeFromCart,
+  updateCartItemQuantity,
+  getValidCoupons,
+} = storeSlice.actions;
 
 // Export reducer
 export default storeSlice.reducer;
+
+// helper function to translate coupon string into an array of arrays
+function stringToArrayOfArrays(str) {
+  if (!str || str.trim() === "") {
+    return [];
+  }
+
+  return str.split("\nAND \n").map((group) => group.split(", "));
+}
