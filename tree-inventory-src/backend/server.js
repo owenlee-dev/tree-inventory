@@ -15,12 +15,7 @@ app.use(express.json());
 const cors = require("cors");
 const port = 8080;
 const env = require("dotenv").config({ path: "../.env" });
-const corsOptions = {
-  origin: "https://maple-grove-permaculture.vercel.app",
-  optionsSuccessStatus: 200,
-};
-
-app.use(cors(corsOptions));
+app.use(cors());
 
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
