@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "postinstall": "cd tree-inventory-src/backend && npm install"
+    "start": "cd tree-inventory-src/backend && node server.js",
+    "postinstall": "npm install --prefix tree-inventory-src/backend"
   },
   "dependencies": {
     "@google-cloud/local-auth": "^2.1.0",
