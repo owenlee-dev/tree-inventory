@@ -10,7 +10,7 @@ function About() {
   const [apiKey, setApiKey] = useState("");
   useEffect(() => {
     // Fetch the API key from the backend
-    fetch("http://localhost:8080/about")
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/about`)
       .then((response) => response.json())
       .then((data) => setApiKey(data.apiKey))
       .catch((error) => console.error("Error fetching API key:", error));

@@ -3,7 +3,7 @@ import emailjs from "emailjs-com";
 export const postFormData = async (formData, setIsSubmitting) => {
   try {
     const response = await fetch(
-      "http://localhost:8080/google-sheets/add-report",
+      `${process.env.REACT_APP_BACKEND_URL}/google-sheets/add-report`,
       {
         method: "POST",
         headers: {
@@ -31,7 +31,7 @@ export const postFormData = async (formData, setIsSubmitting) => {
 export const postPendingEtransfer = async (formData) => {
   try {
     const response = await fetch(
-      "http://localhost:8080/google-sheets/add-pending-etransfer",
+      `${process.env.REACT_APP_BACKEND_URL}/google-sheets/add-pending-etransfer`,
       {
         method: "POST",
         headers: {
@@ -56,7 +56,7 @@ export const postPendingEtransfer = async (formData) => {
 export const updateInventory = async (itemsPurchased, reduceInventory) => {
   try {
     const response = await fetch(
-      "http://localhost:8080/google-sheets/update-inventory",
+      `${process.env.REACT_APP_BACKEND_URL}/google-sheets/update-inventory`,
       {
         method: "POST",
         headers: {
@@ -82,7 +82,7 @@ export const updateInventory = async (itemsPurchased, reduceInventory) => {
 export const getOrderDetails = async (orderID) => {
   try {
     const response = await fetch(
-      "http://localhost:8080/google-sheets/get-order-details",
+      `${process.env.REACT_APP_BACKEND_URL}/google-sheets/get-order-details`,
       {
         method: "POST",
         headers: {
@@ -105,7 +105,7 @@ export const getOrderDetails = async (orderID) => {
 
 export const createPaymentIntent = async (totalInCents) => {
   const response = await fetch(
-    "http://localhost:8080/stripe/create-payment-intent",
+    `${process.env.REACT_APP_BACKEND_URL}/stripe/create-payment-intent`,
     {
       method: "POST",
       headers: { "Content-Type": "application/json" },

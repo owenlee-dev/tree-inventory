@@ -92,7 +92,7 @@ const TransferTable = ({ data, onSelectedRowsChange }) => {
     // remove order from Pending Etransfers on Google Sheets
     try {
       const response = await fetch(
-        "http://localhost:8080/google-sheets/remove-order",
+        `${process.env.REACT_APP_BACKEND_URL}/google-sheets/remove-order`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

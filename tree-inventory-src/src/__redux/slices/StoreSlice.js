@@ -5,12 +5,11 @@ import {
 } from "@reduxjs/toolkit";
 import { baseStoreData } from "../BaseStoreData";
 import Coupon from "../../components/classes/Coupon";
-
 export const fetchStoreData = createAsyncThunk(
   "storeData/fetchStoreData",
   async () => {
     const response = await fetch(
-      "http://localhost:8080/google-sheets/store-data"
+      `${process.env.REACT_APP_BACKEND_URL}/google-sheets/store-data`
     );
     if (!response.ok) {
       throw new Error("Network response was not ok");
@@ -23,7 +22,7 @@ export const fetchPickupLocations = createAsyncThunk(
   "storeData/fetchPickupLocations",
   async () => {
     const response = await fetch(
-      "http://localhost:8080/google-sheets/pickup-locations"
+      `${process.env.REACT_APP_BACKEND_URL}/google-sheets/pickup-locations`
     );
     if (!response.ok) {
       throw new Error("Network response was not ok");
@@ -37,7 +36,7 @@ export const fetchValidCoupons = createAsyncThunk(
   "storeData/fetchValidCoupons",
   async () => {
     const response = await fetch(
-      "http://localhost:8080/google-sheets/valid-coupons"
+      `${process.env.REACT_APP_BACKEND_URL}/google-sheets/valid-coupons`
     );
     if (!response.ok) {
       throw new Error("Network response was not ok");

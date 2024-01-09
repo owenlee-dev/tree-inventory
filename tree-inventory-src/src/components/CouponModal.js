@@ -23,7 +23,7 @@ const CouponModal = ({
     };
     try {
       const response = await fetch(
-        "http://localhost:8080/google-sheets/add-coupon",
+        `${process.env.REACT_APP_BACKEND_URL}/google-sheets/add-coupon`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

@@ -30,7 +30,7 @@ const Admin = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "http://localhost:8080/google-sheets/pending-etransfers"
+          `${process.env.REACT_APP_BACKEND_URL}/google-sheets/pending-etransfers`
         );
         const data = await response.json();
         setPendingEtransers(data);
@@ -46,7 +46,7 @@ const Admin = () => {
     // remove order from Pending Etransfers on Google Sheets
     try {
       const response = await fetch(
-        "http://localhost:8080/google-sheets/confirm-orders",
+        `${process.env.REACT_APP_BACKEND_URL}/google-sheets/confirm-orders`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
