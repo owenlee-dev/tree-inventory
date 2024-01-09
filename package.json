@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "postinstall": "cd tree-inventory-src/backend && npm install"
+  },
   "dependencies": {
     "@google-cloud/local-auth": "^2.1.0",
     "dotenv": "^16.3.1",
