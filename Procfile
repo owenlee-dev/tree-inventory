@@ -1,1 +1,1 @@
-web: node backend/server.js
+web: node tree-inventory-src/backend/server.js
