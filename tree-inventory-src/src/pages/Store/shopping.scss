@@ -3,7 +3,7 @@
 
 .shopping-container {
   display:flex;
-  height:80vh;
+  height:85vh;
   @media screen and (max-width: 950px) {
     flex-direction: column;
     height: fit-content;

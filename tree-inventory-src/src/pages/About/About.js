@@ -7,15 +7,14 @@ import carousel_3 from "../../assets/images/yurt.jpg";
 
 function About() {
   const imageList = [carousel_2, carousel_1, carousel_3];
-  let apiKey = "AIzaSyDRG0eQZ_o2D6yWEti1fNwFvFDge1PKh6Y";
-  // const [apiKey, setApiKey] = useState("");
-  // ONCE GOOGLE BUG FIXED
-  // useEffect(() => {
-  //   fetch("http://localhost:8080/about")
-  //     .then((response) => response.json())
-  //     .then((data) => setApiKey(data.key))
-  //     .catch((error) => console.error("Error fetching API key:", error));
-  // }, []);
+  const [apiKey, setApiKey] = useState("");
+  useEffect(() => {
+    // Fetch the API key from the backend
+    fetch("http://localhost:8080/about")
+      .then((response) => response.json())
+      .then((data) => setApiKey(data.apiKey))
+      .catch((error) => console.error("Error fetching API key:", error));
+  }, []);
 
   return (
     <div className="content-container">

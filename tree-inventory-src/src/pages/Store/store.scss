@@ -13,6 +13,7 @@
     align-self: flex-start;
     margin-top: 5em;
     margin-left: 5em;
+    margin-bottom:3em;
     width: 100%;
     .store-title {
       font-size: 4vw;
@@ -29,45 +30,103 @@
       margin-top: 3em;
       margin-left: 0em;
       h2 {
-        font-size: max(3vw, 16px);
+        font-size: max(4vw, 18px);
       }
       .store-title {
-        font-size: 6vw;
+        font-size: 8vw;
       }
     }
   }
   .store-hero-container {
     display: flex;
-    width: 80%;
+    width: 100%;
     gap: 3em;
-    margin-top: -5em;
     margin-bottom: 5em;
+    padding-inline:10%;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     flex-direction: row;
-    @media screen and (max-width: 1050px) {
-      margin-top: 0;
+   
+    .inline-store-hero-img{
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .__store-hero {
-      width: 60%;
+      width: 50%;
       margin-right: -2em;
+      margin-top:-5em;
+      min-width:30vw;
     }
-    .store-subtitle {
-      font-size: max(1vw, 16px);
-      max-width: 400px;
-      text-align: center;
+    .store-text-container {
+      display: flex;
+      flex-direction: column;
+      width:50%;
+      gap:1em;
+      .store-subtitle{
+        max-width:30vw;
+        font-size: max(1vw, 16px);
+      }
+
+      .accordion-item{
+        margin:1em 0em;
+        .accordion-header{
+          background-color: $lightGray;
+          padding:5px;
+          border-radius: $borderRadius;
+          cursor:pointer;
+          color:$darkBrown;
+          &:hover{
+          }
+        }
+        .accordion-content {
+          overflow: hidden;
+          transition: max-height 0.3s ease;
+        }
+        
+        .accordion-content.open {
+        }
+      }
+
+      p{
+        font-size:max(14px, 1vw);
+      }
     }
 
-    //MOBILE
+    //MOBILE store-hero-container
     @media screen and (max-width: 950px) {
       flex-direction: column;
+      width:100%;
+      align-items: center;
+      text-align: center;
+      margin-bottom:2em;
+      
+      .store-text-container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width:100%;
+        .store-subtitle{
+          max-width:80%;
+        }
+        .accordion-item{
+          display:flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          .accordion-header{
+            width:100%;
+          }
+          .accordion-content{
+            width:80%;
+          }
+        }
+      }
       .__store-hero {
-        order: 1;
         width: 80%;
+        margin-top:0;
       }
-      .store-subtitle {
-        order: 2;
-      }
+      
     }
   }
   .store-content-container {

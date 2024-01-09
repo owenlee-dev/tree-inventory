@@ -29,8 +29,8 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%) scale(0.9);
-      background-color: rgba(53, 75, 64, 0.75);
-      color: $accent;
+      background-color: #33333381;
+      color: white;
       padding: 20px;
       border-radius: 10px;
       font-size: 1.5em;
@@ -111,7 +111,7 @@
     @media screen and (max-width: 850px) {
       button {
         font-size: 12px;
-        margin-top:0.5em;
+        margin-top: 0.5em;
       }
       .available,
       .unavailable {

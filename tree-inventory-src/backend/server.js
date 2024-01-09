@@ -25,7 +25,7 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 app.get("/about", (req, res) => {
-  res.render("about", { apiKey: process.env.GOOGLE_MAPS_API_KEY });
+  res.json({ apiKey: process.env.GOOGLE_MAPS_API_KEY });
 });
 
 app.get("/google-sheets/store-data", async (req, res) => {

@@ -84,7 +84,9 @@ const Modal = ({ product, onClose }) => {
                 onChange={handleQuantityChange}
                 min="1"
               />
-              <button onClick={handleAddToCart}>Add to Cart</button>
+              <button disabled={!product.inStock} onClick={handleAddToCart}>
+                Add to Cart
+              </button>
             </div>
           </div>
         </div>

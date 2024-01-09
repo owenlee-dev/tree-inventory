@@ -4,10 +4,8 @@ import "./heroMobile.scss";
 import groveDome from "../../assets/images/grove-dome.png";
 import mapleGrovePermaculture from "../../assets/images/maple-grove-permaculture.png";
 
-import storeButton from "../../assets/images/about_3.png";
-import eventsButton from "../../assets/images/about_1.png";
-import contactButton from "../../assets/images/about_2.png";
-import aboutButton from "../../assets/images/about_3.png";
+import storeButton from "../../assets/images/store-button.jpg";
+import aboutButton from "../../assets/images/about-button.jpg";
 
 function HeroMobile() {
   const [divHeight, setDivHeight] = useState("80vh"); // Default height
@@ -41,22 +39,22 @@ function HeroMobile() {
       <div className="hero-mobile-title-container">
         <img className="__mobile-logo" src={mapleGrovePermaculture}></img>
         <h3 className="hero-mobile-subtitle">
-          Where the fairy's are blue and the dog is always happy to see you
+          Where the vines are full and the dog is always happy to see you
         </h3>
       </div>
       <div className="hero-mobile-body-container">
         <img className="__hero-mobile-bg" src={groveDome}></img>
         <p className="mobile-intro-paragraph">
-          Ex nisi aliquip cupidatat enim. Officia reprehenderit adipisicing esse
-          labore fugiat amet consectetur dolor. Dolor anim officia ullamco
-          dolore irure proident do aliquip fugiat sunt. Sint aliquip et et
-          excepteur officia ea ullamco mollit magna dolor cupidatat elit. Magna
-          eiusmod ad irure dolore esse quis et enim mollit ut ea. Elit laboris
-          non nulla excepteur ut incididunt irure laboris ut.
+          Welcome! Our tree and perennial sales for spring pick-up are now in
+          full swing. With limited inventory, we encourage you to visit our
+          store soon to prepare for the spring 2024 season. <br />
+          <br /> We are also thrilled to announce the completion of our Earth &
+          Aircrete Dome Home, available now along with several other unique
+          retreat spaces.
         </p>
       </div>
       <div className="hero-buttons-container">
-        <div className="hero-link-row">
+        <div className="hero-mobile-link-row">
           <div
             className="link-button"
             onClick={() => {
@@ -66,17 +64,6 @@ function HeroMobile() {
             <img src={storeButton} alt="Store Button" />
             <div className="text-overlay">Store</div>
           </div>
-          {/* <div
-            className="link-button"
-            onClick={() => {
-              navigate("/events");
-            }}
-          >
-            <img src={eventsButton} alt="Events Button" />
-            <div className="text-overlay">Events</div>
-          </div> */}
-        </div>
-        <div className="hero-link-row">
           <div
             className="link-button"
             onClick={() => {
@@ -86,15 +73,6 @@ function HeroMobile() {
             <img src={aboutButton} alt="About Button" />
             <div className="text-overlay">About Us</div>
           </div>
-          {/* <div
-            className="link-button"
-            onClick={() => {
-              navigate("/contact");
-            }}
-          >
-            <img src={contactButton} alt="Contact Button" />
-            <div className="text-overlay">Contact</div>
-          </div> */}
         </div>
       </div>
     </div>

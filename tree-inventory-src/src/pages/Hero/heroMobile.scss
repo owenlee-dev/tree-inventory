@@ -74,24 +74,13 @@
     }
   }
 }
-// .hero-buttons-container {
-//   position: absolute;
-//   display: flex;
-//   flex-wrap: wrap;
-//   gap: 2em;
-//   width: 100%;
-//   justify-content: center;
-//   left: 50%;
-//   top: 50%;
-//   transform: translate(-50%, -50%);
-//   margin: auto;
-//   overflow: hidden;
 
-//   .hero-link-row {
-//     display: flex;
-//     gap: 2em;
-//   }
-
+  .hero-mobile-link-row {
+    margin-top:2em;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
 //   & img {
 //     display: block;
 //     width: 20vw;

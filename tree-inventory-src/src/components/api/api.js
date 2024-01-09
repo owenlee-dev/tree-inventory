@@ -112,6 +112,11 @@ export const createPaymentIntent = async (totalInCents) => {
       body: JSON.stringify({ amount: totalInCents }),
     }
   );
+  console.log(response);
+  if (!response.ok) {
+    console.error("HTTP Error:", response.statusText);
+    return null;
+  }
 
   const paymentIntentData = await response.json();
   if (!paymentIntentData) {
@@ -119,7 +124,6 @@ export const createPaymentIntent = async (totalInCents) => {
   }
   return paymentIntentData.clientSecret;
 };
-
 export const sendOrderConfirmationEmail = async (
   name,
   emailAddress,

@@ -1,16 +1,15 @@
 @import "../../assets/colors.scss";
 @import "../../assets/page-layout.scss";
 
-
 .hero-container {
-  background-image:url("../../assets/images/bg.png");
+  background-image: url("../../assets/images/bg.png");
   display: flex;
   flex-direction: column;
-  gap:4em;
+  gap: 4em;
   justify-content: center;
   align-items: center;
-  padding-bottom:10em;
-  
+  padding-bottom: 10em;
+
   .hero-top {
     position: relative;
     width: 100vw;
@@ -46,7 +45,7 @@
 
   .__logo {
   }
-  
+
   .hero-subtitle {
     font-size: 1.25vw;
     font-weight: 300;
@@ -55,7 +54,7 @@
 }
 
 .intro-paragraph {
-  font-weight:300;
+  font-weight: 300;
   text-align: center;
   position: absolute;
   font-size: 1vw;
@@ -71,13 +70,8 @@
   width: 100%;
   justify-content: center;
   margin: auto;
-  overflow: hidden;
-  @media screen and (min-width: 1350px) {
-    top:70%;
-  }
-  @media screen and (min-width: 1550px) {
-    top:100%;
-    // width:80%;
+  @media screen and (min-width: 1700px) {
+    margin-top: 5em;
   }
   .hero-link-row {
     display: flex;
@@ -97,11 +91,15 @@
     }
   }
   .link-button {
+    width:100%;
     cursor: pointer;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
     border: 2px solid $darkBrown;
     position: relative;
     border-radius: $borderRadius;
+    height:fit-content;
+    .link-button-img{
+    }
     &::after {
       content: "";
       position: absolute;
@@ -138,5 +136,3 @@
     }
   }
 }
-
-

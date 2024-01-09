@@ -12,11 +12,20 @@
   @media screen and (max-width: 550px) {
     margin-inline:5%;
   }
-}
-.img-to-be{
-  width:80%;
-  height:200px;
-  background-color: $orange;
+  .back-to-shop-btn {
+    display: flex;
+    width: fit-content;
+    cursor: pointer;
+    text-decoration: none;
+    background-color: $blue;
+    color: $accent;
+    align-items: center;
+    padding: 0.5em 0.75em;
+    border-radius: $borderRadius;
+  }
+  .__thankyou-img{
+    margin-top:-10%;
+  }
 }
 .bold{
   font-weight: bold;

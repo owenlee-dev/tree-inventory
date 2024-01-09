@@ -3,7 +3,7 @@ export const baseStoreData = {
     apple: [
       {
         Variety: "Ashmead's Kernel",
-        Price: "1.00",
+        Price: "0.00",
         Inventory: "0",
         Size: "Whip 1M +",
         Form: "",
@@ -14,7 +14,7 @@ export const baseStoreData = {
       },
       {
         Variety: "Belle de Boskoop",
-        Price: "1.00",
+        Price: "0.00",
         Inventory: "0",
         Size: "Whip 1M +",
         Form: "",
@@ -25,7 +25,7 @@ export const baseStoreData = {
       },
       {
         Variety: "Cortland Nova Red",
-        Price: "1.00",
+        Price: "0.00",
         Inventory: "0",
         Size: "Whip 1M +",
         Form: "",
@@ -36,7 +36,7 @@ export const baseStoreData = {
       },
       {
         Variety: "Cox's Orange Pippin",
-        Price: "1.00",
+        Price: "0.00",
         Inventory: "0",
         Size: "Whip 50-80cm",
         Form: "",
@@ -47,7 +47,7 @@ export const baseStoreData = {
       },
       {
         Variety: "Florina",
-        Price: "1.00",
+        Price: "0.00",
         Inventory: "0",
         Size: "Whip 1M +",
         Form: "",
@@ -58,7 +58,7 @@ export const baseStoreData = {
       },
       {
         Variety: "Freedom",
-        Price: "1.00",
+        Price: "0.00",
         Inventory: "0",
         Size: "Whip 1M +",
         Form: "",
@@ -69,7 +69,7 @@ export const baseStoreData = {
       },
       {
         Variety: "Golden Russet",
-        Price: "1.00",
+        Price: "0.00",
         Inventory: "0",
         Size: "Whip 1M +",
         Form: "",
@@ -80,7 +80,7 @@ export const baseStoreData = {
       },
       {
         Variety: "Northern Spy",
-        Price: "1.00",
+        Price: "0.00",
         Inventory: "0",
         Size: "Whip 1M +",
         Form: "",
@@ -91,7 +91,7 @@ export const baseStoreData = {
       },
       {
         Variety: "Pink Pearl",
-        Price: "1.00",
+        Price: "0.00",
         Inventory: "0",
         Size: "Whip 1M +",
         Form: "",
@@ -102,7 +102,7 @@ export const baseStoreData = {
       },
       {
         Variety: "Wealthy",
-        Price: "1.00",
+        Price: "0.00",
         Inventory: "0",
         Size: "Whip 1M +",
         Form: "",
@@ -115,8 +115,8 @@ export const baseStoreData = {
     pear: [
       {
         Variety: "Bartlett",
-        Price: "35.00",
-        Inventory: "150",
+        Price: "0.00",
+        Inventory: "0",
         Size: "Whip 1M +",
         Form: "",
         Rootstock: "",
@@ -126,8 +126,8 @@ export const baseStoreData = {
       },
       {
         Variety: "Flemish Beauty",
-        Price: "35.00",
-        Inventory: "100",
+        Price: "0.00",
+        Inventory: "0",
         Size: "",
         Form: "",
         Rootstock: "",
@@ -137,8 +137,8 @@ export const baseStoreData = {
       },
       {
         Variety: "Clapp's Favorite",
-        Price: "35.00",
-        Inventory: "100",
+        Price: "0.00",
+        Inventory: "0",
         Size: "",
         Form: "",
         Rootstock: "",
@@ -150,8 +150,8 @@ export const baseStoreData = {
     peach: [
       {
         Variety: "Redhaven",
-        Price: "40.00",
-        Inventory: "40",
+        Price: "0.00",
+        Inventory: "0",
         Size: "",
         Form: "",
         Rootstock: "",
@@ -163,8 +163,8 @@ export const baseStoreData = {
     "sour cherry": [
       {
         Variety: "Montmorency 1 year",
-        Price: "35.00",
-        Inventory: "75",
+        Price: "0.00",
+        Inventory: "0",
         Size: "",
         Form: "",
         Rootstock: "",
@@ -174,8 +174,8 @@ export const baseStoreData = {
       },
       {
         Variety: "Montmorency 2 year",
-        Price: "40.00",
-        Inventory: "42",
+        Price: "0.00",
+        Inventory: "0",
         Size: "",
         Form: "",
         Rootstock: "",
@@ -185,8 +185,8 @@ export const baseStoreData = {
       },
       {
         Variety: "English Morello",
-        Price: "35.00",
-        Inventory: "37",
+        Price: "0.00",
+        Inventory: "0",
         Size: "",
         Form: "",
         Rootstock: "",
@@ -198,8 +198,8 @@ export const baseStoreData = {
     apricot: [
       {
         Variety: "Goldcot",
-        Price: "40.00",
-        Inventory: "30",
+        Price: "0.00",
+        Inventory: "0",
         Size: "",
         Form: "",
         Rootstock: "",
@@ -209,8 +209,8 @@ export const baseStoreData = {
       },
       {
         Variety: "Moorpark",
-        Price: "40.00",
-        Inventory: "40",
+        Price: "0.00",
+        Inventory: "0",
         Size: "",
         Form: "",
         Rootstock: "",
@@ -220,8 +220,8 @@ export const baseStoreData = {
       },
       {
         Variety: "Harlayne",
-        Price: "40.00",
-        Inventory: "25",
+        Price: "0.00",
+        Inventory: "0",
         Size: "",
         Form: "",
         Rootstock: "",
@@ -231,8 +231,8 @@ export const baseStoreData = {
       },
       {
         Variety: "Harojoy",
-        Price: "40.00",
-        Inventory: "25",
+        Price: "0.00",
+        Inventory: "0",
         Size: "",
         Form: "",
         Rootstock: "",
@@ -244,8 +244,8 @@ export const baseStoreData = {
     "sweet cherry": [
       {
         Variety: "van",
-        Price: "40.00",
-        Inventory: "30",
+        Price: "0.00",
+        Inventory: "0",
         Size: "",
         Form: "",
         Rootstock: "",
@@ -255,8 +255,8 @@ export const baseStoreData = {
       },
       {
         Variety: "Tehranivee",
-        Price: "40.00",
-        Inventory: "15",
+        Price: "0.00",
+        Inventory: "0",
         Size: "",
         Form: "",
         Rootstock: "",
@@ -266,8 +266,8 @@ export const baseStoreData = {
       },
       {
         Variety: "Vogue",
-        Price: "40.00",
-        Inventory: "24",
+        Price: "0.00",
+        Inventory: "0",
         Size: "",
         Form: "",
         Rootstock: "",
@@ -279,8 +279,8 @@ export const baseStoreData = {
     plum: [
       {
         Variety: "Mount Royal",
-        Price: "40.00",
-        Inventory: "25",
+        Price: "0.00",
+        Inventory: "0",
         Size: "",
         Form: "",
         Rootstock: "",
@@ -290,8 +290,8 @@ export const baseStoreData = {
       },
       {
         Variety: "Toka",
-        Price: "40.00",
-        Inventory: "25",
+        Price: "0.00",
+        Inventory: "0",
         Size: "",
         Form: "",
         Rootstock: "",
@@ -301,8 +301,8 @@ export const baseStoreData = {
       },
       {
         Variety: "Damson",
-        Price: "40.00",
-        Inventory: "25",
+        Price: "0.00",
+        Inventory: "0",
         Size: "",
         Form: "",
         Rootstock: "",
@@ -312,8 +312,8 @@ export const baseStoreData = {
       },
       {
         Variety: "Italian",
-        Price: "40.00",
-        Inventory: "25",
+        Price: "0.00",
+        Inventory: "0",
         Size: "",
         Form: "",
         Rootstock: "",
@@ -323,8 +323,8 @@ export const baseStoreData = {
       },
       {
         Variety: "Victory",
-        Price: "40.00",
-        Inventory: "17",
+        Price: "0.00",
+        Inventory: "0",
         Size: "",
         Form: "",
         Rootstock: "",
@@ -337,7 +337,7 @@ export const baseStoreData = {
   "nut & other trees": [
     {
       Variety: "Black Walnut",
-      Price: "1.00",
+      Price: "0.00",
       Inventory: "0",
       Size: "",
       Form: "",
@@ -348,7 +348,7 @@ export const baseStoreData = {
     },
     {
       Variety: "English Walnut",
-      Price: "1.00",
+      Price: "0.00",
       Inventory: "0",
       Size: "",
       Form: "",
@@ -359,7 +359,7 @@ export const baseStoreData = {
     },
     {
       Variety: "Black Locust",
-      Price: "1.00",
+      Price: "0.00",
       Inventory: "0",
       Size: "",
       Form: "",
@@ -370,7 +370,7 @@ export const baseStoreData = {
     },
     {
       Variety: "Sugar Maple",
-      Price: "1.00",
+      Price: "0.00",
       Inventory: "0",
       Size: "",
       Form: "",
@@ -381,7 +381,7 @@ export const baseStoreData = {
     },
     {
       Variety: "Paw Paw",
-      Price: "1.00",
+      Price: "0.00",
       Inventory: "0",
       Size: "",
       Form: "",
@@ -392,7 +392,7 @@ export const baseStoreData = {
     },
     {
       Variety: "Persimmons",
-      Price: "1.00",
+      Price: "0.00",
       Inventory: "0",
       Size: "",
       Form: "",
@@ -403,7 +403,7 @@ export const baseStoreData = {
     },
     {
       Variety: "Ultra Northern Pecan",
-      Price: "1.00",
+      Price: "0.00",
       Inventory: "0",
       Size: "",
       Form: "",
@@ -414,7 +414,7 @@ export const baseStoreData = {
     },
     {
       Variety: "Swamp White Oak",
-      Price: "1.00",
+      Price: "0.00",
       Inventory: "0",
       Size: "",
       Form: "",
@@ -425,7 +425,7 @@ export const baseStoreData = {
     },
     {
       Variety: "Kentucky Coffeetree",
-      Price: "1.00",
+      Price: "0.00",
       Inventory: "0",
       Size: "",
       Form: "",
@@ -436,7 +436,7 @@ export const baseStoreData = {
     },
     {
       Variety: "Hazelnut",
-      Price: "1.00",
+      Price: "0.00",
       Inventory: "0",
       Size: "",
       Form: "",
@@ -449,7 +449,7 @@ export const baseStoreData = {
   "perennials berries & bushes": [
     {
       Variety: "Aronia (Viking)",
-      Price: "1.00",
+      Price: "0.00",
       Inventory: "0",
       Size: "",
       Form: "",
@@ -460,7 +460,7 @@ export const baseStoreData = {
     },
     {
       Variety: "Aronia (Mckenzie)",
-      Price: "1.00",
+      Price: "0.00",
       Inventory: "0",
       Size: "",
       Form: "",
@@ -471,7 +471,7 @@ export const baseStoreData = {
     },
     {
       Variety: "Seabuckthorn",
-      Price: "1.00",
+      Price: "0.00",
       Inventory: "0",
       Size: "",
       Form: "",
@@ -482,7 +482,7 @@ export const baseStoreData = {
     },
     {
       Variety: "Arctic Kiwi",
-      Price: "1.00",
+      Price: "0.00",
       Inventory: "0",
       Size: "",
       Form: "",
@@ -493,7 +493,7 @@ export const baseStoreData = {
     },
     {
       Variety: "Elderberry (Scotia)",
-      Price: "30.00",
+      Price: "0.00",
       Inventory: "0",
       Size: "",
       Form: "3 Gallon Pot",
@@ -504,7 +504,7 @@ export const baseStoreData = {
     },
     {
       Variety: "Elderberry (Kent)",
-      Price: "30.00",
+      Price: "0.00",
       Inventory: "0",
       Size: "",
       Form: "3 Gallon Pot",
@@ -515,7 +515,7 @@ export const baseStoreData = {
     },
     {
       Variety: "Elderberry (Wild)",
-      Price: "25.00",
+      Price: "0.00",
       Inventory: "0",
       Size: "",
       Form: "2 Gallon Pot",
@@ -526,7 +526,7 @@ export const baseStoreData = {
     },
     {
       Variety: "Black Currant (Titania)",
-      Price: "1.00",
+      Price: "0.00",
       Inventory: "0",
       Size: "",
       Form: "4 Gallon Pot",
@@ -537,7 +537,7 @@ export const baseStoreData = {
     },
     {
       Variety: "Red Current (Red Lake)",
-      Price: "1.00",
+      Price: "0.00",
       Inventory: "0",
       Size: "",
       Form: "4 Gallon Pot",
@@ -548,7 +548,7 @@ export const baseStoreData = {
     },
     {
       Variety: "Quince (Giant Zagreb)",
-      Price: "1.00",
+      Price: "0.00",
       Inventory: "0",
       Size: "",
       Form: "",
@@ -559,7 +559,7 @@ export const baseStoreData = {
     },
     {
       Variety: "Rhubarb",
-      Price: "15.00",
+      Price: "0.00",
       Inventory: "0",
       Size: "3 Crowns",
       Form: "Tubor",
@@ -570,7 +570,7 @@ export const baseStoreData = {
     },
     {
       Variety: "Jerusalem Artichoke",
-      Price: "15.00",
+      Price: "0.00",
       Inventory: "0",
       Size: "2 Lbs +",
       Form: "Tubor",
@@ -581,7 +581,7 @@ export const baseStoreData = {
     },
     {
       Variety: "Comfrey",
-      Price: "15.00",
+      Price: "0.00",
       Inventory: "0",
       Size: "4 Crowns",
       Form: "Tubor",
@@ -592,7 +592,7 @@ export const baseStoreData = {
     },
     {
       Variety: "Lilac",
-      Price: "10.00",
+      Price: "0.00",
       Inventory: "0",
       Size: '6-12"',
       Form: "Bare Root",
@@ -603,7 +603,7 @@ export const baseStoreData = {
     },
     {
       Variety: "Horseradish",
-      Price: "15.00",
+      Price: "0.00",
       Inventory: "0",
       Size: "3 Crowns",
       Form: "Tubor",
@@ -614,7 +614,7 @@ export const baseStoreData = {
     },
     {
       Variety: "Mint",
-      Price: "10.00",
+      Price: "0.00",
       Inventory: "0",
       Size: '1-3" Root Mass',
       Form: "Bare Root",
@@ -625,7 +625,7 @@ export const baseStoreData = {
     },
     {
       Variety: "Speeriment",
-      Price: "10.00",
+      Price: "0.00",
       Inventory: "0",
       Size: '1-3" Root Mass',
       Form: "Bare Root",
@@ -638,7 +638,7 @@ export const baseStoreData = {
   rootstock: [
     {
       Variety: "Cherry Rootstock",
-      Price: "5.00",
+      Price: "0.00",
       Inventory: "0",
       Size: '5/8" + Thick',
       Form: "Bare Root",
@@ -648,7 +648,7 @@ export const baseStoreData = {
     },
     {
       Variety: "Plum Rootstock",
-      Price: "5.00",
+      Price: "0.00",
       Inventory: "0",
       Size: '1/2 " + Thick',
       Form: "Bare Root",
@@ -660,7 +660,7 @@ export const baseStoreData = {
   supplies: [
     {
       Variety: "Tree Gaurds",
-      Price: "4.00",
+      Price: "0.00",
       Inventory: "0",
       Size: "",
       Form: "",
@@ -670,7 +670,7 @@ export const baseStoreData = {
     },
     {
       Variety: "Jute Multch Pads",
-      Price: "2.00",
+      Price: "0.00",
       Inventory: "0",
       Size: "",
       Form: "",
@@ -680,7 +680,7 @@ export const baseStoreData = {
     },
     {
       Variety: "Tree Stakes",
-      Price: "5.00",
+      Price: "0.00",
       Inventory: "0",
       Size: "",
       Form: "",

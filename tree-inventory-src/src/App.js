@@ -21,6 +21,7 @@ import {
   fetchStoreData,
   fetchValidCoupons,
 } from "./__redux/slices/StoreSlice";
+import { setIsMobile } from "./__redux/slices/AppSlice";
 
 function App() {
   const { data, status } = useSelector((state) => ({
@@ -28,28 +29,23 @@ function App() {
     status: state.storeSlice.status,
   }));
 
+  const isMobile = useSelector((state) => state.appSlice.isMobile);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchStoreData());
     dispatch(fetchPickupLocations());
     dispatch(fetchValidCoupons());
-  }, [dispatch]);
 
-  // useEffect(() => {
-  //   console.log(status);
-  // }, [status]);
-
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 1000);
-  useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 1000);
+      dispatch(setIsMobile(window.innerWidth < 1000));
     };
     handleResize();
-
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  }, [dispatch]);
+
   if (status === "loading") {
     return <Loader />;
   }

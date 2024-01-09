@@ -62,7 +62,21 @@ const Checkout = ({ toggleShopCheckout }) => {
     }).format(value);
   };
 
-  if (!clientSecret || !stripePromise) return <div>Loading...</div>;
+  if (!clientSecret || !stripePromise)
+    return (
+      <div className="checkout-container">
+        <div className="checkout-title-container">
+          <h1>Checkout</h1>
+          <Link
+            to="/store/review-cart"
+            className="back-to-cart-btn button-animation"
+          >
+            Return to Cart
+          </Link>
+          <h2 className="loading">Loading...</h2>
+        </div>
+      </div>
+    );
   return (
     <div className="checkout-container">
       <div className="checkout-title-container">

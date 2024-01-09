@@ -85,10 +85,20 @@ export const storeSlice = createSlice({
       }
     },
     removeFromCart: (state, action) => {
+      const originalLength = state.cartContents.reduce(
+        (sum, product) => sum + product.numInCart,
+        0
+      );
       state.cartContents = state.cartContents.filter(
         (product) => product.title !== action.payload
       );
-      state.numItemsInCart -= action.payload.numInCart;
+      const newLength = state.cartContents.reduce(
+        (sum, product) => sum + product.numInCart,
+        0
+      );
+
+      let numItemsRemoved = originalLength - newLength;
+      state.numItemsInCart -= numItemsRemoved;
     },
     updateCartItemQuantity: (state, action) => {
       const { title, newQuantity } = action.payload;

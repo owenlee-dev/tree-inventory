@@ -1,6 +1,8 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./thankyou.scss";
+import snowSledImg from "../../assets/images/snow-sled.jpg";
 const ThankYou = () => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
@@ -10,9 +12,16 @@ const ThankYou = () => {
   if (!payWithCreditCard) {
     return (
       <div className="etransfer thank-you-container">
+        <Link to="/store" className="back-to-shop-btn button-animation">
+          Return to Shop
+        </Link>
         <h1>We are saving some trees for you!</h1>
         <h3 className="bold">Order Confirmation Number: {orderID}</h3>
-        <div className="img-to-be"></div>
+        <img
+          className="__thankyou-img"
+          src={snowSledImg}
+          alt="sledding tao and aaron"
+        />
 
         <p>
           Only one more step to fruit bearing bliss!
@@ -38,7 +47,11 @@ const ThankYou = () => {
       <div className="etransfer thank-you-container">
         <h1>Thank you for your purchase!</h1>
         <h3 className="bold">Order Confirmation Number: {orderID}</h3>
-        <div className="img-to-be"></div>
+        <img
+          className="__thankyou-img"
+          src={snowSledImg}
+          alt="sledding tao and aaron"
+        />
         <p>
           What's next?
           <br />
