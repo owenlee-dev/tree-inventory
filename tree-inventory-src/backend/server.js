@@ -21,7 +21,8 @@ const corsOptions = {
   optionsSuccessStatus: 200,
 };
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
+app.use(cors());
 
 //GOOGLE SHEETS
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -202,8 +203,11 @@ app.get("/config", (req, res) => {
 
 app.post("/stripe/create-payment-intent", async (req, res) => {
   try {
+    console.log("Received amount:", req.body.amount);
     const { amount } = req.body;
-
+    if (!amount || amound < 0) {
+      amount = 0;
+    }
     const paymentIntent = await stripe.paymentIntents.create({
       currency: "CAD",
       amount: amount,
