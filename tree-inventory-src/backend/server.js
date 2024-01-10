@@ -208,7 +208,7 @@ app.post("/stripe/create-payment-intent", async (req, res) => {
   try {
     console.log("Received amount:", req.body.amount);
     const { amount } = req.body;
-    if (!amount || amound < 0) {
+    if (!amount || amount < 0) {
       amount = 0;
     }
     const paymentIntent = await stripe.paymentIntents.create({
