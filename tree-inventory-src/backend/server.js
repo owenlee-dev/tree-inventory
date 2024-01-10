@@ -13,7 +13,7 @@ const {
 const app = express();
 const cors = require("cors");
 app.use(express.json());
-const port = 8080;
+const port = process.env.PORT || 8080;
 const env = require("dotenv").config({ path: "../.env" });
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const corsOptions = {
