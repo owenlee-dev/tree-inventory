@@ -24,7 +24,7 @@ const Checkout = ({ toggleShopCheckout }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    let totalInCents = getTotals().total * 100;
+    let totalInCents = parseFloat(getTotals().total.toFixed(2)) * 100;
     if (totalInCents > 0) {
       createPaymentIntent(totalInCents).then((res) => {
         setClientSecret(res);

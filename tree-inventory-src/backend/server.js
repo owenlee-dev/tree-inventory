@@ -21,7 +21,10 @@ const corsOptions = {
   optionsSuccessStatus: 200,
 };
 
+//prod
 // app.use(cors(corsOptions));
+
+//dev
 app.use(cors());
 
 //GOOGLE SHEETS
@@ -216,6 +219,7 @@ app.post("/stripe/create-payment-intent", async (req, res) => {
 
     res.send({ clientSecret: paymentIntent.client_secret });
   } catch (e) {
+    console.error(e);
     res.status(400).send({ error: { message: e.message } });
   }
 });
