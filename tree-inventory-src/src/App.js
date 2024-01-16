@@ -22,6 +22,7 @@ import {
   fetchValidCoupons,
 } from "./__redux/slices/StoreSlice";
 import { setIsMobile } from "./__redux/slices/AppSlice";
+import ThankYou from "./pages/Store/ThankYou";
 
 function App() {
   const { data, status } = useSelector((state) => ({
@@ -62,6 +63,7 @@ function App() {
           <Route path="/services" element={<Store />} />
           <Route path="/about" element={<About />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/thank-you" element={<ThankYou />} />
         </Routes>
         <Footer />
       </Router>

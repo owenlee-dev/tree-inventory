@@ -10,6 +10,7 @@ import shoppingCartIcon from "../../assets/icons/checkout.png";
 import magnifyingGlass from "../../assets/icons/search.png";
 import Modal from "../../components/Modal";
 import { Link } from "react-router-dom";
+import { faChessKing } from "@fortawesome/free-solid-svg-icons";
 
 const Shopping = ({ storeData }) => {
   const [storeTab, setStoreTab] = useState("Everything");
@@ -55,13 +56,20 @@ const Shopping = ({ storeData }) => {
 
   // sort products given the list of products and [alphabetically or price]
   function sortProducts(products, sortType) {
-    if (sortType === "alphabetical") {
-      return products.sort((a, b) => a.Variety.localeCompare(b.Variety));
-    } else if (sortType === "priceLowHigh") {
-      return products.sort((a, b) => a.price - b.price);
-    }
+    return products.sort((a, b) => {
+      // First, sort by availability (inStock items first)
+      if (a.inStock && !b.inStock) return -1;
+      if (!a.inStock && b.inStock) return 1;
 
-    return products;
+      // Then, sort by the specified sortType
+      if (sortType === "alphabetical") {
+        return a.title.localeCompare(b.title);
+      } else if (sortType === "priceLowHigh") {
+        return a.price - b.price;
+      }
+
+      return 0;
+    });
   }
 
   // Function to take data and make it into UI cards
@@ -95,35 +103,36 @@ const Shopping = ({ storeData }) => {
     if (showOnlyAvailable) {
       productList = removeUnavailable(productList);
     }
-    //sort product list by sort parameter
-    const sortedProductList = sortProducts(productList, sortType);
-    return sortedProductList.map((item, index) => {
-      let product = new Product(" ", " ", " ", " ", " ", " ", " ", " ", " ");
-      if (item) {
-        let imagePath = `./store-images/${item.Variety.toLowerCase()
-          .replace(/\s+/g, "-")
-          .replace(/[^a-z0-9-]/g, "")}.png`;
-        product = new Product(
-          item.Variety,
-          item.Price,
-          item.Inventory > 0,
-          item.Description,
-          item.Size,
-          item.Rootstock,
-          item.Pollination,
-          item.Form,
-          imagePath
-        );
-      }
+    // build product objects
+    productList = productList.map((item, index) => {
+      let imagePath = `./store-images/${item.Variety.toLowerCase()
+        .replace(/\s+/g, "-")
+        .replace(/[^a-z0-9-]/g, "")}.png`;
 
-      return (
-        <StoreCard
-          key={index}
-          productInfo={product}
-          onCardClick={handleCardClick}
-        />
+      return new Product(
+        item.Variety,
+        item.Price,
+        item.Inventory > 0,
+        item.Description,
+        item.Size,
+        item.Rootstock,
+        item.Pollination,
+        item.Form,
+        imagePath
       );
     });
+
+    //sort product list
+    const sortedProductList = sortProducts(productList, sortType);
+
+    //render cards
+    return sortedProductList.map((product, index) => (
+      <StoreCard
+        key={index}
+        productInfo={product}
+        onCardClick={handleCardClick}
+      />
+    ));
   };
   //function that uses generateCards to generate fruit trees further organized in store
   const generateFruitCards = () => {

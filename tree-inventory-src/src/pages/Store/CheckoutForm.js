@@ -12,7 +12,7 @@ import {
   postPendingEtransfer,
   createPaymentIntent,
   sendOrderConfirmationEmail,
-} from "./api/api";
+} from "../../components/api/api";
 function CheckoutForm({ pickupLocations, getTotals }) {
   const [formData, setFormData] = useState({
     date: "",
@@ -28,6 +28,8 @@ function CheckoutForm({ pickupLocations, getTotals }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.storeSlice.cartContents);
+  const appliedCoupon = useSelector((state) => state.storeSlice.appliedCoupon);
+
   const stripe = useStripe();
   const elements = useElements();
   const navigate = useNavigate();
@@ -45,10 +47,23 @@ function CheckoutForm({ pickupLocations, getTotals }) {
         postFormData(formData, setIsSubmitting);
       }
       navigate(
-        `/store/thank-you?payWithCreditCard=${payWithCreditCard}&orderID=${formData.orderID}`
+        `/thank-you?payWithCreditCard=${payWithCreditCard}&orderID=${formData.orderID}`
       );
     }
   }, [isSubmitting]);
+
+  const getGrandTotal = () => {
+    let total = 0;
+    if (payWithCreditCard) {
+      total = getTotals().total;
+    } else {
+      total = getTotals().subtotal;
+    }
+    if (Object.keys(appliedCoupon).length > 0) {
+      total = Math.max(0, total - appliedCoupon.dollarsSaved);
+    }
+    return total;
+  };
 
   const getTotalItemCount = () => {
     return cartItems.reduce((total, item) => total + item.numInCart, 0);
@@ -110,7 +125,6 @@ function CheckoutForm({ pickupLocations, getTotals }) {
           result.paymentIntent &&
           result.paymentIntent.status === "succeeded"
         ) {
-          console.log(formData);
           await sendOrderConfirmationEmail(
             formData.orderID,
             formData.name,
@@ -203,6 +217,15 @@ function CheckoutForm({ pickupLocations, getTotals }) {
               <h3>{formatCurrency(getTotals().subtotal)}</h3>
             </span>
           </div>
+          {/* if there's a coupon render the line */}
+          {Object.keys(appliedCoupon).length > 0 && (
+            <div>
+              <h3>{appliedCoupon.code}:</h3>{" "}
+              <span className="subtotal">
+                <h3>- {formatCurrency(appliedCoupon.dollarsSaved)}</h3>
+              </span>
+            </div>
+          )}
           <div>
             <div>
               <h3>Credit Card Fee:</h3> <p>3% charge for credit card*</p>
@@ -218,11 +241,7 @@ function CheckoutForm({ pickupLocations, getTotals }) {
           <div className="total">
             <h2>Total: </h2>{" "}
             <span>
-              <h2>
-                {payWithCreditCard
-                  ? formatCurrency(getTotals().total)
-                  : formatCurrency(getTotals().subtotal)}
-              </h2>
+              <h2>{formatCurrency(getGrandTotal())}</h2>
             </span>
           </div>
         </div>
@@ -243,7 +262,7 @@ function CheckoutForm({ pickupLocations, getTotals }) {
               To pay with Interac E-Transfer:
               <br />
               <span className="bold">
-                Send an E-Transfer of {formatCurrency(getTotals().total)}$ to
+                Send an E-Transfer of {formatCurrency(getGrandTotal())}$ to
                 maplegrovepermaculture@gmail.com
               </span>
             </p>
@@ -256,7 +275,11 @@ function CheckoutForm({ pickupLocations, getTotals }) {
           </div>
         )}
         <button type="submit" className="submit-button button-animation">
-          Complete Order
+          {payWithCreditCard ? (
+            <p>Complete Order</p>
+          ) : (
+            <p>Pay with E-Transfer</p>
+          )}
         </button>
       </div>
     </form>

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import "./checkout.scss"; // Import your modal CSS here
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import CheckoutForm from "../../components/CheckoutForm";
+import CheckoutForm from "./CheckoutForm";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { createPaymentIntent } from "../../components/api/api";
@@ -35,13 +35,10 @@ const Checkout = ({ toggleShopCheckout }) => {
   }, []);
 
   const getTotals = () => {
-    let appliedCoupon = state ? state.appliedCoupon : {};
     let totals = { subtotal: 0, credit: 0, total: 0 };
     cartItems.forEach((item) => {
       totals.subtotal += parseFloat(item.price) * item.numInCart;
     });
-    const couponSavings = parseFloat(appliedCoupon.dollarsSaved || 0);
-    totals.subtotal = Math.max(0, totals.subtotal - couponSavings);
     totals.credit = totals.subtotal * 0.03;
     totals.total = totals.credit + totals.subtotal;
 

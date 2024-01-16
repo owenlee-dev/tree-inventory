@@ -5,6 +5,7 @@ import {
   removeFromCart,
   updateCartItemQuantity,
   fetchValidCoupons,
+  changeAppliedCoupon,
 } from "../../__redux/slices/StoreSlice";
 import { Link } from "react-router-dom";
 
@@ -18,6 +19,10 @@ const Cart = ({ toggleShopCheckout }) => {
   useEffect(() => {
     applyCoupon();
   }, [cartItems]);
+
+  useEffect(() => {
+    dispatch(changeAppliedCoupon(appliedCoupon));
+  }, [appliedCoupon]);
 
   // get the totals for items in the cart
   const getTotals = () => {
@@ -92,7 +97,7 @@ const Cart = ({ toggleShopCheckout }) => {
       (coupon) => coupon.code === couponInput
     );
     if (matchedCoupon) {
-      // second check if there is conditional application
+      // second check if there is conditional application for the coupon (ie buy x get y)
       if (matchedCoupon.whenBuying.length > 0) {
         let cartItemTitles = cartItems.flatMap((item) =>
           Array(item.numInCart).fill(item.title)
@@ -100,17 +105,18 @@ const Cart = ({ toggleShopCheckout }) => {
         // third check if the right items are in the cart
         if (isCouponValid(cartItemTitles, matchedCoupon.whenBuying)) {
           console.log("Coupon applied, save: ", matchedCoupon.dollarsSaved);
-          setAppliedCoupon(matchedCoupon); //apply conditional
+          setAppliedCoupon(matchedCoupon);
         } else {
           setAppliedCoupon({}); //they removed something from their cart
         }
       } else {
         console.log("Coupon applied, save: ", matchedCoupon.dollarsSaved);
-        setAppliedCoupon(matchedCoupon); //apply unconditional
+        setAppliedCoupon(matchedCoupon);
       }
     } else {
+      // TODO set a coupon-not-valid message in ui
       console.log("Invalid coupon code");
-      setAppliedCoupon({}); //invalid coupon
+      setAppliedCoupon({});
     }
   };
 

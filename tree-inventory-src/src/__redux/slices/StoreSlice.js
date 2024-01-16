@@ -62,10 +62,14 @@ export const storeSlice = createSlice({
     pickupLocations: [],
     validCoupons: [],
     cartContents: [],
+    appliedCoupon: {},
     numItemsInCart: 0,
     status: "idle",
   },
   reducers: {
+    changeAppliedCoupon: (state, action) => {
+      state.appliedCoupon = action.payload;
+    },
     addToCart: (state, action) => {
       // make sure that there is inventory of the item before adding it to the cart
       const existingItem = state.cartContents.find(
@@ -161,6 +165,7 @@ export const storeSlice = createSlice({
 // Export actions
 export const {
   addToCart,
+  changeAppliedCoupon,
   removeFromCart,
   updateCartItemQuantity,
   getValidCoupons,

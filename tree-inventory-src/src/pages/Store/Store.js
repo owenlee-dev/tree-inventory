@@ -19,6 +19,13 @@ function Store() {
   const inventoryRef = useRef(null);
   const [activeSections, setActiveSections] = useState(["guarantee"]);
 
+  //Make sure that guarantee is open
+  useEffect(() => {
+    if (guaranteeRef.current && activeSections.includes("guarantee")) {
+      setActiveSections([...activeSections]);
+    }
+  }, []);
+
   // FROM GOOGLE SHEETS
   //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   const { data, status } = useSelector((state) => ({
@@ -185,7 +192,7 @@ function Store() {
               </div>
             </div>
 
-            <p>Tax is included in all our prices</p>
+            <h4 className="bold">There is no tax on all our products</h4>
           </div>
 
           {!isMobile && (
