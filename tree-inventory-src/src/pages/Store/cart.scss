@@ -39,6 +39,28 @@
     width: 100%;
     gap: 1em;
     justify-content: center;
+    scrollbar-width: thin;
+    scrollbar-color: #888 #f1f1f1;
+
+    ::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: $lightBrown;
+      border-radius: 5px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      border-radius: 5px;
+      background: $lightBrown;
+    }
+
     @media screen and (max-width: 945px) {
       flex-direction: column;
       align-items: center;
@@ -51,6 +73,7 @@
       padding: 1em;
       padding-top: 0;
       width: 55%;
+      height: 60vh;
       display: flex;
       flex-direction: column;
       gap: 1em;
@@ -78,7 +101,7 @@
             filter: drop-shadow(2px 2px 2px #222);
             width: 80px;
             height: auto;
-            overflow:visible;
+            overflow: visible;
             object-fit: cover;
           }
         }
@@ -86,7 +109,7 @@
           flex: 8;
           display: flex;
           flex-direction: column;
-          justify-content:space-between;
+          justify-content: space-between;
           .cart-card-top {
             align-items: center;
             justify-content: space-between;
@@ -108,7 +131,7 @@
             .num-items-container {
               display: flex;
               flex: 2;
-              gap:1em;
+              gap: 1em;
               @media screen and (max-width: 945px) {
                 flex-direction: column;
               }
@@ -158,9 +181,9 @@
       gap: 1em;
       padding: 2em;
       width: 30%;
-      height: 100%;
-      @media screen and (max-width: 945px) {
+      height: 60vh;
 
+      @media screen and (max-width: 945px) {
         width: calc(100% - 1em);
         order: 1;
       }
@@ -181,14 +204,14 @@
           display: flex;
         }
       }
-      .conditional-coupon{
-        color:$lightGreen;
+      .conditional-coupon {
+        color: $lightGreen;
       }
       .coupon-container {
-        display:flex;
+        display: flex;
         flex-direction: column;
         #coupon-input {
-          max-width:150px;
+          max-width: 150px;
           border-radius: $borderRadius;
           border: none;
           margin: 0.5em 0em;
@@ -199,11 +222,15 @@
           }
         }
         .apply-coupon-btn {
-          width:30%;
+          width: 30%;
           border-radius: $borderRadius;
           border: none;
           padding: 0em 0.25em;
         }
+      }
+      .invalid-coupon-message {
+        color: $red;
+        padding-bottom:0.25em;
       }
       .spacer {
         flex-grow: 1;

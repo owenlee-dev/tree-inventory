@@ -307,8 +307,9 @@ async function appendData(auth, pageName, values) {
 }
 
 // Function to make alterations to the inventory of items in the store tab
-// @param itemsPurchased = {title: 3, title2: 4} reduceInventory =true
+// @param itemsPurchased = {title: 3, title2: 4} reduceInventory = true
 async function updateInventory(auth, itemsPurchased, reduceInventory) {
+  console.log("entered updateInventory", itemsPurchased, reduceInventory);
   const sheets = google.sheets({ version: "v4", auth });
   const spreadsheetId = "1IZ6oZOa7XAHnQV0ZNSGX9aujS6ugAwc_rUjcGESuYmM";
   const storePageName = "Store";

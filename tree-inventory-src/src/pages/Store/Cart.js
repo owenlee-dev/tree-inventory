@@ -15,6 +15,7 @@ const Cart = ({ toggleShopCheckout }) => {
   const validCoupons = useSelector((state) => state.storeSlice.validCoupons);
   const [couponInput, setCouponInput] = useState("");
   const [appliedCoupon, setAppliedCoupon] = useState({});
+  const [showCouponInvalid, setShowCouponInvalid] = useState(false);
 
   useEffect(() => {
     applyCoupon();
@@ -23,6 +24,13 @@ const Cart = ({ toggleShopCheckout }) => {
   useEffect(() => {
     dispatch(changeAppliedCoupon(appliedCoupon));
   }, [appliedCoupon]);
+
+  // avoid memory leaks or state updates on an unmounted component
+  useEffect(() => {
+    return () => {
+      clearTimeout(displayInvalidCouponMessage);
+    };
+  }, []);
 
   // get the totals for items in the cart
   const getTotals = () => {
@@ -73,6 +81,13 @@ const Cart = ({ toggleShopCheckout }) => {
     setCouponInput(e.target.value);
   };
 
+  const displayInvalidCouponMessage = () => {
+    setShowCouponInvalid(true);
+    setTimeout(() => {
+      setShowCouponInvalid(false);
+    }, 3000);
+  };
+
   // Iterates over each condition in whenBuying, when a condition is met then the item is removed from the cart
   const isCouponValid = (cartItemTitles, whenBuying) => {
     let remainingCartTitles = [...cartItemTitles];
@@ -116,6 +131,8 @@ const Cart = ({ toggleShopCheckout }) => {
     } else {
       // TODO set a coupon-not-valid message in ui
       console.log("Invalid coupon code");
+      displayInvalidCouponMessage();
+      setCouponInput("");
       setAppliedCoupon({});
     }
   };
@@ -210,6 +227,9 @@ const Cart = ({ toggleShopCheckout }) => {
               onChange={handleCouponChange}
               required
             />
+            {showCouponInvalid && (
+              <p className="invalid-coupon-message">Coupon invalid</p>
+            )}
             <button
               className="apply-coupon-btn button-animation"
               onClick={applyCoupon}

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./about.scss";
 import Carousel from "../../components/Carousel";
-import carousel_1 from "../../assets/images/about_3.png";
-import carousel_2 from "../../assets/images/about_2.png";
+import carousel_1 from "../../assets/images/about_3.jpg";
+import carousel_2 from "../../assets/images/about_2.jpg";
 import carousel_3 from "../../assets/images/yurt.jpg";
 
 function About() {

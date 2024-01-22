@@ -103,6 +103,10 @@ export const storeSlice = createSlice({
       let numItemsRemoved = originalLength - newLength;
       state.numItemsInCart -= numItemsRemoved;
     },
+    clearCart: (state, action) => {
+      state.cartContents = [];
+      state.numItemsInCart = 0;
+    },
     updateCartItemQuantity: (state, action) => {
       const { title, newQuantity } = action.payload;
       const product = state.cartContents.find(
@@ -169,6 +173,7 @@ export const {
   removeFromCart,
   updateCartItemQuantity,
   getValidCoupons,
+  clearCart,
 } = storeSlice.actions;
 
 // Export reducer

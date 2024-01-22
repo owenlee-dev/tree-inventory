@@ -12,7 +12,9 @@ import {
   postPendingEtransfer,
   createPaymentIntent,
   sendOrderConfirmationEmail,
+  updateInventory,
 } from "../../components/api/api";
+import { clearCart } from "../../__redux/slices/StoreSlice";
 function CheckoutForm({ pickupLocations, getTotals }) {
   const [formData, setFormData] = useState({
     date: "",
@@ -46,11 +48,25 @@ function CheckoutForm({ pickupLocations, getTotals }) {
         console.log("paying with credit card");
         postFormData(formData, setIsSubmitting);
       }
+      console.log(cartItems);
+      //Update Inventory
+      updateInventory(transformCartObject(cartItems), true);
+
+      //Clear Cart
+      dispatch(clearCart());
+
       navigate(
         `/thank-you?payWithCreditCard=${payWithCreditCard}&orderID=${formData.orderID}`
       );
     }
   }, [isSubmitting]);
+
+  const transformCartObject = (itemsInCart) => {
+    return itemsInCart.reduce((accumulator, item) => {
+      accumulator[item.title] = item.numInCart;
+      return accumulator;
+    }, {});
+  };
 
   const getGrandTotal = () => {
     let total = 0;

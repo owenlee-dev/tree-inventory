@@ -71,6 +71,7 @@ const StoreCard = ({ index, productInfo, onCardClick, onAddToCart }) => {
       {showOverlay && <div className="overlay">Added to Cart</div>}
       <div className="img-container">
         <img
+          loading="lazy"
           style={imageStyle}
           src={productInfo.imagePath}
           onError={handleImageError}
