@@ -8,7 +8,7 @@
   gap: 6em;
   padding: 2em;
   padding-right: 3em;
-  top:0;
+  top: 0;
   left: 0;
   height: calc(9em + (30 - 9) * ((100vw - 945px) / (945 - 480)));
   min-height: 9em;
@@ -26,8 +26,8 @@
 
     .__maple-grove-permaculture {
       height: 8vw;
-      max-height:5em;
-      min-height:2em;
+      max-height: 5em;
+      min-height: 2em;
       object-fit: cover;
       //mobile
       @media (max-width: 590px) {
@@ -46,15 +46,16 @@
       color: $text;
       text-decoration: none;
       cursor: pointer;
-      font-size:max(1vw, 18px);
+      font-size: max(1vw, 16px);
       text-align: center;
       text-decoration: none;
-
+      transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
       &:hover {
         color: $lightBrown;
       }
     }
     .active {
+      transform: scale(1.1);
       color: $lightBrown;
     }
     // sidebar

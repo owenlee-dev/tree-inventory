@@ -3,7 +3,7 @@ import "./about.scss";
 import Carousel from "../../components/Carousel";
 import carousel_1 from "../../assets/images/about_3.jpg";
 import carousel_2 from "../../assets/images/about_2.jpg";
-import carousel_3 from "../../assets/images/yurt.jpg";
+import carousel_3 from "../../assets/images/about_1.jpg";
 
 function About() {
   const imageList = [carousel_2, carousel_1, carousel_3];

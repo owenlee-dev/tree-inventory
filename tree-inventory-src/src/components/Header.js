@@ -43,12 +43,12 @@ const Header = forwardRef((props, ref) => {
         >
           <h2 onClick={() => handleLinkChange("Store")}>Store</h2>
         </Link>
-        {/* <Link
+        <Link
           to="/services"
           className={`header-link ${currentTab === "Services" ? `active` : ``}`}
         >
-          <h2 onClick={() => handleLinkChange("Services")}>Services</h2>
-        </Link> */}
+          <h2 onClick={() => handleLinkChange("Services")}>Rentals</h2>
+        </Link>
 
         {/* <Link
           to="/events"

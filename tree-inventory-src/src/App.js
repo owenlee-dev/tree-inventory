@@ -23,6 +23,7 @@ import {
 } from "./__redux/slices/StoreSlice";
 import { setIsMobile } from "./__redux/slices/AppSlice";
 import ThankYou from "./pages/Store/ThankYou";
+import Services from "./pages/Services/Services";
 
 function App() {
   const { data, status } = useSelector((state) => ({
@@ -60,7 +61,7 @@ function App() {
           {isMobile && <Route index element={<HeroMobile />} />}
           <Route path="/store/*" element={<Store />} />
           <Route path="/events" element={<Store />} />{" "}
-          <Route path="/services" element={<Store />} />
+          <Route path="/services" element={<Services />} />
           <Route path="/about" element={<About />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/thank-you" element={<ThankYou />} />

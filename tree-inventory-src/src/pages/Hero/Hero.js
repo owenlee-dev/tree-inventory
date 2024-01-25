@@ -4,6 +4,7 @@ import "./hero.scss";
 import groveDome from "../../assets/images/grove-dome.png";
 import mapleGrovePermaculture from "../../assets/images/maple-grove-permaculture.png";
 import storeButton from "../../assets/images/store-button.jpg";
+import servicesButton from "../../assets/images/services-button.jpg";
 import aboutButton from "../../assets/images/about-button.jpg";
 import { changeTab } from "../../__redux/slices/AppSlice";
 import { useDispatch } from "react-redux";
@@ -85,6 +86,17 @@ function Hero() {
                 alt="Store Button"
               />
               <div className="text-overlay">Store</div>
+            </div>
+            <div
+              className="link-button"
+              onClick={() => handleLinkClick("Services")}
+            >
+              <img
+                className="link-button-img"
+                src={servicesButton}
+                alt="Services Button"
+              />
+              <div className="text-overlay">Stay With Us</div>
             </div>
 
             <div
