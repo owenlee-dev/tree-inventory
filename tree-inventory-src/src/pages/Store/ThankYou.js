@@ -8,7 +8,7 @@ const ThankYou = () => {
   const queryParams = new URLSearchParams(location.search);
   const payWithCreditCard = queryParams.get("payWithCreditCard") === "true";
   const orderID = queryParams.get("orderID");
-
+  const grandTotal = queryParams.get("grandTotal");
   if (!payWithCreditCard) {
     return (
       <div className="content-container">
@@ -25,8 +25,8 @@ const ThankYou = () => {
             Only one more step to fruit bearing bliss!
             <br />{" "}
             <span className="bold">
-              To complete the order, please send an etransfer of X$ to
-              maplegrove@fakeemail.com.
+              To complete the order, please send an etransfer of {grandTotal}$
+              to maplegrovepermaculture.com.
             </span>{" "}
             As soon as we can confirm payment, you can expect a confirmation
             email filled with gracious thanks and tips for prep and planting!
@@ -36,7 +36,7 @@ const ThankYou = () => {
             cancelled.
             <br />
             <br /> If you have any questions about the process or your purchase,
-            you can reach Aaron over email at aaronsemail@email.com
+            you can email us at maplegrovepermaculture@gmail.com
           </p>
           <Link to="/store" className="back-to-shop-btn button-animation">
             Return to Shop

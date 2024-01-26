@@ -56,7 +56,9 @@ function CheckoutForm({ pickupLocations, getTotals }) {
       dispatch(clearCart());
 
       navigate(
-        `/thank-you?payWithCreditCard=${payWithCreditCard}&orderID=${formData.orderID}`
+        `/thank-you?payWithCreditCard=${payWithCreditCard}&orderID=${
+          formData.orderID
+        }&grandTotal=${getGrandTotal()}`
       );
     }
   }, [isSubmitting]);

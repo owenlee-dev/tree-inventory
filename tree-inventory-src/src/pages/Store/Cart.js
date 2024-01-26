@@ -16,7 +16,6 @@ const Cart = ({ toggleShopCheckout }) => {
   const [couponInput, setCouponInput] = useState("");
   const [appliedCoupon, setAppliedCoupon] = useState({});
   const [showCouponInvalid, setShowCouponInvalid] = useState(false);
-
   useEffect(() => {
     applyCoupon();
   }, [cartItems]);
