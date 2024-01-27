@@ -1,0 +1,28 @@
+@import "../assets/colors.scss";
+
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.tooltip-text {
+  visibility: hidden;
+  width: 240px;
+  background-color: #cfcfcfc7;
+  color: $gray;
+  text-align: center;
+  border-radius: $borderRadius;
+  position: absolute;
+  padding: 1em;
+  z-index: 10000;
+  bottom: 125%;
+  left: 50%;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip-container:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}

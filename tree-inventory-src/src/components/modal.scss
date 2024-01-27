@@ -30,9 +30,9 @@
 
 .modal {
   background-color: $accent;
-  padding: 20px;
+  padding: 2em;
   border-radius: 5px;
-  max-width: 600px;
+  max-width: 800px;
   width: 100%;
   gap: 2em;
   display: flex;
@@ -100,14 +100,30 @@
   .modal-right {
     flex-direction: column;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-around;
+    align-items: flex-start;
     width: 40%;
+    gap: 2em;
     img {
       -webkit-filter: drop-shadow(5px 5px 5px #222);
       filter: drop-shadow(5px 5px 5px #222);
       width: 200px;
       height: auto;
+    }
+    .product-detail-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1em;
+      .__tooltip {
+        margin-right: 0.5em;
+        width: 1.5rem;
+        transition: filter 0.3s, transform 0.3s;
+
+        &:hover {
+          -webkit-filter: drop-shadow(1px 1px 5px #d3da0f);
+          filter: drop-shadow(1px 1px 3px #d3da0f);
+        }
+      }
     }
   }
 }

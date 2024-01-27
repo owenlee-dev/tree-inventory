@@ -13,7 +13,7 @@
     align-self: flex-start;
     margin-top: 5em;
     margin-left: 5em;
-    margin-bottom:3em;
+    margin-bottom: 3em;
     width: 100%;
     .store-title {
       font-size: 4vw;
@@ -42,92 +42,106 @@
     width: 100%;
     gap: 3em;
     margin-bottom: 5em;
-    padding-inline:10%;
+    padding-inline: 10%;
     justify-content: space-between;
     align-items: flex-start;
     flex-direction: row;
-   
-    .inline-store-hero-img{
+
+    .inline-store-hero-img {
       display: flex;
       align-items: center;
       justify-content: center;
     }
-    .__store-hero {
-      width: 50%;
-      margin-right: -2em;
-      margin-top:-5em;
-      min-width:30vw;
+    .store-hero-right {
+      display: flex;
+      flex-direction: column;
+      gap: 4em;
+      height: 100%;
+      justify-content: center;
+      align-items: center;
+      div {
+        text-align: center;
+      }
+      .__store-hero {
+        width: 50%;
+        margin-top: -6em;
+        transform: scale(1.2);
+        min-width: 30vw;
+      }
+      .sale-banner {
+        padding: 0em 1em 0em 1em;
+        border-left: 2px solid $lightBrown;
+        border-right: 2px solid $lightBrown;
+      }
     }
     .store-text-container {
       display: flex;
       flex-direction: column;
-      width:50%;
-      gap:1em;
-      .store-subtitle{
-        max-width:30vw;
+      gap: 1em;
+      .store-subtitle {
+        max-width: 30vw;
         font-size: max(1vw, 16px);
       }
 
-      .accordion-item{
-        margin:1em 0em;
-        .accordion-header{
+      .accordion-item {
+        margin: 1em 0em;
+        .accordion-header {
           background-color: $lightGray;
-          padding:5px;
+          padding: 5px;
           border-radius: $borderRadius;
-          cursor:pointer;
-          color:$darkBrown;
-          &:hover{
+          cursor: pointer;
+          color: $darkBrown;
+          &:hover {
           }
         }
         .accordion-content {
           overflow: hidden;
-          padding:0.25em;
+          padding: 0.25em;
           transition: max-height 0.3s ease;
         }
-        
+
         .accordion-content.open {
         }
       }
 
-      p{
-        font-size:max(14px, 1vw);
+      p {
+        font-size: max(14px, 1vw);
       }
     }
 
     //MOBILE store-hero-container
     @media screen and (max-width: 950px) {
       flex-direction: column;
-      width:100%;
+      width: 100%;
       align-items: center;
       text-align: center;
-      margin-bottom:2em;
-      
-      .store-text-container{
+      margin-bottom: 2em;
+
+      .store-text-container {
         display: flex;
         flex-direction: column;
         align-items: center;
-        width:100%;
-        .store-subtitle{
-          max-width:80%;
+        width: 100%;
+        .store-subtitle {
+          max-width: 80%;
         }
-        .accordion-item{
-          display:flex;
+        .accordion-item {
+          display: flex;
           flex-direction: column;
           justify-content: center;
           align-items: center;
-          .accordion-header{
-            width:100%;
+          .accordion-header {
+            width: 100%;
           }
-          .accordion-content{
-            width:80%;
+          .accordion-content {
+            width: 80%;
           }
         }
       }
       .__store-hero {
         width: 80%;
-        margin-top:0;
+        margin-top: 0;
       }
-      
     }
   }
   .store-content-container {

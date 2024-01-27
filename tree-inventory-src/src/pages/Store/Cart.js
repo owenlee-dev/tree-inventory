@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import "./cart.scss"; // Import your modal CSS here
+import "./cart.scss";
 import { useSelector, useDispatch } from "react-redux";
 import {
   removeFromCart,

@@ -9,19 +9,29 @@ import Checkout from "./Checkout";
 import ThankYou from "./ThankYou";
 
 function Store() {
-  const numItemsInCart = useSelector(
-    (state) => state.storeSlice.numItemsInCart
-  );
+  const { numItemsInCart } = useSelector((state) => ({
+    data: state.storeSlice.numItemsInCart,
+    // status: state.storeSlice.validCoupons,
+  }));
+
+  let validCoupons = [
+    {
+      code: "SALE101",
+      whenBuying: "butthole",
+      dollarsSaved: "100$",
+      description: "Buy any two fruit trees and get a third for free!",
+      isAdvertised: true,
+    },
+  ];
   const isMobile = useSelector((state) => state.appSlice.isMobile);
   const guaranteeRef = useRef(null);
-  const sizeFormRef = useRef(null);
-  const pollinationRef = useRef(null);
-  const inventoryRef = useRef(null);
-  const [activeSections, setActiveSections] = useState(["guarantee"]);
+  const salesRef = useRef(null);
+  const pickupRef = useRef(null);
+  const [activeSections, setActiveSections] = useState(["sales"]);
 
-  //Make sure that guarantee is open
+  //Make sure that sales is open
   useEffect(() => {
-    if (guaranteeRef.current && activeSections.includes("guarantee")) {
+    if (salesRef.current && activeSections.includes("sales")) {
       setActiveSections([...activeSections]);
     }
   }, []);
@@ -44,6 +54,16 @@ function Store() {
     }
   };
 
+  const renderAdvertisedCoupons = () => {
+    return validCoupons
+      .filter((coupon) => coupon.isAdvertised)
+      .map((validCoupon, index) => (
+        <li key={index}>
+          <strong>{validCoupon.code}</strong> - {validCoupon.description}
+        </li>
+      ));
+  };
+
   return (
     <div className="content-container">
       <div className="store-hero-container">
@@ -56,7 +76,7 @@ function Store() {
             <h3 className="store-subtitle">
               We are thrilled to assist you in planting trees and perennials
               that will nourish you and your loved ones, contributing to the
-              food resiliency of our communities!
+              food resiliency of our community!
             </h3>
             {isMobile && (
               <div className="inline-store-hero-img">
@@ -68,6 +88,30 @@ function Store() {
               </div>
             )}
             <div className="accordion">
+              <div className="accordion-item">
+                <span
+                  className=" accordion-header"
+                  onClick={() => toggleSection("sales")}
+                >
+                  Current Sales {activeSections.includes("sales") ? "⤴" : "⤵"}
+                </span>
+                <div
+                  ref={salesRef}
+                  className={`accordion-content ${
+                    activeSections.includes("sales") ? "open" : ""
+                  }`}
+                  style={{
+                    maxHeight:
+                      activeSections.includes("sales") && salesRef.current
+                        ? `${salesRef.current.scrollHeight}px`
+                        : "0",
+                  }}
+                >
+                  <p className="bold">Input these coupon codes at checkout!</p>
+                  <ul>{renderAdvertisedCoupons()}</ul>
+                </div>
+              </div>
+
               {/* Our Guarantee Section */}
               <div className="accordion-item">
                 <span
@@ -92,115 +136,56 @@ function Store() {
                 >
                   <p>
                     If you take a picture of the purchased plant in the ground
-                    with mulch (and a stake if over 2ft tall) and send it to us
-                    within 24hrs of receiving it, we will guarantee its survival
-                    and give you a replacement or full refund for any that die
-                    within the first month.
+                    with mulch (including a stake over 2ft tall) and send it to
+                    us within 24hrs of receiving your order, we will guarantee
+                    its survival and give you a replacement or full refund for
+                    any that die within the first month.
                   </p>
                 </div>
               </div>
               <div className="accordion-item">
                 <span
                   className=" accordion-header"
-                  onClick={() => toggleSection("inventory")}
+                  onClick={() => toggleSection("pickup")}
                 >
-                  Inventory {activeSections.includes("inventory") ? "⤴" : "⤵"}
+                  Spring Pickup {activeSections.includes("pickup") ? "⤴" : "⤵"}
                 </span>
                 <div
-                  ref={inventoryRef}
+                  ref={pickupRef}
                   className={`accordion-content ${
-                    activeSections.includes("inventory") ? "open" : ""
+                    activeSections.includes("pickup") ? "open" : ""
                   }`}
                   style={{
                     maxHeight:
-                      activeSections.includes("inventory") &&
-                      inventoryRef.current
-                        ? `${inventoryRef.current.scrollHeight}px`
+                      activeSections.includes("pickup") && pickupRef.current
+                        ? `${pickupRef.current.scrollHeight}px`
                         : "0",
                   }}
                 >
                   {" "}
                   <p>
-                    We hope for all our plants to survive the winter, but
-                    sometimes nature has other plans. That's why our full
-                    inventory is only confirmed in spring. If an item you desire
-                    is sold out, just add it to your waitlist at checkout, and
-                    we'll do our utmost to fulfill your order. In the rare event
-                    we can't provide a plant you've purchased, we'll promptly
-                    issue a refund with our apologies.
-                  </p>
-                </div>
-              </div>
-
-              <div className="accordion-item">
-                <span
-                  className=" accordion-header"
-                  onClick={() => toggleSection("sizeForm")}
-                >
-                  Size and Form{" "}
-                  {activeSections.includes("sizeForm") ? "⤴" : "⤵"}
-                </span>
-                <div
-                  ref={sizeFormRef}
-                  className={`accordion-content ${
-                    activeSections.includes("sizeForm") ? "open" : ""
-                  }`}
-                  style={{
-                    maxHeight:
-                      activeSections.includes("sizeForm") && sizeFormRef.current
-                        ? `${sizeFormRef.current.scrollHeight}px`
-                        : "0",
-                  }}
-                >
-                  <p>
-                    Many of the items are being sold bare root. meaning that
-                    there is no soil or pot with the plant and that it must be
-                    planted immediately or stored appropriately.
-                  </p>
-                </div>
-              </div>
-
-              {/* Pollination Section */}
-              <div className="accordion-item">
-                <span
-                  className=" accordion-header"
-                  onClick={() => toggleSection("pollination")}
-                >
-                  Pollination{" "}
-                  {activeSections.includes("pollination") ? "⤴" : "⤵"}
-                </span>
-                <div
-                  ref={pollinationRef}
-                  className={`accordion-content ${
-                    activeSections.includes("pollination") ? "open" : ""
-                  }`}
-                  style={{
-                    maxHeight:
-                      activeSections.includes("pollination") &&
-                      pollinationRef.current
-                        ? `${pollinationRef.current.scrollHeight}px`
-                        : "0",
-                  }}
-                >
-                  {" "}
-                  <p>
-                    Understanding pollination requirements is so important for
-                    tree growth! Make sure you understand the pollination
-                    requirements of your purchase.
+                    The purchase of all items in this store are for pickup in
+                    April. Pickup locations range accross Nova Scotia and there
+                    is lot's of flexibility regarding when and where you pickup
+                    your trees!
                   </p>
                 </div>
               </div>
             </div>
-
-            <h4 className="bold">There is no tax on all our products</h4>
           </div>
 
           {!isMobile && (
-            <img
-              className="__store-hero"
-              src={storeHero}
-              alt="Store main photo"
-            />
+            <div className="store-hero-right">
+              <img
+                className="__store-hero"
+                src={storeHero}
+                alt="Store main photo"
+              />
+              <div className="sale-banner">
+                <h2>Pre-Order Tax Sale!</h2>
+                <h4 className="bold">Save the tax store-wide!</h4>
+              </div>
+            </div>
           )}
         </div>
       </div>
