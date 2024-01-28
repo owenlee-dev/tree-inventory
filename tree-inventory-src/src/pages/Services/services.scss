@@ -1,0 +1,47 @@
+@import "../../assets/colors.scss";
+@import "../../assets/page-layout.scss";
+
+.services-hero {
+  display: flex;
+  width: calc(100% - 0.5em);
+  margin: 0.25em;
+  align-items: center;
+  justify-content: space-around;
+  .services-hero-left {
+    padding: 0.5em;
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .services-hero-right {
+    padding: 1em;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    max-width: 550px;
+    h1 {
+      margin-bottom: 1em;
+    }
+  }
+}
+.possible-rentals {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  div {
+    max-width: 500px;
+    border: 2px solid $accent;
+    margin: 1em;
+    padding: 1em;
+    width: 50%;
+    ul {
+      list-style-position: inside;
+      li {
+        list-style-type: circle;
+        font-weight: bold;
+      }
+    }
+  }
+}
