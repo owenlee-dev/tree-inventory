@@ -1,23 +1,15 @@
-import {
-  createSlice,
-  createAsyncThunk,
-  createSelector,
-} from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { baseStoreData } from "../BaseStoreData";
-import Coupon from "../../components/classes/Coupon";
 export const fetchStoreData = createAsyncThunk(
   "storeData/fetchStoreData",
   async () => {
-    console.log("getting store data");
     const response = await fetch(
       `${process.env.REACT_APP_BACKEND_URL}/google-sheets/store-data`
     );
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
-    console.log(response.json());
     const data = await response.json();
-    console.log(data);
     return data;
   }
 );

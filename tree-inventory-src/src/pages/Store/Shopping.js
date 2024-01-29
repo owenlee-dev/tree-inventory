@@ -10,7 +10,6 @@ import shoppingCartIcon from "../../assets/icons/checkout.png";
 import magnifyingGlass from "../../assets/icons/search.png";
 import Modal from "../../components/Modal";
 import { Link } from "react-router-dom";
-import { faChessKing } from "@fortawesome/free-solid-svg-icons";
 
 const Shopping = ({ storeData }) => {
   const [storeTab, setStoreTab] = useState("Everything");

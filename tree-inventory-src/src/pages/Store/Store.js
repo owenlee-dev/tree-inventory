@@ -9,20 +9,11 @@ import Checkout from "./Checkout";
 import ThankYou from "./ThankYou";
 
 function Store() {
-  const { numItemsInCart } = useSelector((state) => ({
+  const { numItemsInCart, validCoupons } = useSelector((state) => ({
     data: state.storeSlice.numItemsInCart,
-    // status: state.storeSlice.validCoupons,
+    validCoupons: state.storeSlice.validCoupons,
   }));
 
-  let validCoupons = [
-    {
-      code: "SALE101",
-      whenBuying: "butthole",
-      dollarsSaved: "100$",
-      description: "Buy any two fruit trees and get a third for free!",
-      isAdvertised: true,
-    },
-  ];
   const isMobile = useSelector((state) => state.appSlice.isMobile);
   const guaranteeRef = useRef(null);
   const salesRef = useRef(null);
@@ -56,7 +47,7 @@ function Store() {
 
   const renderAdvertisedCoupons = () => {
     return validCoupons
-      .filter((coupon) => coupon.isAdvertised)
+      .filter((coupon) => coupon.isAdvertised == "TRUE")
       .map((validCoupon, index) => (
         <li key={index}>
           <strong>{validCoupon.code}</strong> - {validCoupon.description}
