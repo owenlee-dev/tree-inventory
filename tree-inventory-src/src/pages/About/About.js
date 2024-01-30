@@ -20,7 +20,8 @@ function About() {
       <div className="about-grid">
         <div className="grid-item about-title">
           Our
-          <br /> Story
+          <br />
+          Story
         </div>
         <div className="grid-item big-img">
           <Carousel images={imageList} />
@@ -90,17 +91,19 @@ function About() {
         </div>
       </section> */}
       <section className="about-content-container come-visit">
-        <h2>Come Visit!</h2>
         <div className="come-visit-section">
-          <p>
-            We are located on the land of the Mi'kmaq near the famous tidal bore
-            wave that joins the sacred Shubinacadie river with the record high
-            tides of the Bay of Fundy.
-            <br />
-            <br /> We are a 10 minute walk from the cleansing Five Mile River
-            and 20mins from the gypsum cliffs that are home to the Maitland bat
-            caves.
-          </p>
+          <div>
+            <h2>Come Visit!</h2>
+            <p>
+              We are located on the land of the Mi'kmaq near the famous tidal
+              bore wave that joins the sacred Shubinacadie river with the record
+              high tides of the Bay of Fundy.
+              <br />
+              <br /> We are a 10 minute walk from the cleansing Five Mile River
+              and 20mins from the gypsum cliffs that are home to the Maitland
+              bat caves.
+            </p>
+          </div>
           <div className="come-visit-img"></div>
         </div>
       </section>

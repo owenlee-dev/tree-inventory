@@ -30,6 +30,34 @@ function App() {
     data: state.storeSlice.googleSheetData,
     status: state.storeSlice.status,
   }));
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const images = document.images;
+    const imagesArray = [...images];
+    let imagesLoaded = 0;
+
+    const imageLoaded = () => {
+      imagesLoaded++;
+      if (imagesLoaded === imagesArray.length) {
+        setLoading(false); // Set loading to false when all images are loaded
+      }
+    };
+
+    imagesArray.forEach((img) => {
+      if (img.complete) {
+        imageLoaded();
+      } else {
+        img.addEventListener("load", imageLoaded);
+        img.addEventListener("error", imageLoaded); // Handle broken images as well
+      }
+    });
+
+    // Handle case where there are no images
+    if (imagesArray.length === 0) {
+      setLoading(false);
+    }
+  }, []);
 
   const isMobile = useSelector((state) => state.appSlice.isMobile);
 
@@ -54,6 +82,7 @@ function App() {
 
   return (
     <div className="App">
+      {loading && <Loader />}
       <Router>
         <ConditionalHeader />
         <Routes>
