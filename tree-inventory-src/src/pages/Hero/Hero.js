@@ -8,6 +8,7 @@ import servicesButton from "../../assets/images/services-button.jpg";
 import aboutButton from "../../assets/images/about-button.jpg";
 import { changeTab } from "../../__redux/slices/AppSlice";
 import { useDispatch } from "react-redux";
+import ImageWithLoader from "../../components/ImageWithLoader";
 function Hero() {
   const [divHeight, setDivHeight] = useState("80vh"); // Default height
   const navigate = useNavigate();
@@ -58,9 +59,17 @@ function Hero() {
   return (
     <div className="hero-container">
       <div className="hero-top" style={{ height: divHeight }}>
-        <img className="__hero-bg" src={groveDome}></img>
+        <ImageWithLoader
+          className="__hero-bg"
+          src={groveDome}
+          alt="hero image of dome"
+        />
         <div className="hero-title-container">
-          <img className="__logo" src={mapleGrovePermaculture}></img>
+          <ImageWithLoader
+            alt="logo"
+            className="__logo"
+            src={mapleGrovePermaculture}
+          />
           <h3 className="hero-subtitle">
             Where the vines are full and the dog is always happy to see you
           </h3>

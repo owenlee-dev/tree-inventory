@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "./carousel.scss"; // Make sure to create/update a CSS file with the styles provided later
-
 const Carousel = ({ images }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
