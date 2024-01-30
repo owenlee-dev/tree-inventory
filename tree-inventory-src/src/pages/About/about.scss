@@ -10,7 +10,7 @@
   margin-top: 2em;
   .grid-item {
     display: flex;
-    justify-content: center;
+justify-content: center;
     align-items: center;
     border-radius: $borderRadius;
     padding: 1em;
@@ -20,10 +20,11 @@
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
     grid-row: 1;
     text-align: center;
+    font-family:"Railey";
     width: 18vw;
     height: 20vw;
-    font-size: min(2rem, 4vw);
-    font-weight: 600;
+    color:$blue;
+    font-size: min(3rem, 4vw);
     background: linear-gradient(45deg, #7e792e, #f6e9d7);
   }
   .small-img {

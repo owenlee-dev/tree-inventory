@@ -19,7 +19,10 @@ function About() {
   return (
     <div className="content-container">
       <div className="about-grid">
-        <div className="grid-item about-title">Our Story</div>
+        <div className="grid-item about-title">
+          Our
+          <br /> Story
+        </div>
         <div className="grid-item big-img">
           <Carousel images={imageList} />
         </div>

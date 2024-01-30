@@ -18,6 +18,7 @@ const Header = forwardRef((props, ref) => {
 
   const handleLinkChange = (newLink) => {
     dispatch(changeTab(newLink));
+    setIsSidebarOpen(!isSidebarOpen);
   };
 
   return (

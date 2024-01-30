@@ -3,13 +3,17 @@ import { useNavigate } from "react-router-dom";
 import "./heroMobile.scss";
 import groveDome from "../../assets/images/grove-dome.png";
 import mapleGrovePermaculture from "../../assets/images/maple-grove-permaculture.png";
-
+import servicesButton from "../../assets/images/services-button.jpg";
 import storeButton from "../../assets/images/store-button.jpg";
+import { changeTab } from "../../__redux/slices/AppSlice";
+import { useDispatch } from "react-redux";
 import aboutButton from "../../assets/images/about-button.jpg";
 
 function HeroMobile() {
   const [divHeight, setDivHeight] = useState("80vh"); // Default height
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   useEffect(() => {
     const handleResize = () => {
       const screenWidth = window.innerWidth;
@@ -33,7 +37,25 @@ function HeroMobile() {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-
+  const handleLinkClick = (linkName) => {
+    dispatch(changeTab(linkName));
+    switch (linkName) {
+      case "Store":
+        navigate("/store");
+        break;
+      case "Events":
+        navigate("/events");
+        break;
+      case "About Us":
+        navigate("/about");
+        break;
+      case "Services":
+        navigate("/services");
+        break;
+      default:
+        navigate("/store");
+    }
+  };
   return (
     <div className="hero-mobile-container">
       <div className="hero-mobile-title-container">
@@ -55,20 +77,24 @@ function HeroMobile() {
       </div>
       <div className="hero-buttons-container">
         <div className="hero-mobile-link-row">
-          <div
-            className="link-button"
-            onClick={() => {
-              navigate("/store");
-            }}
-          >
+          <div className="link-button" onClick={() => handleLinkClick("Store")}>
             <img src={storeButton} alt="Store Button" />
             <div className="text-overlay">Store</div>
           </div>
           <div
             className="link-button"
-            onClick={() => {
-              navigate("/about");
-            }}
+            onClick={() => handleLinkClick("Services")}
+          >
+            <img
+              className="link-button-img"
+              src={servicesButton}
+              alt="Services Button"
+            />
+            <div className="text-overlay">Stay With Us</div>
+          </div>
+          <div
+            className="link-button"
+            onClick={() => handleLinkClick("About Us")}
           >
             <img src={aboutButton} alt="About Button" />
             <div className="text-overlay">About Us</div>

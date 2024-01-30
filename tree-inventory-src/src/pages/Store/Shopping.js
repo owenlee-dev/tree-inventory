@@ -184,26 +184,24 @@ const Shopping = ({ storeData }) => {
             >
               {storeTab} &nbsp;&nbsp; {isDropdownOpen ? "▲" : "▼"}
             </button>
-            {isDropdownOpen && (
-              <ul className="category-list">
-                {[
-                  "Everything",
-                  "Fruit Trees",
-                  "Nut and Other",
-                  "Perennials, Berries and Bushes",
-                  "Rootstock",
-                  "Supplies",
-                ].map((tabName) => (
-                  <li
-                    key={tabName}
-                    className={storeTab === tabName ? "active" : ""}
-                    onClick={() => handleTabClick(tabName)}
-                  >
-                    {tabName}
-                  </li>
-                ))}
-              </ul>
-            )}
+            <ul className={`category-list ${isDropdownOpen ? "open" : ""}`}>
+              {[
+                "Everything",
+                "Fruit Trees",
+                "Nut and Other",
+                "Perennials, Berries and Bushes",
+                "Rootstock",
+                "Supplies",
+              ].map((tabName) => (
+                <li
+                  key={tabName}
+                  className={storeTab === tabName ? "active" : ""}
+                  onClick={() => handleTabClick(tabName)}
+                >
+                  {tabName}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
         <div className="sidebar-bottom">

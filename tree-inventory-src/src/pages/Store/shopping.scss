@@ -55,8 +55,14 @@
           display: flex;
           padding-left: 0.5em;
           flex-direction: column;
+          transition:max-height 0.3s ease-in-out;
           @media screen and (max-width: 950px) {
+            max-height:0;
+            overflow:hidden;
             font-size: 18px;
+          }
+          &.open{
+            max-height: 500px;
           }
           li {
             color: $lightBrown;

@@ -73,7 +73,6 @@ const Modal = ({ product, onClose }) => {
             />
           </div>
           <div>
-            <p>{product.pollination ? `**${product.pollination}` : ""}</p>
             <p>{product.description}</p>
           </div>
           <div>
@@ -93,35 +92,36 @@ const Modal = ({ product, onClose }) => {
         <div className="modal-right">
           <img src={product.imagePath} onError={handleImageError} alt="Modal" />
           <div className="product-detail-container">
-            <div className="product-detail">
-              <Tooltip text="The sizes listed in cm are heights. Those in mm are the width of the trunk.">
-                <img
-                  className="__tooltip"
-                  alt="tooltip icon"
-                  src={tooltipIcon}
-                />
-              </Tooltip>
-              <span className="bold">Size: </span>
-              {product.size}
-            </div>
+            {product.size && (
+              <div className="product-detail">
+                <Tooltip text="The sizes listed in cm are heights. Those in mm are the width of the trunk.">
+                  <img
+                    className="__tooltip"
+                    alt="tooltip icon"
+                    src={tooltipIcon}
+                  />
+                </Tooltip>
+                <span className="bold">Size: </span>
+                {product.size}
+              </div>
+            )}
 
-            <div className="product-detail">
-              <Tooltip text="Many of the items are being sold bare root. meaning that there is no soil or pot with the plant and that it must be planted immediately or stored appropriately.">
-                <img
-                  className="__tooltip"
-                  alt="tooltip icon"
-                  src={tooltipIcon}
-                />{" "}
-              </Tooltip>
-              <span className="bold">Form: </span>
-              {product.form}
-            </div>
+            {product.form && (
+              <div className="product-detail">
+                <Tooltip text="Many of the items are being sold bare root. meaning that there is no soil or pot with the plant and that it must be planted immediately or stored appropriately.">
+                  <img
+                    className="__tooltip"
+                    alt="tooltip icon"
+                    src={tooltipIcon}
+                  />{" "}
+                </Tooltip>
+                <span className="bold">Form: </span>
+                {product.form}
+              </div>
+            )}
             {product.rootstock && (
               <div className="product-detail">
-                <Tooltip
-                  text="
-Rootstock refers to the lower part of a grafted plant, determining the tree's growth rate, size, and resilience. It affects the fruit yield, disease resistance, and adaptability to soil and climate conditions."
-                >
+                <Tooltip text="Rootstock refers to the lower part of a grafted plant, determining the tree's growth rate, size, and resilience. It affects the fruit yield, disease resistance, and adaptability to soil and climate conditions.">
                   <img
                     className="__tooltip"
                     alt="tooltip icon"
@@ -132,17 +132,19 @@ Rootstock refers to the lower part of a grafted plant, determining the tree's gr
                 {product.rootstock}
               </div>
             )}
-            <div className="product-detail">
-              <Tooltip text="Understanding pollination requirements is so important for tree growth! Make sure you understand the pollination requirements of your purchase.">
-                <img
-                  className="__tooltip"
-                  alt="tooltip icon"
-                  src={tooltipIcon}
-                />
-              </Tooltip>
-              <span className="bold">Pollination: </span>
-              {product.pollination}
-            </div>
+            {product.pollination && (
+              <div className="product-detail">
+                <Tooltip text="Proper pollination is essential for some plants to produce fruit. Make sure you understand the pollination requirements of your purchase.">
+                  <img
+                    className="__tooltip"
+                    alt="tooltip icon"
+                    src={tooltipIcon}
+                  />
+                </Tooltip>
+                <span className="bold">Pollination: </span>
+                {product.pollination}
+              </div>
+            )}
           </div>
         </div>
       </div>

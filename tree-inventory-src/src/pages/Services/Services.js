@@ -1,16 +1,21 @@
 import React, { useState, useEffect } from "react";
 import servicesHero from "../../assets/images/services-hero.png";
 import "./services.scss";
-
+import { useSelector } from "react-redux";
 function Services() {
+  const isMobile = useSelector((state) => state.appSlice.isMobile);
   return (
     <div className="content-container">
       <div className="services-hero">
-        <div className="services-hero-left">
-          <img alt="dome hero image" src={servicesHero} />
-        </div>
+        {!isMobile && (
+          <div className="services-hero-left">
+            <img alt="dome hero image" src={servicesHero} />
+          </div>
+        )}
         <div className="services-hero-right">
           <h1>Come Stay With Us!</h1>
+          {isMobile && <img alt="dome hero image" src={servicesHero} />}
+
           <p>
             Located just an hour from Halifax and a stone's throw away from the
             serene Shubenacadie River and the majestic Bay of Fundy, our

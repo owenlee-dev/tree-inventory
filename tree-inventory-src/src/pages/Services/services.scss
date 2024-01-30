@@ -24,12 +24,16 @@
     h1 {
       margin-bottom: 1em;
     }
+    @media screen and (max-width: 1000px) {
+      width: 90%;
+    }
   }
 }
 .possible-rentals {
   display: flex;
   justify-content: center;
   align-items: center;
+ 
   div {
     max-width: 500px;
     border: 2px solid $accent;
@@ -42,6 +46,12 @@
         list-style-type: circle;
         font-weight: bold;
       }
+    }
+  }
+  @media screen and (max-width: 1000px) {
+    flex-direction: column;
+    div{
+      width:90%;
     }
   }
 }
