@@ -180,7 +180,6 @@ app.post("/google-sheets/update-inventory", async (req, res) => {
   }
 });
 
-//TODO make sure everything gets added in lower case
 app.post("/google-sheets/add-pending-etransfer", async (req, res) => {
   try {
     const reportData = Object.values(req.body);

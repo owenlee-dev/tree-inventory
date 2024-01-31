@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./carousel.scss"; // Make sure to create/update a CSS file with the styles provided later
-const Carousel = ({ images }) => {
+const Carousel = ({ images, fixedSize, bigCarousel = false }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
@@ -24,11 +24,13 @@ const Carousel = ({ images }) => {
           />
         ))}
       </div>
-      <div className="slides-container">
+      <div className={`slides-container ${bigCarousel ? "big-carousel" : ""}`}>
         {images.map((image, index) => (
           <div
             key={index}
-            className={`slide ${currentSlide === index ? "visible" : "hidden"}`}
+            className={`slide ${
+              currentSlide === index ? "visible" : "hidden"
+            } ${fixedSize ? "cover" : "contain"}`}
             style={{ backgroundImage: `url(${image})` }}
           />
         ))}

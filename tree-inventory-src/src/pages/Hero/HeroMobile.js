@@ -60,9 +60,9 @@ function HeroMobile() {
     <div className="hero-mobile-container">
       <div className="hero-mobile-title-container">
         <img className="__mobile-logo" src={mapleGrovePermaculture}></img>
-        <h3 className="hero-mobile-subtitle">
+        {/* <h3 className="hero-mobile-subtitle">
           Where the vines are full and the dog is always happy to see you
-        </h3>
+        </h3> */}
       </div>
       <div className="hero-mobile-body-container">
         <img className="__hero-mobile-bg" src={groveDome}></img>

@@ -24,7 +24,7 @@ function About() {
           Story
         </div>
         <div className="grid-item big-img">
-          <Carousel images={imageList} />
+          <Carousel images={imageList} fixedSize={true} bigCarousel={true} />
         </div>
         <div className="grid-item small-img"></div>
       </div>

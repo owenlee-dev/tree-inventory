@@ -35,24 +35,36 @@
   position: relative;
   width: 100%;
   height: 50vw;
+  max-height:600px;
 }
-
+.slides-container.big-carousel{
+  max-height:50vw;
+}
 .slide {
-  border-radius: $borderRadius;
   width: 100%;
   height: 100%;
   position: absolute;
   top: 0;
   left: 0;
-  background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
   opacity: 0;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
-  transition: opacity 0.5s ease-in-out;
+  overflow: hidden;
+  padding:1em;
+  border-radius: $borderRadius;
+}
+.slide.cover {
+  background-size: cover;
+}
+.slide.contain {
+  background-size: contain;
+  border:2px solid $accent;
 }
 
 .slide.visible {
   opacity: 1;
+  transition: opacity 0.5s ease-in-out;
 }
 
 .slide.hidden {

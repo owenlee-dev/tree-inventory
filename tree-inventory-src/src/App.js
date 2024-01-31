@@ -1,6 +1,6 @@
 import "./App.scss";
 import "./assets/reset.css";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import {
   Route,
   Routes,
@@ -26,10 +26,16 @@ import ThankYou from "./pages/Store/ThankYou";
 import Services from "./pages/Services/Services";
 
 function App() {
-  const { data, status } = useSelector((state) => ({
+  const selectedData = useSelector((state) => ({
     data: state.storeSlice.googleSheetData,
     status: state.storeSlice.status,
   }));
+
+  const { data, status } = useMemo(
+    () => selectedData,
+    [selectedData.data, selectedData.status]
+  );
+
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

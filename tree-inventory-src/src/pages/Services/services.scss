@@ -33,7 +33,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
- 
+
   div {
     max-width: 500px;
     border: 2px solid $accent;
@@ -45,13 +45,82 @@
       li {
         list-style-type: circle;
         font-weight: bold;
+        padding: 0.25em;
+        cursor: pointer;
+        transition: color 0.2s ease-in-out;
+        &:hover {
+          color: $lightBrown;
+        }
       }
     }
   }
   @media screen and (max-width: 1000px) {
     flex-direction: column;
-    div{
-      width:90%;
+    div {
+      width: 90%;
+    }
+  }
+}
+a {
+  text-decoration: none;
+  font-weight: bold;
+  color: $orange;
+  transition: color 0.3s ease-in-out;
+  &:hover {
+    color: $blue;
+  }
+}
+.contact-us {
+  font-weight: bold;
+  color: $orange;
+}
+.rental-container {
+  display: flex;
+  height: 80vh;
+  max-height: 80vh;
+  padding:2em 0em;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+  gap: 5%;
+  .left {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    gap: 1em;
+    margin-left: 5%;
+    @media (max-width: 1000px) {
+      width: 90%;
+      margin-left:0;
+    }
+  }
+  .right {
+    width: 45%;
+    margin-right: 5%;
+  }
+}
+.inverse-rental-container {
+  display: flex;
+  height: 80vh;
+  max-height: 80vh;
+  padding:2em 0em;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+  gap: 5%;
+  .left {
+    width: 45%;
+    margin-left: 5%;
+  }
+  .right {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    gap: 1em;
+    margin-right: 5%;
+    @media (max-width: 1000px) {
+      width: 90%;
+      margin-right:0;
     }
   }
 }

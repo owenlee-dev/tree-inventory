@@ -8,7 +8,6 @@ import { sendOrderConfirmationEmail } from "../../components/api/api";
 
 //TODO this will need full test coverage
 const Admin = () => {
-  const dispatch = useDispatch();
   const [pendingEtransfers, setPendingEtransers] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [selectedRows, setSelectedRows] = useState([]);
@@ -16,7 +15,6 @@ const Admin = () => {
   const [isCouponModalVisible, setCouponModalVisible] = useState(false);
   let coupon = new Coupon("", "");
   const [couponFormData, setCouponFormData] = useState(coupon);
-
   const showConfirmModal = () => setConfirmModalVisible(true);
   const hideConfirmModal = () => setConfirmModalVisible(false);
   const showCouponModal = () => setCouponModalVisible(true);
@@ -27,7 +25,7 @@ const Admin = () => {
   }));
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchEtransfers = async () => {
       try {
         const response = await fetch(
           `${process.env.REACT_APP_BACKEND_URL}/google-sheets/pending-etransfers`
@@ -39,7 +37,7 @@ const Admin = () => {
       }
     };
 
-    fetchData();
+    fetchEtransfers();
   }, []);
 
   const confirmOrders = async () => {
@@ -145,17 +143,15 @@ const Login = ({ onLogin }) => {
   const [error, setError] = useState("");
 
   const handleLogin = () => {
-    // TODO save these somewhere safe
-    const hardcodedUsername = "this";
-    const hardcodedPassword = "that";
-
-    if (username === hardcodedUsername && password === hardcodedPassword) {
+    if (
+      username === process.env.REACT_APP_ADMIN_USERNAME &&
+      password === process.env.REACT_APP_ADMIN_PASSWORD
+    ) {
       onLogin(true);
     } else {
       setError("Invalid username or password");
     }
   };
-
   return (
     <div className="credential-container">
       <input

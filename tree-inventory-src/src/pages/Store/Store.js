@@ -9,11 +9,6 @@ import Checkout from "./Checkout";
 import ThankYou from "./ThankYou";
 
 function Store() {
-  const { numItemsInCart, validCoupons } = useSelector((state) => ({
-    data: state.storeSlice.numItemsInCart,
-    validCoupons: state.storeSlice.validCoupons,
-  }));
-
   const isMobile = useSelector((state) => state.appSlice.isMobile);
   const guaranteeRef = useRef(null);
   const salesRef = useRef(null);
@@ -29,10 +24,11 @@ function Store() {
 
   // FROM GOOGLE SHEETS
   //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  const { data, status } = useSelector((state) => ({
-    data: state.storeSlice.googleSheetData,
-    status: state.storeSlice.status,
-  }));
+
+  const validCoupons = useSelector((state) => state.storeSlice.validCoupons);
+  const data = useSelector((state) => state.storeSlice.googleSheetData);
+  const status = useSelector((state) => state.storeSlice.status);
+
   //END OF FROM GOOGLE SHEETS
   //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -46,6 +42,7 @@ function Store() {
   };
 
   const renderAdvertisedCoupons = () => {
+    console.log(validCoupons);
     return validCoupons
       .filter((coupon) => coupon.isAdvertised == "TRUE")
       .map((validCoupon, index) => (

@@ -61,9 +61,9 @@ function Hero() {
         <img className="__hero-bg" src={groveDome}></img>
         <div className="hero-title-container">
           <img className="__logo" src={mapleGrovePermaculture}></img>
-          <h3 className="hero-subtitle">
-            Where the vines are full and the dog is always happy to see you
-          </h3>
+          {/* <h3 className="hero-subtitle">
+            Fruit Tree Sales Sales and Retreat Spaces
+          </h3> */}
         </div>
         <p className="intro-paragraph">
           Welcome! Our tree and perennial sales for spring pick-up are now in
