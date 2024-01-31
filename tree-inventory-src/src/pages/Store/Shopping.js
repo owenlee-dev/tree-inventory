@@ -9,6 +9,7 @@ import StoreCard from "../../components/StoreCard";
 import shoppingCartIcon from "../../assets/icons/checkout.png";
 import magnifyingGlass from "../../assets/icons/search.png";
 import Modal from "../../components/Modal";
+import MobileModal from "../../components/MobileModal";
 import { Link } from "react-router-dom";
 
 const Shopping = ({ storeData }) => {
@@ -21,6 +22,7 @@ const Shopping = ({ storeData }) => {
   const numItemsInCart = useSelector(
     (state) => state.storeSlice.numItemsInCart
   );
+  const isMobile = useSelector((state) => state.appSlice.isMobile);
   // FROM GOOGLE SHEETS
   //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   // TODO This needs to change to match the subcategories
@@ -266,8 +268,11 @@ const Shopping = ({ storeData }) => {
           {storeTab !== "Fruit Trees" && generateCards()}
         </div>
         {storeTab === "Fruit Trees" && generateFruitCards()}
-        {activeProduct && (
+        {activeProduct && !isMobile && (
           <Modal product={activeProduct} onClose={handleCloseModal} />
+        )}
+        {activeProduct && isMobile && (
+          <MobileModal product={activeProduct} onClose={handleCloseModal} />
         )}
       </div>
     </div>

@@ -101,7 +101,9 @@ const Modal = ({ product, onClose }) => {
                     src={tooltipIcon}
                   />
                 </Tooltip>
-                <span className="bold">Size: </span>
+                <span className="bold">
+                  Size ~<br />
+                </span>
                 {product.size}
               </div>
             )}
@@ -115,7 +117,10 @@ const Modal = ({ product, onClose }) => {
                     src={tooltipIcon}
                   />{" "}
                 </Tooltip>
-                <span className="bold">Form: </span>
+                <span className="bold">
+                  Form ~
+                  <br />{" "}
+                </span>
                 {product.form}
               </div>
             )}
@@ -128,7 +133,9 @@ const Modal = ({ product, onClose }) => {
                     src={tooltipIcon}
                   />{" "}
                 </Tooltip>
-                <span className="bold">Rootstock: </span>
+                <span className="bold">
+                  Rootstock ~ <br />
+                </span>
                 {product.rootstock}
               </div>
             )}
@@ -141,7 +148,10 @@ const Modal = ({ product, onClose }) => {
                     src={tooltipIcon}
                   />
                 </Tooltip>
-                <span className="bold">Pollination: </span>
+                <span className="bold">
+                  Pollination ~
+                  <br />{" "}
+                </span>
                 {product.pollination}
               </div>
             )}
