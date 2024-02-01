@@ -26,6 +26,7 @@ import ThankYou from "./pages/Store/ThankYou";
 import Services from "./pages/Services/Services";
 
 function App() {
+  const [loading, setLoading] = useState(true);
   const selectedData = useSelector((state) => ({
     data: state.storeSlice.googleSheetData,
     status: state.storeSlice.status,
@@ -36,34 +37,9 @@ function App() {
     [selectedData.data, selectedData.status]
   );
 
-  const [loading, setLoading] = useState(true);
-
   useEffect(() => {
-    const images = document.images;
-    const imagesArray = [...images];
-    let imagesLoaded = 0;
-
-    const imageLoaded = () => {
-      imagesLoaded++;
-      if (imagesLoaded === imagesArray.length) {
-        setLoading(false); // Set loading to false when all images are loaded
-      }
-    };
-
-    imagesArray.forEach((img) => {
-      if (img.complete) {
-        imageLoaded();
-      } else {
-        img.addEventListener("load", imageLoaded);
-        img.addEventListener("error", imageLoaded); // Handle broken images as well
-      }
-    });
-
-    // Handle case where there are no images
-    if (imagesArray.length === 0) {
-      setLoading(false);
-    }
-  }, []);
+    console.log("loading: ", loading);
+  }, [loading]);
 
   const isMobile = useSelector((state) => state.appSlice.isMobile);
 
@@ -88,24 +64,127 @@ function App() {
 
   return (
     <div className="App">
-      {loading && <Loader />}
       <Router>
+        {loading && <Loader />}
         <ConditionalHeader />
         <Routes>
-          {!isMobile && <Route index element={<Hero />} />}
-          {isMobile && <Route index element={<HeroMobile />} />}
-          <Route path="/store/*" element={<Store />} />
-          <Route path="/events" element={<Store />} />{" "}
-          <Route path="/services" element={<Services />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/admin" element={<Admin />} />
-          <Route path="/thank-you" element={<ThankYou />} />
+          {!isMobile && (
+            <Route
+              index
+              element={
+                <PageWrapper setLoading={setLoading}>
+                  <Hero />
+                </PageWrapper>
+              }
+            />
+          )}
+          {isMobile && (
+            <Route
+              index
+              element={
+                <PageWrapper setLoading={setLoading}>
+                  <HeroMobile />
+                </PageWrapper>
+              }
+            />
+          )}
+          <Route
+            path="/store/*"
+            element={
+              <PageWrapper setLoading={setLoading}>
+                <Store />
+              </PageWrapper>
+            }
+          />
+          {/* <Route path="/events" element={<Store />} />{" "} */}
+          <Route
+            path="/services"
+            element={
+              <PageWrapper setLoading={setLoading}>
+                <Services />
+              </PageWrapper>
+            }
+          />
+          <Route
+            path="/about"
+            element={
+              <PageWrapper setLoading={setLoading}>
+                <About />
+              </PageWrapper>
+            }
+          />
+          <Route
+            path="/admin"
+            element={
+              <PageWrapper setLoading={setLoading}>
+                <Admin />
+              </PageWrapper>
+            }
+          />
+          <Route
+            path="/thank-you"
+            element={
+              <PageWrapper setLoading={setLoading}>
+                <ThankYou />
+              </PageWrapper>
+            }
+          />
         </Routes>
         <Footer />
       </Router>
     </div>
   );
 }
+
+function PageWrapper({ setLoading, children }) {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname.startsWith("/store")) {
+      setLoading(false);
+      return;
+    }
+
+    setLoading(true);
+    const handleAllImagesLoaded = () => {
+      setLoading(false);
+    };
+
+    const images = document.images;
+    const totalImages = images.length;
+    let imagesLoaded = 0;
+
+    const imageLoaded = () => {
+      imagesLoaded++;
+      if (imagesLoaded === totalImages) {
+        handleAllImagesLoaded();
+      }
+    };
+
+    [...images].forEach((img) => {
+      if (img.complete) {
+        imageLoaded();
+      } else {
+        img.addEventListener("load", imageLoaded);
+        img.addEventListener("error", imageLoaded);
+      }
+    });
+
+    if (totalImages === 0) {
+      handleAllImagesLoaded();
+    }
+
+    return () => {
+      [...images].forEach((img) => {
+        img.removeEventListener("load", imageLoaded);
+        img.removeEventListener("error", imageLoaded);
+      });
+    };
+  }, [location.pathname, setLoading]);
+
+  return children;
+}
+
 function ConditionalHeader() {
   const location = useLocation();
 

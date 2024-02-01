@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Lora&display=swap");
 @import "./assets/colors.scss";
-@import url('https://fonts.googleapis.com/css2?family=Schoolbell&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Schoolbell&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400&display=swap");
 .App {
   display: flex;
   min-height: 100vh;
@@ -10,11 +10,13 @@
   color: $text;
   background: linear-gradient(180deg, $lightBrown, $darkBrown);
   // background-image: url("./assets/images/green-bg.png");
-  font-family:"Montserrat", sans-serif;
-  overflow-x:hidden;
+  font-family: "Montserrat", sans-serif;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: #aa9171a6 $white;
+  
+  
 }
-
-
 
 /* CSS for fade-out */
 .fade-out {
@@ -30,8 +32,8 @@
   }
 }
 
-.remove-hero{
-  display:none;
+.remove-hero {
+  display: none;
 }
 /* CSS for fade-in */
 .fade-in {

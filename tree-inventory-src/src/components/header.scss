@@ -59,7 +59,7 @@
       color: $lightBrown;
     }
     // sidebar
-    @media (max-width: 1050px) {
+    @media (max-width: 1100px) {
       // background:linear-gradient(175deg, $lightBrown,$lightBrown, $orange);
       background-color: $lightGray;
       opacity: 0.9;
@@ -108,7 +108,7 @@
 }
 
 //when screen is big
-@media (min-width: 1000px) {
+@media (min-width: 1100px) {
   .header {
     height: 30vw;
   }

@@ -13,6 +13,18 @@ const Modal = ({ product, onClose }) => {
     const value = Math.max(1, Number(event.target.value));
     setQuantity(value);
   };
+  const descriptionRef = useRef(null); // Ref for the product description container
+  const [showScrollbar, setShowScrollbar] = useState(false);
+
+  useEffect(() => {
+    const descriptionContainer = descriptionRef.current;
+    if (descriptionContainer) {
+      const isOverflowing =
+        descriptionContainer.scrollHeight >
+        parseFloat(getComputedStyle(descriptionContainer).fontSize) * 15;
+      setShowScrollbar(isOverflowing);
+    }
+  }, [product.description]);
 
   const handleAddToCart = (event) => {
     event.stopPropagation();
@@ -72,7 +84,12 @@ const Modal = ({ product, onClose }) => {
               alt="Modal"
             />
           </div>
-          <div>
+          <div
+            className={`product-description-container ${
+              showScrollbar ? "scrollable" : ""
+            }`}
+            ref={descriptionRef}
+          >
             <p>{product.description}</p>
           </div>
           <div>
@@ -101,9 +118,7 @@ const Modal = ({ product, onClose }) => {
                     src={tooltipIcon}
                   />
                 </Tooltip>
-                <span className="bold">
-                  Size ~<br />
-                </span>
+                <span className="bold">Size: </span>
                 {product.size}
               </div>
             )}
@@ -117,10 +132,7 @@ const Modal = ({ product, onClose }) => {
                     src={tooltipIcon}
                   />{" "}
                 </Tooltip>
-                <span className="bold">
-                  Form ~
-                  <br />{" "}
-                </span>
+                <span className="bold">Form: </span>
                 {product.form}
               </div>
             )}
@@ -133,9 +145,7 @@ const Modal = ({ product, onClose }) => {
                     src={tooltipIcon}
                   />{" "}
                 </Tooltip>
-                <span className="bold">
-                  Rootstock ~ <br />
-                </span>
+                <span className="bold">Rootstock: </span>
                 {product.rootstock}
               </div>
             )}
@@ -148,10 +158,7 @@ const Modal = ({ product, onClose }) => {
                     src={tooltipIcon}
                   />
                 </Tooltip>
-                <span className="bold">
-                  Pollination ~
-                  <br />{" "}
-                </span>
+                <span className="bold">Pollination: </span>
                 {product.pollination}
               </div>
             )}

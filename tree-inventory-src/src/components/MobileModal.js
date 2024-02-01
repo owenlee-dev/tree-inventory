@@ -75,7 +75,7 @@ const MobileModal = ({ product, onClose }) => {
             </div>
           </div>
 
-          <div>
+          <div className="product-description-container">
             <p>{product.description}</p>
           </div>
           <div>

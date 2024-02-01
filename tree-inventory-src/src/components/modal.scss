@@ -37,16 +37,15 @@
   gap: 2em;
   display: flex;
   justify-content: center;
-  align-items: center;
   position: relative;
   max-height: 70%;
-  overflow-y: scroll;
   z-index: 201;
 
   .modal-left {
     width: 50%;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 1em;
     .price {
       color: $orange;
@@ -61,6 +60,14 @@
       font-weight: 400;
       color: $red;
     }
+    .product-description-container{
+      max-height:15em;
+      overflow-y:hidden;
+    }
+    .product-description-container.scrollable {
+      overflow-y: auto; /* Show scrollbar when content overflows */
+    }
+    
     .quantity-input-container {
       display: flex;
       justify-content: flex-start;
@@ -116,17 +123,25 @@
       display: flex;
       flex-direction: column;
       gap: 1em;
-      
-      .__tooltip {
-        margin-right: 0.5em;
-        width: 1.5rem;
-        height: 1.5rem;
-        transition: filter 0.3s, transform 0.3s;
+      .product-detail {
+        display: flex;
+        gap: 1em;
 
-        &:hover {
-          -webkit-filter: drop-shadow(1px 1px 5px #d3da0f);
-          filter: drop-shadow(1px 1px 3px #d3da0f);
+        .__tooltip {
+          flex-shrink:0;
+          width: 1.5rem;
+          height: 1.5rem;
+          transition: filter 0.3s, transform 0.3s;
+
+          &:hover {
+            -webkit-filter: drop-shadow(1px 1px 5px #d3da0f);
+            filter: drop-shadow(1px 1px 3px #d3da0f);
+          }
         }
+        span.bold{
+          white-space:nowrap;
+        }
+       
       }
     }
   }

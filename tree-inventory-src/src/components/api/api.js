@@ -142,13 +142,12 @@ export const sendOrderConfirmationEmail = async (
     order_id: orderID,
   };
   try {
-    // const emailResponse = await emailjs.send(
-    //   process.env.REACT_APP_EMAILJS_SERVICE_ID,
-    //   process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
-    //   emailParams,
-    //   process.env.REACT_APP_EMAILJS_PUBLIC_KEY
-    // );
-    let emailResponse = { text: "Success" };
+    const emailResponse = await emailjs.send(
+      process.env.REACT_APP_EMAILJS_SERVICE_ID,
+      process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
+      emailParams,
+      process.env.REACT_APP_EMAILJS_PUBLIC_KEY
+    );
     console.log("Email sent:", emailResponse.text);
     return true;
   } catch (error) {

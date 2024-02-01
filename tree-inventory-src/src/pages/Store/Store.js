@@ -7,6 +7,7 @@ import Cart from "./Cart";
 import Shopping from "./Shopping";
 import Checkout from "./Checkout";
 import ThankYou from "./ThankYou";
+import Loader from "../../components/Loader";
 
 function Store() {
   const isMobile = useSelector((state) => state.appSlice.isMobile);
@@ -14,6 +15,7 @@ function Store() {
   const salesRef = useRef(null);
   const pickupRef = useRef(null);
   const [activeSections, setActiveSections] = useState(["sales"]);
+  const [heroImageLoading, setHeroImageLoading] = useState(true);
 
   //Make sure that sales is open
   useEffect(() => {
@@ -21,6 +23,22 @@ function Store() {
       setActiveSections([...activeSections]);
     }
   }, []);
+
+  useEffect(() => {
+    const img = new Image();
+    img.onload = () => setHeroImageLoading(false);
+    img.src = storeHero;
+
+    // In case the image is already cached and the load event has fired
+    // before the event handler was attached.
+    if (img.complete) {
+      setHeroImageLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    console.log(heroImageLoading);
+  }, [heroImageLoading]);
 
   // FROM GOOGLE SHEETS
   //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -42,7 +60,6 @@ function Store() {
   };
 
   const renderAdvertisedCoupons = () => {
-    console.log(validCoupons);
     return validCoupons
       .filter((coupon) => coupon.isAdvertised == "TRUE")
       .map((validCoupon, index) => (
@@ -54,6 +71,7 @@ function Store() {
 
   return (
     <div className="content-container">
+      {heroImageLoading && <Loader />}
       <div className="store-hero-container">
         <div className="store-title-container">
           <h2>Welcome to</h2>

@@ -2,8 +2,9 @@
 
 .tooltip-container {
   position: relative;
-  display: inline-block;
   cursor: pointer;
+  display:flex;
+  flex-shrink: 0;
 }
 
 .tooltip-text {

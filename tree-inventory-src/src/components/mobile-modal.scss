@@ -1,8 +1,8 @@
 @import "../assets/colors.scss";
 
 .modal.mobile-modal-container{
-  height:100%;
   margin:1em 0em;
+  max-height:100%;
 }
 .mobile-modal-left {
   gap: 1em;
@@ -15,6 +15,7 @@
     width: 100%;
     justify-content: space-around;
     padding: 1em;
+    gap:0.5em;
     align-items: center;
 
     .col {
@@ -35,11 +36,16 @@
       color: $red;
     }
   }
+  .product-description-container{
+    max-height:12em;
+    overflow-y:scroll;
+  }
   .product-detail-container{
     width:100%;
   }
   .product-detail {
     width:100%;
+    margin:1em 0em;
     display: flex;
     flex-direction: row;
     align-items: center;
