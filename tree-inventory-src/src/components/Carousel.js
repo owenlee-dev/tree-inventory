@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import "./carousel.scss"; // Make sure to create/update a CSS file with the styles provided later
 const Carousel = ({ images, fixedSize, bigCarousel = false }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -13,6 +15,23 @@ const Carousel = ({ images, fixedSize, bigCarousel = false }) => {
     return () => clearTimeout(timer);
   }, [currentSlide, images.length]);
 
+  const handleTouchStart = (e) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    // Check if it's a clear swipe to the left
+    if (touchStart - touchEnd > 50) {
+      setCurrentSlide((currentSlide + 1) % images.length);
+    }
+
+    // Check if it's a clear swipe to the right
+    if (touchStart - touchEnd < -50) {
+      setCurrentSlide(
+        currentSlide === 0 ? images.length - 1 : currentSlide - 1
+      );
+    }
+  };
   return (
     <div className="carousel">
       <div className="caret-container">
@@ -24,7 +43,12 @@ const Carousel = ({ images, fixedSize, bigCarousel = false }) => {
           />
         ))}
       </div>
-      <div className={`slides-container ${bigCarousel ? "big-carousel" : ""}`}>
+      <div
+        className={`slides-container ${bigCarousel ? "big-carousel" : ""}`}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+        onTouchMove={(e) => setTouchEnd(e.targetTouches[0].clientX)}
+      >
         {images.map((image, index) => (
           <div
             key={index}
