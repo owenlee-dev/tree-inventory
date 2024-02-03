@@ -9,10 +9,7 @@ const Modal = ({ product, onClose }) => {
   const modalRef = useRef(null);
   const [showOverlay, setShowOverlay] = useState(false);
   const dispatch = useDispatch();
-  const handleQuantityChange = (event) => {
-    const value = Math.max(1, Number(event.target.value));
-    setQuantity(value);
-  };
+
   const descriptionRef = useRef(null); // Ref for the product description container
   const [showScrollbar, setShowScrollbar] = useState(false);
 
@@ -62,6 +59,18 @@ const Modal = ({ product, onClose }) => {
   const handleImageError = (e) => {
     e.target.src = "./store-images/rootstock.png";
   };
+
+  const incrementQuantity = () => {
+    setQuantity((prevQuantity) => prevQuantity + 1);
+  };
+
+  const decrementQuantity = () => {
+    setQuantity((prevQuantity) => Math.max(1, prevQuantity - 1));
+  };
+  const handleQuantityChange = (e) => {
+    const newQuantity = e.target.value;
+    setQuantity(newQuantity ? parseInt(newQuantity, 10) : "");
+  };
   return (
     <div className="modal-backdrop">
       <div className="modal" ref={modalRef}>
@@ -98,8 +107,11 @@ const Modal = ({ product, onClose }) => {
                 type="number"
                 value={quantity}
                 onChange={handleQuantityChange}
-                min="1"
+                onBlur={() => {
+                  if (!quantity) setQuantity(1);
+                }}
               />
+
               <button disabled={!product.inStock} onClick={handleAddToCart}>
                 Add to Cart
               </button>

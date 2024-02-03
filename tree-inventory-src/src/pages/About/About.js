@@ -100,8 +100,8 @@ function About() {
               high tides of the Bay of Fundy.
               <br />
               <br /> We are a 10 minute walk from the cleansing Five Mile River
-              and 20mins from the gypsum cliffs that are home to the Maitland
-              bat caves.
+              and 20 minutes from the Gypsum Cliffs, home to the Maitland Bat
+              Caves.
             </p>
           </div>
           <div className="come-visit-img"></div>

@@ -165,7 +165,6 @@ const CouponModal = ({
                           value={item.Variety}
                           checked={group.includes(item.Variety)}
                           onChange={() => {}}
-                          onClick={(e) => e.stopPropagation()}
                         />
                         <label htmlFor={`${groupIndex}-${item.Variety}`}>
                           {item.Variety}
