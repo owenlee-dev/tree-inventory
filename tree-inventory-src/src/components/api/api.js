@@ -104,7 +104,6 @@ export const getOrderDetails = async (orderID) => {
 };
 
 export const createPaymentIntent = async (totalInCents) => {
-  console.log("total in cents: ", totalInCents);
   const response = await fetch(
     `${process.env.REACT_APP_BACKEND_URL}/stripe/create-payment-intent`,
     {
@@ -113,7 +112,6 @@ export const createPaymentIntent = async (totalInCents) => {
       body: JSON.stringify({ amount: totalInCents }),
     }
   );
-  console.log(response);
   if (!response.ok) {
     console.error("HTTP Error:", response.statusText);
     return null;

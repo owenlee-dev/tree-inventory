@@ -129,7 +129,6 @@ const Cart = ({ toggleShopCheckout }) => {
       }
     } else {
       // TODO set a coupon-not-valid message in ui
-      console.log("Invalid coupon code");
       displayInvalidCouponMessage();
       setCouponInput("");
       setAppliedCoupon({});
@@ -192,7 +191,7 @@ const Cart = ({ toggleShopCheckout }) => {
         </div>
         <div className="order-summary-container">
           <div className="order-summary-title-container">
-            <h1>Order Summary</h1>
+            <h2>Order Summary</h2>
             <p>{getTotalItemCount()} Items</p>
           </div>
           <div className="order-financial-info">

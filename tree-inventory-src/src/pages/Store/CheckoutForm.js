@@ -48,7 +48,6 @@ function CheckoutForm({ pickupLocations, getTotals }) {
         console.log("paying with credit card");
         postFormData(formData, setIsSubmitting);
       }
-      console.log(cartItems);
       //Update Inventory
       updateInventory(transformCartObject(cartItems), true);
 

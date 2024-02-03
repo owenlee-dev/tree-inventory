@@ -60,14 +60,14 @@
       font-weight: 400;
       color: $red;
     }
-    .product-description-container{
-      max-height:15em;
-      overflow-y:hidden;
+    .product-description-container {
+      max-height: 15em;
+      overflow-y: hidden;
     }
     .product-description-container.scrollable {
       overflow-y: auto; /* Show scrollbar when content overflows */
     }
-    
+
     .quantity-input-container {
       display: flex;
       justify-content: flex-start;
@@ -128,7 +128,7 @@
         gap: 1em;
 
         .__tooltip {
-          flex-shrink:0;
+          flex-shrink: 0;
           width: 1.5rem;
           height: 1.5rem;
           transition: filter 0.3s, transform 0.3s;
@@ -138,10 +138,9 @@
             filter: drop-shadow(1px 1px 3px #d3da0f);
           }
         }
-        span.bold{
-          white-space:nowrap;
+        span.bold {
+          white-space: nowrap;
         }
-       
       }
     }
   }

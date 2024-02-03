@@ -16,7 +16,6 @@ function Store() {
   const pickupRef = useRef(null);
   const [activeSections, setActiveSections] = useState(["sales"]);
   const [heroImageLoading, setHeroImageLoading] = useState(true);
-
   //Make sure that sales is open
   useEffect(() => {
     if (salesRef.current && activeSections.includes("sales")) {
@@ -35,10 +34,6 @@ function Store() {
       setHeroImageLoading(false);
     }
   }, []);
-
-  useEffect(() => {
-    console.log(heroImageLoading);
-  }, [heroImageLoading]);
 
   // FROM GOOGLE SHEETS
   //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

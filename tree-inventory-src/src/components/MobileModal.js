@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import "./mobile-modal.scss"; // Import your modal CSS here
+import "./mobile-modal.scss";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../__redux/slices/StoreSlice";
 import Tooltip from "./Tooltip";
@@ -9,6 +9,12 @@ const MobileModal = ({ product, onClose }) => {
   const modalRef = useRef(null);
   const [showOverlay, setShowOverlay] = useState(false);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (modalRef.current) {
+      modalRef.current.scrollTop = 0;
+    }
+  }, []);
 
   const handleAddToCart = (event) => {
     event.stopPropagation();

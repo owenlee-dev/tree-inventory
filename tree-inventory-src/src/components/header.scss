@@ -16,6 +16,13 @@
 
   @media (max-width: 590px) {
     gap: 2em;
+    padding: 1em;
+    padding-right: 1.5em;
+    align-items: center;
+    a {
+      display: flex;
+      align-items: center;
+    }
   }
 
   .logo-container {
@@ -31,6 +38,8 @@
       object-fit: cover;
       //mobile
       @media (max-width: 590px) {
+        object-fit: contain;
+        height: 15vw;
       }
     }
   }

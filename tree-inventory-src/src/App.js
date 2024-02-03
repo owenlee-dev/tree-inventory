@@ -37,10 +37,6 @@ function App() {
     [selectedData.data, selectedData.status]
   );
 
-  useEffect(() => {
-    console.log("loading: ", loading);
-  }, [loading]);
-
   const isMobile = useSelector((state) => state.appSlice.isMobile);
 
   const dispatch = useDispatch();
