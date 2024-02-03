@@ -10,7 +10,6 @@ import { createPaymentIntent } from "../../components/api/api";
 //Thoughts on an etransfer checkout process
 const Checkout = ({ toggleShopCheckout }) => {
   const stripeKey = process.env.REACT_APP_STRIPE_PROMISE;
-  console.log(stripeKey);
   const stripePromise = loadStripe(stripeKey);
   const [clientSecret, setClientSecret] = useState("");
   const dispatch = useDispatch();
