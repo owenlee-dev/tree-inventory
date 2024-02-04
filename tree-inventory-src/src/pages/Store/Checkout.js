@@ -13,12 +13,9 @@ const Checkout = ({ toggleShopCheckout }) => {
   const [stripePromise, setStripePromise] = useState(null);
 
   useEffect(() => {
-    console.log("entered useEffect");
     fetch(`${process.env.REACT_APP_BACKEND_URL}/config`)
       .then((res) => res.json())
       .then((config) => {
-        console.log("config received:", config);
-        console.log("stripePublishableKey set:", config.publishableKey);
         setStripePublishableKey(config.publishableKey);
       })
       .catch((error) => {
