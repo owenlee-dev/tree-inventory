@@ -67,7 +67,7 @@ const ThankYou = () => {
             <br />
             <br />
             If you have any questions about the process or your purchase, you
-            can reach Aaron over email at aaronsemail@email.com
+            can reach Aaron over email at maplegrovepermaculture@gmail.com
           </p>
           <Link to="/store" className="back-to-shop-btn button-animation">
             Return to Shop

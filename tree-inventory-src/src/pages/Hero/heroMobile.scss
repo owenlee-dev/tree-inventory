@@ -6,7 +6,7 @@
 .hero-mobile-container {
   background-image: url("../../assets/images/bg.png");
   padding: 2em;
-  
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,9 +14,9 @@
 
 .hero-mobile-title-container {
   display: flex;
-  margin-top:4em;
-  margin-bottom:-1em;
-  padding:1em;
+  margin-top: 4em;
+  margin-bottom: -1em;
+  padding: 1em;
   flex-direction: column;
   align-items: center;
   border-radius: 20px;
@@ -64,22 +64,21 @@
     }
   }
   .hero-mobile-body-container {
-    
     .__hero-mobile-bg {
       width: 100%;
     }
     .mobile-intro-paragraph {
       font-size: 4vw;
-      width:90%;
+      width: 90%;
     }
   }
 }
 
-  .hero-mobile-link-row {
-    margin-top:2em;
-    display: flex;
-    flex-direction: column;
-    gap: 2em;
+.hero-mobile-link-row {
+  margin-top: 2em;
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
 }
 //   & img {
 //     display: block;

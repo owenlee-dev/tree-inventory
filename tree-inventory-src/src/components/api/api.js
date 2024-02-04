@@ -139,6 +139,7 @@ export const sendOrderConfirmationEmail = async (
     pickup_location: pickupLocation,
     order_id: orderID,
   };
+  console.log(emailParams);
   try {
     const emailResponse = await emailjs.send(
       process.env.REACT_APP_EMAILJS_SERVICE_ID,
