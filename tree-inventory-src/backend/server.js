@@ -198,14 +198,13 @@ app.post("/google-sheets/add-pending-etransfer", async (req, res) => {
 //STRIPE
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 app.get("/config", (req, res) => {
-  res.send({
+  res.json({
     publishableKey: process.env.STRIPE_PUBLISHABLE_KEY,
   });
 });
 
 app.post("/stripe/create-payment-intent", async (req, res) => {
   try {
-    console.log("Received amount:", req.body.amount);
     const { amount } = req.body;
     if (!amount || amount < 0) {
       amount = 0;

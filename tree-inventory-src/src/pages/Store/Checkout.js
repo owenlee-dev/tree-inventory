@@ -9,8 +9,29 @@ import { createPaymentIntent } from "../../components/api/api";
 
 //Thoughts on an etransfer checkout process
 const Checkout = ({ toggleShopCheckout }) => {
-  const stripeKey = process.env.REACT_APP_STRIPE_PROMISE;
-  const stripePromise = loadStripe(stripeKey);
+  const [stripePublishableKey, setStripePublishableKey] = useState("");
+  const [stripePromise, setStripePromise] = useState(null);
+
+  useEffect(() => {
+    console.log("entered useEffect");
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/config`)
+      .then((res) => res.json())
+      .then((config) => {
+        console.log("config received:", config);
+        console.log("stripePublishableKey set:", config.publishableKey);
+        setStripePublishableKey(config.publishableKey);
+      })
+      .catch((error) => {
+        console.error("Error fetching publishable key:", error);
+      });
+  }, []);
+
+  useEffect(() => {
+    if (stripePublishableKey) {
+      setStripePromise(loadStripe(stripePublishableKey));
+    }
+  }, [stripePublishableKey]);
+
   const [clientSecret, setClientSecret] = useState("");
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.storeSlice.cartContents);
