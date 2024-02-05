@@ -78,8 +78,7 @@ function CheckoutForm({ pickupLocations, getTotals }) {
         ) {
           console.log("Payment successful");
 
-          // Update Inventory and send confirmation email only for credit card transactions
-          updateInventory(transformCartObject(cartItems), true);
+          // Send confirmation email only for credit card transactions
           const response = await sendOrderConfirmationEmail(
             formData.name,
             formData.email,
@@ -105,6 +104,7 @@ function CheckoutForm({ pickupLocations, getTotals }) {
       await postFormData(updatedFormData);
       dispatch(clearCart());
 
+      updateInventory(transformCartObject(cartItems), true);
       navigate(
         `/thank-you?payWithCreditCard=${payWithCreditCard}&orderID=${
           formData.orderID
