@@ -25,7 +25,6 @@ const Shopping = ({ storeData }) => {
   const isMobile = useSelector((state) => state.appSlice.isMobile);
   // FROM GOOGLE SHEETS
   //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  // TODO This needs to change to match the subcategories
   const fruitTrees = {
     "Apple Trees": storeData["fruit trees"]["apple"].flatMap((item) => item),
     "Pear Trees": storeData["fruit trees"]["pear"].flatMap((item) => item),
@@ -78,7 +77,7 @@ const Shopping = ({ storeData }) => {
     let productList = givenList || allTrees;
     if (storeTab === "Everything") {
       productList = allTrees;
-    } else if (storeTab === "Nut and Other") {
+    } else if (storeTab === "Nut and Other Tree Seedlings") {
       productList = nutOthers;
     } else if (storeTab === "Perennials, Berries and Bushes") {
       productList = perennialBerryBushes;
@@ -190,7 +189,7 @@ const Shopping = ({ storeData }) => {
               {[
                 "Everything",
                 "Fruit Trees",
-                "Nut and Other",
+                "Nut and Other Tree Seedlings",
                 "Perennials, Berries and Bushes",
                 "Rootstock",
                 "Supplies",

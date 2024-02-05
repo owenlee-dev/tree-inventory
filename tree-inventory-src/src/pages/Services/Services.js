@@ -21,14 +21,14 @@ function Services() {
 
           <p>
             Located just an hour from Halifax and a stone's throw away from the
-            serene Shubenacadie River and the majestic Bay of Fundy, our
-            property is an ideal starting point for endless exploration. Whether
-            you fancy a leisurely walk, a ski trip, or a scenic bike ride, the
-            sprawling 5-mile river trail offers a bounty of natural beauty.
+            epic Shubenacadie River and the Bay of Fundy, our property is an
+            ideal starting point for endless exploration. Whether you fancy a
+            leisurely walk, a ski trip, or a scenic bike ride, the sprawling
+            5-mile river trail offers a bounty of natural beauty.
           </p>
           <p className="bold">
-            Available on-site professional massage and reiki services available
-            with any rental
+            On-site professional massage and reiki services available with any
+            rental
           </p>
           <p>
             Discover a unique getaway experience with our cozy accomodations
@@ -131,7 +131,7 @@ function Services() {
             cooking utensils you need. A wood stove radiates heat throughout the
             space, creating a snug and inviting atmosphere.
           </p>
-          <a href="https://www.airbnb.ca/rooms/45376458?locale=en&_set_bev_on_new_domain=1706701673_OTUzYTdkNDcxZTA3&source_impression_id=p3_1706702087_Ogzj%2FcfWYDSi7A4Y&modal=PHOTO_TOUR_SCROLLABLE&modalItem=1109556928">
+          <a href="https://www.airbnb.ca/rooms/45376458?locale=en&_set_bev_on_new_domain=1706374858_ZWRiY2YzMzZjOTM5">
             Book and Learn More on Airbnb
           </a>
         </div>

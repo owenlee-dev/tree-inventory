@@ -166,9 +166,9 @@ function Store() {
                   {" "}
                   <p>
                     The purchase of all items in this store are for pickup in
-                    April. Pickup locations range accross Nova Scotia and there
-                    is lot's of flexibility regarding when and where you pickup
-                    your trees!
+                    April. Pickup locations are arranged across Nova Scotia
+                    including Halifax, East Hants, south shore, valley, Truro
+                    and potentially others.
                   </p>
                 </div>
               </div>
@@ -183,8 +183,8 @@ function Store() {
                 alt="Store main photo"
               />
               <div className="sale-banner">
-                <h2>Pre-Order Tax Sale!</h2>
-                <h4 className="bold">Save the tax store-wide!</h4>
+                <h2>Pre Order Sale</h2>
+                <h4 className="bold">No Tax Site-Wide!</h4>
               </div>
             </div>
           )}
