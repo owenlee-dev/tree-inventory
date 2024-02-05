@@ -1,16 +1,22 @@
-import React, { useState, useEffect, useRef } from "react";
-import "./checkout.scss"; // Import your modal CSS here
-import { useSelector, useDispatch } from "react-redux";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import "./checkout.scss";
+import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import CheckoutForm from "./CheckoutForm";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { createPaymentIntent } from "../../components/api/api";
 
 //Thoughts on an etransfer checkout process
-const Checkout = ({ toggleShopCheckout }) => {
+const Checkout = () => {
   const [stripePublishableKey, setStripePublishableKey] = useState("");
   const [stripePromise, setStripePromise] = useState(null);
+  const navigate = useNavigate();
+  const [clientSecret, setClientSecret] = useState("");
+  const cartItems = useSelector((state) => state.storeSlice.cartContents);
+  const { data } = useSelector((state) => ({
+    data: state.storeSlice.pickupLocations,
+  }));
 
   useEffect(() => {
     fetch(`${process.env.REACT_APP_BACKEND_URL}/config`)
@@ -28,16 +34,6 @@ const Checkout = ({ toggleShopCheckout }) => {
       setStripePromise(loadStripe(stripePublishableKey));
     }
   }, [stripePublishableKey]);
-
-  const [clientSecret, setClientSecret] = useState("");
-  const dispatch = useDispatch();
-  const cartItems = useSelector((state) => state.storeSlice.cartContents);
-  const { data, status } = useSelector((state) => ({
-    data: state.storeSlice.pickupLocations,
-    status: state.storeSlice.status,
-  }));
-  const { state } = useLocation();
-  const navigate = useNavigate();
 
   useEffect(() => {
     let totalInCents = Math.round(
@@ -65,16 +61,6 @@ const Checkout = ({ toggleShopCheckout }) => {
 
   const options = {
     clientSecret: clientSecret,
-  };
-  const getTotalItemCount = () => {
-    return cartItems.reduce((total, item) => total + item.numInCart, 0);
-  };
-
-  const formatCurrency = (value) => {
-    return new Intl.NumberFormat("en-CA", {
-      style: "currency",
-      currency: "CAD",
-    }).format(value);
   };
 
   if (!clientSecret || !stripePromise)

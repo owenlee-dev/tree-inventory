@@ -78,7 +78,7 @@ function HeroMobile() {
       <div className="hero-buttons-container">
         <div className="hero-mobile-link-row">
           <div className="link-button" onClick={() => handleLinkClick("Store")}>
-            <img src={storeButton} alt="Store Button" />
+            <img src={storeButton} alt="Store Button" alt="store button" />
             <div className="text-overlay">Store</div>
           </div>
           <div

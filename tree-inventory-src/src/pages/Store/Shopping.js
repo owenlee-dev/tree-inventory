@@ -1,10 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import "./shopping.scss"; // Import your modal CSS here
-import { useSelector, useDispatch } from "react-redux";
-import {
-  removeFromCart,
-  updateCartItemQuantity,
-} from "../../__redux/slices/StoreSlice";
+import { useSelector } from "react-redux";
 import StoreCard from "../../components/StoreCard";
 import shoppingCartIcon from "../../assets/icons/checkout.png";
 import magnifyingGlass from "../../assets/icons/search.png";

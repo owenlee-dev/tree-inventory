@@ -58,9 +58,13 @@ function Hero() {
   return (
     <div className="hero-container">
       <div className="hero-top" style={{ height: divHeight }}>
-        <img className="__hero-bg" src={groveDome}></img>
+        <img className="__hero-bg" src={groveDome} alt="hero"></img>
         <div className="hero-title-container">
-          <img className="__logo" src={mapleGrovePermaculture}></img>
+          <img
+            className="__logo"
+            alt="maple grove logo"
+            src={mapleGrovePermaculture}
+          ></img>
           {/* <h3 className="hero-subtitle">
             Fruit Tree Sales Sales and Retreat Spaces
           </h3> */}

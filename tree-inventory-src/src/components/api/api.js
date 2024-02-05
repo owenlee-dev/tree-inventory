@@ -1,6 +1,6 @@
 import emailjs from "emailjs-com";
 
-export const postFormData = async (formData, setIsSubmitting) => {
+export const postFormData = async (formData) => {
   try {
     const response = await fetch(
       `${process.env.REACT_APP_BACKEND_URL}/google-sheets/add-report`,
@@ -16,15 +16,11 @@ export const postFormData = async (formData, setIsSubmitting) => {
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-
     const data = await response.json();
-    setIsSubmitting(false);
-    console.log("posted report data to google sheets: ", formData);
 
     return data;
   } catch (error) {
     console.error("api.js: Error submitting report:", error);
-    setIsSubmitting(false);
   }
 };
 
@@ -139,7 +135,6 @@ export const sendOrderConfirmationEmail = async (
     pickup_location: pickupLocation,
     order_id: orderID,
   };
-  console.log(emailParams);
   try {
     const emailResponse = await emailjs.send(
       process.env.REACT_APP_EMAILJS_SERVICE_ID,

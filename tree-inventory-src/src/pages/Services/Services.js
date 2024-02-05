@@ -1,4 +1,3 @@
-import React, { useState, useEffect, useRef } from "react";
 import servicesHero from "../../assets/images/services-hero.png";
 import "./services.scss";
 import { useSelector } from "react-redux";
@@ -12,12 +11,12 @@ function Services() {
       <div className="services-hero">
         {!isMobile && (
           <div className="services-hero-left">
-            <img alt="dome hero image" src={servicesHero} />
+            <img alt="dome hero" src={servicesHero} />
           </div>
         )}
         <div className="services-hero-right">
           <h1>Come Stay With Us!</h1>
-          {isMobile && <img alt="dome hero image" src={servicesHero} />}
+          {isMobile && <img alt="dome hero" src={servicesHero} />}
 
           <p>
             Located just an hour from Halifax and a stone's throw away from the

@@ -1,17 +1,16 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./storecard.scss";
-import random, { Random } from "random";
-import { useDispatch, useSelector } from "react-redux";
-import { addToCart, removeFromCart } from "../__redux/slices/StoreSlice";
+import random from "random";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../__redux/slices/StoreSlice";
 
-const StoreCard = ({ index, productInfo, onCardClick, onAddToCart }) => {
+const StoreCard = ({ index, productInfo, onCardClick }) => {
   const [rotation, setRotation] = React.useState(0);
   const [scale, setScale] = React.useState(1);
   const [bottomPadding, setBottomPadding] = useState("15px");
   const [showOverlay, setShowOverlay] = useState(false);
   const titleRef = useRef(null);
   const dispatch = useDispatch();
-  const cartItems = useSelector((state) => state.storeSlice.cartContents);
   useEffect(() => {
     if (titleRef.current) {
       const height = titleRef.current.clientHeight;

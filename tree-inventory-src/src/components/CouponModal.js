@@ -1,13 +1,5 @@
-import React, { useEffect, useState } from "react";
 import "./couponModal.scss";
-const CouponModal = ({
-  storeData,
-  formData,
-  setFormData,
-  show,
-  onClose,
-  onConfirm,
-}) => {
+const CouponModal = ({ storeData, formData, setFormData, show, onClose }) => {
   if (!show) {
     return null;
   }

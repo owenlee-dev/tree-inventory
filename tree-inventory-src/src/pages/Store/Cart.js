@@ -1,21 +1,21 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import "./cart.scss";
 import { useSelector, useDispatch } from "react-redux";
 import {
   removeFromCart,
   updateCartItemQuantity,
-  fetchValidCoupons,
   changeAppliedCoupon,
 } from "../../__redux/slices/StoreSlice";
 import { Link } from "react-router-dom";
 
-const Cart = ({ toggleShopCheckout }) => {
+const Cart = ({}) => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.storeSlice.cartContents);
   const validCoupons = useSelector((state) => state.storeSlice.validCoupons);
   const [couponInput, setCouponInput] = useState("");
   const [appliedCoupon, setAppliedCoupon] = useState({});
   const [showCouponInvalid, setShowCouponInvalid] = useState(false);
+
   useEffect(() => {
     applyCoupon();
   }, [cartItems]);

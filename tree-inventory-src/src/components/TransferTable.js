@@ -112,7 +112,7 @@ const TransferTable = ({ data, onSelectedRowsChange }) => {
       return;
     }
     const newData = tableData.filter((row) => {
-      return row["Order ID"] != IDtoRemove;
+      return row["Order ID"] !== IDtoRemove;
     });
     setTableData(newData);
 

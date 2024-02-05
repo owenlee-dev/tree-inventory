@@ -60,13 +60,6 @@ const Modal = ({ product, onClose }) => {
     e.target.src = "./store-images/rootstock.png";
   };
 
-  const incrementQuantity = () => {
-    setQuantity((prevQuantity) => prevQuantity + 1);
-  };
-
-  const decrementQuantity = () => {
-    setQuantity((prevQuantity) => Math.max(1, prevQuantity - 1));
-  };
   const handleQuantityChange = (e) => {
     const newQuantity = e.target.value;
     setQuantity(newQuantity ? parseInt(newQuantity, 10) : "");
@@ -181,7 +174,4 @@ const Modal = ({ product, onClose }) => {
   );
 };
 
-const ProductDetail = () => {
-  return;
-};
 export default Modal;

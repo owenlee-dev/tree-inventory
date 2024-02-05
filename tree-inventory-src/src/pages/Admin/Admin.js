@@ -1,12 +1,11 @@
-import React, { useState, useEffect, useRef } from "react";
-import "./admin.scss"; // Import your modal CSS here
+import { useState, useEffect } from "react";
+import "./admin.scss";
 import TransferTable from "../../components/TransferTable";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import Coupon from "../../components/classes/Coupon";
 import CouponModal from "../../components/CouponModal";
 import { sendOrderConfirmationEmail } from "../../components/api/api";
 
-//TODO this will need full test coverage
 const Admin = () => {
   const [pendingEtransfers, setPendingEtransers] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);

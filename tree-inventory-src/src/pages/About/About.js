@@ -110,6 +110,7 @@ function About() {
       <section className="google-maps-section">
         <div id="map-container">
           <iframe
+            title="maps"
             loading="lazy"
             allowFullScreen
             src={`https://www.google.com/maps/embed/v1/place?key=${apiKey}&q=47+Lawrence+Rd,East+Hants,NS`}

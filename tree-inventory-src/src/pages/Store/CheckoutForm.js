@@ -27,7 +27,7 @@ function CheckoutForm({ pickupLocations, getTotals }) {
     orderID: "",
   });
   const [payWithCreditCard, setPayWithCreditCard] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.storeSlice.cartContents);
   const appliedCoupon = useSelector((state) => state.storeSlice.appliedCoupon);
@@ -37,21 +37,72 @@ function CheckoutForm({ pickupLocations, getTotals }) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (isSubmitting) {
-      if (!payWithCreditCard) {
-        // paid by etransfer
-        console.log("paying with etransfer");
-        postPendingEtransfer(formData);
-        postFormData(formData, setIsSubmitting);
-      } else {
-        // paid by credit card
-        console.log("paying with credit card");
-        postFormData(formData, setIsSubmitting);
-      }
-      //Update Inventory
-      updateInventory(transformCartObject(cartItems), true);
+    console.log("submitting: ", submitting);
+  }, [submitting]);
 
-      //Clear Cart
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!stripe || !elements) {
+      // Stripe.js has not yet loaded.
+      // Make sure to disable form submission until Stripe.js has loaded.
+      return;
+    }
+    setSubmitting(true);
+    const updatedFormData = {
+      ...formData,
+      date: new Date().toLocaleDateString("en-CA"),
+      total: formatCurrency(
+        payWithCreditCard ? getTotals().total : getTotals().subtotal
+      ),
+      itemsPurchased: cartItems
+        .map((item) => `${item.title} (${item.numInCart})`)
+        .join("\n"),
+      orderID: Math.floor(Math.random() * 9000000000) + 1000000000, // Random 10 digit number
+    };
+
+    try {
+      if (payWithCreditCard) {
+        console.log("paying with credit card");
+        const result = await stripe.confirmPayment({
+          elements,
+          redirect: "if_required",
+        });
+
+        if (result.error) {
+          throw new Error(result.error.message);
+        }
+
+        if (
+          result.paymentIntent &&
+          result.paymentIntent.status === "succeeded"
+        ) {
+          console.log("Payment successful");
+
+          // Update Inventory and send confirmation email only for credit card transactions
+          updateInventory(transformCartObject(cartItems), true);
+          const response = await sendOrderConfirmationEmail(
+            formData.name,
+            formData.email,
+            payWithCreditCard
+              ? formatCurrency(getTotals().total)
+              : formatCurrency(getTotals().subtotal),
+            cartItems
+              .map((item) => `${item.title} (${item.numInCart})`)
+              .join("\n"),
+            formData.pickupLocation,
+            formData.orderID
+          );
+        } else {
+          throw new Error("Payment not successful");
+        }
+      }
+
+      if (!payWithCreditCard) {
+        postPendingEtransfer(updatedFormData);
+      }
+
+      // common operations between etransfer and credit card (post form data, clear cart, navigate to thankyou)
+      await postFormData(updatedFormData);
       dispatch(clearCart());
 
       navigate(
@@ -59,8 +110,11 @@ function CheckoutForm({ pickupLocations, getTotals }) {
           formData.orderID
         }&grandTotal=${getGrandTotal()}`
       );
+      setSubmitting(false);
+    } catch (error) {
+      console.error("Error during form submission:", error);
     }
-  }, [isSubmitting]);
+  };
 
   const transformCartObject = (itemsInCart) => {
     return itemsInCart.reduce((accumulator, item) => {
@@ -99,68 +153,6 @@ function CheckoutForm({ pickupLocations, getTotals }) {
 
   const togglePaymentMethod = () => {
     setPayWithCreditCard(!payWithCreditCard);
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!stripe || !elements) {
-      // Stripe.js has not yet loaded.
-      // Make sure to disable form submission until Stripe.js has loaded.
-      return;
-    }
-    const today = new Date();
-    const updatedFormData = {
-      ...formData,
-      date:
-        today.getMonth() +
-        1 +
-        "/" +
-        today.getDate() +
-        "/" +
-        today.getFullYear(),
-      total: payWithCreditCard
-        ? formatCurrency(getTotals().total)
-        : formatCurrency(getTotals().subtotal),
-      itemsPurchased: cartItems
-        .map((item) => `${item.title} (${item.numInCart})`)
-        .join("\n"),
-      orderID: Math.floor(Math.random() * 9000000000) + 1000000000, //random 10 digit number
-    };
-    setFormData(updatedFormData);
-
-    if (payWithCreditCard) {
-      //credit card
-      const result = await stripe.confirmPayment({
-        elements,
-        redirect: "if_required",
-      });
-      if (result.error) {
-        console.log(result.error.message);
-      } else {
-        console.log("successful payment");
-        if (
-          result.paymentIntent &&
-          result.paymentIntent.status === "succeeded"
-        ) {
-          await sendOrderConfirmationEmail(
-            formData.orderID,
-            formData.name,
-            formData.email,
-            payWithCreditCard
-              ? formatCurrency(getTotals().total)
-              : formatCurrency(getTotals().subtotal),
-            cartItems
-              .map((item) => `${item.title} (${item.numInCart})`)
-              .join("\n"),
-            formData.pickupLocation
-          );
-          setIsSubmitting(true); // triggers useEffect
-        }
-      }
-    } else {
-      // etransfer
-      setIsSubmitting(true); // triggers useEffect
-    }
   };
 
   return (
@@ -291,7 +283,11 @@ function CheckoutForm({ pickupLocations, getTotals }) {
             <br />
           </div>
         )}
-        <button type="submit" className="submit-button button-animation">
+        <button
+          type="submit"
+          className="submit-button button-animation"
+          disabled={submitting}
+        >
           {payWithCreditCard ? (
             <p>Complete Order</p>
           ) : (

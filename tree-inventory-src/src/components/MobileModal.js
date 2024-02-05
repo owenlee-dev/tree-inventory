@@ -196,7 +196,4 @@ const MobileModal = ({ product, onClose }) => {
   );
 };
 
-const ProductDetail = () => {
-  return;
-};
 export default MobileModal;

@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./store.scss";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { Routes, Route, Outlet } from "react-router-dom";
 import storeHero from "../../assets/images/store-hero.png";
 import Cart from "./Cart";
@@ -56,7 +56,7 @@ function Store() {
 
   const renderAdvertisedCoupons = () => {
     return validCoupons
-      .filter((coupon) => coupon.isAdvertised == "TRUE")
+      .filter((coupon) => coupon.isAdvertised === "TRUE")
       .map((validCoupon, index) => (
         <li key={index}>
           <strong>{validCoupon.code}</strong> - {validCoupon.description}
@@ -84,7 +84,7 @@ function Store() {
                 <img
                   className="__store-hero"
                   src={storeHero}
-                  alt="Store main photo"
+                  alt="Store main"
                 />
               </div>
             )}
@@ -177,11 +177,7 @@ function Store() {
 
           {!isMobile && (
             <div className="store-hero-right">
-              <img
-                className="__store-hero"
-                src={storeHero}
-                alt="Store main photo"
-              />
+              <img className="__store-hero" src={storeHero} alt="Store main" />
               <div className="sale-banner">
                 <h2>Pre Order Sale</h2>
                 <h4 className="bold">No Tax Site-Wide!</h4>

@@ -17,7 +17,7 @@ const port = process.env.PORT || 8080;
 const env = require("dotenv").config({ path: "../.env" });
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const corsOptions = {
-  origin: "https://maple-grove-permaculture.vercel.app",
+  origin: "https://maplegrovepermaculture.com",
   optionsSuccessStatus: 200,
 };
 
@@ -152,7 +152,7 @@ app.post("/google-sheets/add-report", async (req, res) => {
     const reportData = Object.values(req.body);
     const auth = await authorize();
     await appendData(auth, "Order-Reports", reportData);
-    // res.json(data);
+    res.json(data);
   } catch (error) {
     console.error(
       "server.js: The API returned an error when adding a report: " + error
