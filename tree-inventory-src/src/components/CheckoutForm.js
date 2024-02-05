@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./checkoutForm.scss"; // Make sure to create a Form.css file for the CSS
+import "./checkoutForm.scss";
 import {
   PaymentElement,
   useStripe,
@@ -128,6 +128,16 @@ function CheckoutForm({ pickupLocations, getTotals }) {
       }
     } else {
       // etransfer
+      await sendOrderConfirmationEmail(
+        formData.orderID,
+        formData.name,
+        formData.email,
+        payWithCreditCard
+          ? formatCurrency(getTotals().total)
+          : formatCurrency(getTotals().subtotal),
+        cartItems.map((item) => `${item.title} (${item.numInCart})`).join("\n"),
+        formData.pickupLocation
+      );
       setIsSubmitting(true); // triggers useEffect
     }
   };
@@ -135,7 +145,7 @@ function CheckoutForm({ pickupLocations, getTotals }) {
   return (
     <form className="form-container" onSubmit={handleSubmit}>
       <div className="contact-details">
-        <h2>What's your digits?</h2>
+        <h2>What's your floppin digits?</h2>
         <div className="form-group">
           <label htmlFor="name">Name:</label>
           <input
