@@ -10,11 +10,12 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   postFormData,
   postPendingEtransfer,
-  createPaymentIntent,
   sendOrderConfirmationEmail,
   updateInventory,
 } from "../../components/api/api";
 import { clearCart } from "../../__redux/slices/StoreSlice";
+import { formatCurrency } from "../../utility/UtilityFuncs";
+
 function CheckoutForm({ pickupLocations, getTotals }) {
   const [formData, setFormData] = useState({
     date: "",
@@ -100,7 +101,7 @@ function CheckoutForm({ pickupLocations, getTotals }) {
         postPendingEtransfer(updatedFormData);
       }
 
-      // common operations between etransfer and credit card (post form data, clear cart, navigate to thankyou)
+      // common operations between etransfer and credit card (post form data, clear cart, update inventory, navigate to thankyou)
       await postFormData(updatedFormData);
       dispatch(clearCart());
 
@@ -138,13 +139,6 @@ function CheckoutForm({ pickupLocations, getTotals }) {
 
   const getTotalItemCount = () => {
     return cartItems.reduce((total, item) => total + item.numInCart, 0);
-  };
-
-  const formatCurrency = (value) => {
-    return new Intl.NumberFormat("en-CA", {
-      style: "currency",
-      currency: "CAD",
-    }).format(value);
   };
 
   const handleChange = (e) => {

@@ -121,7 +121,6 @@ const TransferTable = ({ data, onSelectedRowsChange }) => {
 
     // get order data -> how many items are purchased -> inventory adjustment
     const orderDetails = await getOrderDetails(IDtoRemove);
-
     //Adjust Inventory
     let itemsPurchased = parseItemsFromString(orderDetails["Items Purchased"]);
     await updateInventory(itemsPurchased, false); //false signifies increase inventory

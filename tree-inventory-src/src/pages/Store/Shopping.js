@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 const Shopping = ({ storeData }) => {
   const [storeTab, setStoreTab] = useState("Everything");
   const [activeProduct, setActiveProduct] = useState(null);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(true);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [sortType, setSortType] = useState("alphabetical");
   const [showOnlyAvailable, setShowOnlyAvailable] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
@@ -49,7 +49,6 @@ const Shopping = ({ storeData }) => {
     ...rootstock,
     ...supplies,
   ].flatMap((item) => item);
-
   // sort products given the list of products and [alphabetically or price]
   function sortProducts(products, sortType) {
     return products.sort((a, b) => {

@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "../__redux/slices/StoreSlice";
 import Tooltip from "./Tooltip";
 import tooltipIcon from "../assets/icons/tooltip.png";
+
 const Modal = ({ product, onClose }) => {
   const [quantity, setQuantity] = useState(1);
   const modalRef = useRef(null);

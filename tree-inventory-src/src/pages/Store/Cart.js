@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useTransition } from "react";
 import "./cart.scss";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -7,14 +7,26 @@ import {
   changeAppliedCoupon,
 } from "../../__redux/slices/StoreSlice";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import {
+  formatCurrency,
+  getInventoryForVariety,
+} from "../../utility/UtilityFuncs";
+import MissingInventoryModal from "../../components/MissingInventoryModal";
 
 const Cart = ({}) => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.storeSlice.cartContents);
   const validCoupons = useSelector((state) => state.storeSlice.validCoupons);
+  const { storeData } = useSelector((state) => ({
+    storeData: state.storeSlice.googleSheetData,
+  }));
   const [couponInput, setCouponInput] = useState("");
   const [appliedCoupon, setAppliedCoupon] = useState({});
   const [showCouponInvalid, setShowCouponInvalid] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [outOfStockItems, setOutOfStockItems] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     applyCoupon();
@@ -45,12 +57,6 @@ const Cart = ({}) => {
     return totals;
   };
 
-  const formatCurrency = (value) => {
-    return new Intl.NumberFormat("en-CA", {
-      style: "currency",
-      currency: "CAD",
-    }).format(value);
-  };
   const totalAfterCoupon =
     getTotals().total - parseFloat(appliedCoupon.dollarsSaved);
   const linkClass =
@@ -62,29 +68,28 @@ const Cart = ({}) => {
     dispatch(removeFromCart(product.title));
   };
 
-  const handleQuantityChange = (title, value) => {
-    const newQuantity = parseInt(value, 10);
-    if (!isNaN(newQuantity) && newQuantity > 0) {
-      dispatch(updateCartItemQuantity({ title, newQuantity }));
+  // check the inventory for each item in the cart - do we have what they are trying to buy
+  const handleProceedToCheckout = async () => {
+    let isStockAvailable = true;
+    let outOfStockItems = [];
+
+    // Step 2: Check each item in the cart against inventory
+    for (const item of cartItems) {
+      const inventory = getInventoryForVariety(item.title, storeData);
+      if (item.numInCart > inventory) {
+        isStockAvailable = false;
+        const itemWithInventory = { ...item, actualInventory: inventory };
+        outOfStockItems.push(itemWithInventory);
+      }
     }
-  };
 
-  const getTotalItemCount = () => {
-    return cartItems.reduce((total, item) => total + item.numInCart, 0);
-  };
-  const handleImageError = (e) => {
-    e.target.src = "../store-images/rootstock.png";
-  };
-
-  const handleCouponChange = (e) => {
-    setCouponInput(e.target.value);
-  };
-
-  const displayInvalidCouponMessage = () => {
-    setShowCouponInvalid(true);
-    setTimeout(() => {
-      setShowCouponInvalid(false);
-    }, 3000);
+    // Step 3: Display modal if there are out-of-stock items
+    if (!isStockAvailable) {
+      showModal(outOfStockItems);
+    } else {
+      // Step 4: Navigate to checkout if all items are in stock
+      navigateToCheckout();
+    }
   };
 
   // Iterates over each condition in whenBuying, when a condition is met then the item is removed from the cart
@@ -128,11 +133,45 @@ const Cart = ({}) => {
         setAppliedCoupon(matchedCoupon);
       }
     } else {
-      // TODO set a coupon-not-valid message in ui
       displayInvalidCouponMessage();
       setCouponInput("");
       setAppliedCoupon({});
     }
+  };
+  // ~~~~~~~~~~~~~~~~~ HELPER FUNCTIONS
+
+  const showModal = (itemsWithInventory) => {
+    setOutOfStockItems(itemsWithInventory);
+    setModalVisible(true);
+  };
+
+  const navigateToCheckout = () => {
+    navigate("/store/checkout", { state: { appliedCoupon: appliedCoupon } });
+  };
+
+  const handleQuantityChange = (title, value) => {
+    const newQuantity = parseInt(value, 10);
+    if (!isNaN(newQuantity) && newQuantity > 0) {
+      dispatch(updateCartItemQuantity({ title, newQuantity }));
+    }
+  };
+
+  const getTotalItemCount = () => {
+    return cartItems.reduce((total, item) => total + item.numInCart, 0);
+  };
+  const handleImageError = (e) => {
+    e.target.src = "../store-images/rootstock.png";
+  };
+
+  const handleCouponChange = (e) => {
+    setCouponInput(e.target.value);
+  };
+
+  const displayInvalidCouponMessage = () => {
+    setShowCouponInvalid(true);
+    setTimeout(() => {
+      setShowCouponInvalid(false);
+    }, 3000);
   };
 
   return (
@@ -172,7 +211,7 @@ const Cart = ({}) => {
                       onChange={(e) =>
                         handleQuantityChange(item.title, e.target.value)
                       }
-                      min="1"
+                      min="0"
                     />
                     <p>${item.price}</p>
                   </div>
@@ -241,17 +280,19 @@ const Cart = ({}) => {
             {cartItems.length <= 0 ? (
               <div className={linkClass}>Proceed to Checkout</div>
             ) : (
-              <Link
-                to="/store/checkout"
-                state={{ appliedCoupon: appliedCoupon }}
-                className={linkClass}
-              >
+              <div onClick={handleProceedToCheckout} className={linkClass}>
                 Proceed to Checkout
-              </Link>
+              </div>
             )}
           </div>
         </div>
       </div>
+      {modalVisible && (
+        <MissingInventoryModal
+          items={outOfStockItems}
+          onClose={() => setModalVisible(false)}
+        />
+      )}
     </div>
   );
 };

@@ -1,8 +1,10 @@
 @font-face {
   font-family: "Railey";
-  src: url("./fonts/Railey-PersonalUse.ttf");
+  src: url("./fonts/Railey-PersonalUse.ttf")format('truetype');
 }
-
+.Loader{
+  font-family: "Railey",sans-serif;
+}
 .content-container {
   background-color: $white;
   z-index: 1;

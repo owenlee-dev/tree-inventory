@@ -1,0 +1,48 @@
+@import "../assets/colors.scss";
+
+.MissingInventoryModal {
+  background-color: $accent;
+  overflow-y:scroll;
+  padding: 2em;
+  border-radius: 5px;
+  max-width: 800px;
+  width: 100%;
+  gap: 2em;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  max-height: 70%;
+  z-index: 201;
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+  }
+  button {
+    display: flex;
+    margin-top:0.5em;
+    width: fit-content;
+    cursor: pointer;
+    text-decoration: none;
+    background-color: $blue;
+    color: $accent;
+    align-items: center;
+    padding: 0.25em 0.75em;
+    border-radius: $borderRadius;
+  }
+}
+.InventoryCard {
+  display: grid;
+  grid-template-columns: 0.5fr 1fr 1fr;
+  align-items: center;
+  flex: 3;
+  img {
+    max-width: 100px;
+    -webkit-filter: drop-shadow(5px 5px 5px #222);
+    filter: drop-shadow(5px 5px 5px #222);
+  }
+  @media screen and (max-width: 1000px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+}
