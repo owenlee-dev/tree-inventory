@@ -107,7 +107,7 @@ function CheckoutForm({ pickupLocations, getTotals }) {
       updateInventory(transformCartObject(cartItems), true);
       navigate(
         `/thank-you?payWithCreditCard=${payWithCreditCard}&orderID=${
-          formData.orderID
+          updatedFormData.orderID
         }&grandTotal=${getGrandTotal()}`
       );
       setSubmitting(false);

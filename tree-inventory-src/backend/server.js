@@ -16,13 +16,16 @@ app.use(express.json());
 const port = process.env.PORT || 8080;
 const env = require("dotenv").config({ path: "../.env" });
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
-const corsOptions = {
-  origin: "https://maplegrovepermaculture.com",
-  optionsSuccessStatus: 200,
-};
+// const corsOptions = {
+//   origin: [
+//     "https://maplegrovepermaculture.com",
+//     "https://maple-grove-permaculture-jqm8i27p9-owenlee-dev.vercel.app/",
+//   ],
+//   optionsSuccessStatus: 200,
+// };
 
 //prod
-// app.use(cors(corsOptions));
+// app.use(cors( corsOptions));
 
 //dev
 app.use(cors());

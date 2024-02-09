@@ -50,6 +50,7 @@ export const postPendingEtransfer = async (formData) => {
 };
 
 export const updateInventory = async (itemsPurchased, reduceInventory) => {
+  console.log("updating inventory");
   try {
     const response = await fetch(
       `${process.env.REACT_APP_BACKEND_URL}/google-sheets/update-inventory`,
