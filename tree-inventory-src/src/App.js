@@ -92,7 +92,6 @@ function App() {
               </PageWrapper>
             }
           />
-          {/* <Route path="/events" element={<Store />} />{" "} */}
           <Route
             path="/services"
             element={

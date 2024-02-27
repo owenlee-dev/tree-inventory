@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./storecard.scss";
 import random from "random";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../__redux/slices/StoreSlice";
 
 const StoreCard = ({ index, productInfo, onCardClick }) => {
@@ -9,6 +9,8 @@ const StoreCard = ({ index, productInfo, onCardClick }) => {
   const [scale, setScale] = React.useState(1);
   const [bottomPadding, setBottomPadding] = useState("15px");
   const [showOverlay, setShowOverlay] = useState(false);
+  const isMobile = useSelector((state) => state.appSlice.isMobile);
+
   const titleRef = useRef(null);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -69,13 +71,23 @@ const StoreCard = ({ index, productInfo, onCardClick }) => {
     >
       {showOverlay && <div className="overlay">Added to Cart</div>}
       <div className="img-container">
-        <img
-          loading="lazy"
-          style={imageStyle}
-          src={productInfo.imagePath}
-          onError={handleImageError}
-          alt="Product"
-        />
+        {!isMobile && (
+          <img
+            loading="lazy"
+            style={imageStyle}
+            src={productInfo.imagePath}
+            onError={handleImageError}
+            alt="Product"
+          />
+        )}
+        {isMobile && (
+          <img
+            loading="lazy"
+            src={productInfo.imagePath}
+            onError={handleImageError}
+            alt="Product"
+          />
+        )}
       </div>
       <h3 ref={titleRef}>{productInfo.title}</h3>
       <p className={productInfo.inStock ? "available" : "unavailable"}>

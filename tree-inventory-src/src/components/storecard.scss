@@ -41,7 +41,7 @@
     }
     &:hover {
       img {
-        transform: scale(1.1) rotate(-15deg);
+        // transform: scale(1.1) rotate(-15deg);
       }
     }
     .img-container {
@@ -59,8 +59,8 @@
       }
       img {
         border-radius: $borderRadius;
-        transition: transform 0.3s;
-        transform: scale(1) rotate(0deg);
+        // transition: transform 0.3s;
+        // transform: scale(1) rotate(0deg);
       }
     }
 

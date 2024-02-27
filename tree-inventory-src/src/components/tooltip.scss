@@ -12,6 +12,7 @@
   width: 240px;
   background-color: #cfcfcfc7;
   color: $gray;
+  backdrop-filter: blur(10px);
   text-align: center;
   border-radius: $borderRadius;
   position: absolute;
