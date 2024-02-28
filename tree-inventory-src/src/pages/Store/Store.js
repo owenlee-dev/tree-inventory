@@ -189,10 +189,10 @@ function Store() {
       <div className="store-content-container">
         <Routes>
           <Route index element={<Shopping storeData={data} />} />
-          {/* <Route path="review-cart" element={<Cart />} />
+          <Route path="review-cart" element={<Cart />} />
           <Route path="thank-you" element={<ThankYou />} />
           <Route path="checkout" element={<Checkout />} />
-          <Route path="*" element={<Outlet />} /> */}
+          <Route path="*" element={<Outlet />} />
         </Routes>
       </div>
     </div>
