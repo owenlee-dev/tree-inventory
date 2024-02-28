@@ -96,7 +96,7 @@ function About() {
             <h2>Come Visit!</h2>
             <p>
               We are located on the land of the Mi'kmaq near the famous tidal
-              bore wave that joins the sacred Shubinacadie river with the record
+              bore wave that joins the sacred Shubenacadie river with the record
               high tides of the Bay of Fundy.
               <br />
               <br /> We are a 10 minute walk from the cleansing Five Mile River
