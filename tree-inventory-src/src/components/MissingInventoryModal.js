@@ -38,8 +38,8 @@ function MissingInventoryModal({ items, onClose }) {
         </ul>
         <p>
           If we were unable to fill your order, we encourage you to reach out to
-          maplegrovepermaculture.com and let us know. Maybe we can get you what
-          you need!
+          maplegrovepermaculture@gmail.com and let us know. Maybe we can get you
+          what you need!
         </p>
         <button onClick={onClose}>Done</button>
       </div>

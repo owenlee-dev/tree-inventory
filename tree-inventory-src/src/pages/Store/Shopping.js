@@ -24,7 +24,9 @@ const Shopping = ({ storeData }) => {
   const fruitTrees = {
     "Apple Trees": storeData["fruit trees"]["apple"].flatMap((item) => item),
     "Pear Trees": storeData["fruit trees"]["pear"].flatMap((item) => item),
-    "Peach Trees": storeData["fruit trees"]["peach"].flatMap((item) => item),
+    "Peach and Nectarine Trees": storeData["fruit trees"]["peach"].flatMap(
+      (item) => item
+    ),
     "Sour Cherry Trees": storeData["fruit trees"]["sour cherry"].flatMap(
       (item) => item
     ),

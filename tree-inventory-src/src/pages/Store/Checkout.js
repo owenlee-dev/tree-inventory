@@ -14,6 +14,7 @@ const Checkout = () => {
   const navigate = useNavigate();
   const [clientSecret, setClientSecret] = useState("");
   const cartItems = useSelector((state) => state.storeSlice.cartContents);
+  const appliedCoupon = useSelector((state) => state.storeSlice.appliedCoupon);
   const { data } = useSelector((state) => ({
     data: state.storeSlice.pickupLocations,
   }));
@@ -39,6 +40,7 @@ const Checkout = () => {
     let totalInCents = Math.round(
       parseFloat(getTotals().total.toFixed(2)) * 100
     );
+    console.log(totalInCents);
     if (totalInCents > 0) {
       createPaymentIntent(totalInCents).then((res) => {
         setClientSecret(res);
@@ -49,13 +51,23 @@ const Checkout = () => {
   }, []);
 
   const getTotals = () => {
-    let totals = { subtotal: 0, credit: 0, total: 0 };
+    let totals = { subtotal: 0, credit: 0, couponSavings: 0, total: 0 };
+
+    // coupon savings
+    if (Object.keys(appliedCoupon).length > 0) {
+      totals.couponSavings = parseFloat(appliedCoupon.dollarsSaved);
+    }
+
+    // calculate subtotal
     cartItems.forEach((item) => {
       totals.subtotal += parseFloat(item.price) * item.numInCart;
     });
-    totals.credit = totals.subtotal * 0.03;
-    totals.total = totals.credit + totals.subtotal;
 
+    //calculate tax
+    totals.credit = (totals.subtotal - totals.couponSavings) * 0.03;
+
+    //grand total for credit card
+    totals.total = totals.subtotal + totals.credit - totals.couponSavings;
     return totals;
   };
 

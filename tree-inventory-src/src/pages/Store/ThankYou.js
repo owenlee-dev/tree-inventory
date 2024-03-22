@@ -26,7 +26,7 @@ const ThankYou = () => {
             <br />{" "}
             <span className="bold">
               To complete the order, please send an etransfer of {grandTotal}$
-              to maplegrovepermaculture.com.
+              to maplegrovepermaculture@gmail.com.
             </span>{" "}
             As soon as we can confirm payment, you can expect a confirmation
             email filled with gracious thanks and tips for prep and planting!

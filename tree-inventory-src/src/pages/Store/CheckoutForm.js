@@ -37,10 +37,6 @@ function CheckoutForm({ pickupLocations, getTotals }) {
   const elements = useElements();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    console.log("submitting: ", submitting);
-  }, [submitting]);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!stripe || !elements) {
@@ -109,7 +105,7 @@ function CheckoutForm({ pickupLocations, getTotals }) {
       navigate(
         `/thank-you?payWithCreditCard=${payWithCreditCard}&orderID=${
           updatedFormData.orderID
-        }&grandTotal=${getGrandTotal()}`
+        }&grandTotal=${getTotals().total}`
       );
       setSubmitting(false);
     } catch (error) {
@@ -122,19 +118,6 @@ function CheckoutForm({ pickupLocations, getTotals }) {
       accumulator[item.title] = item.numInCart;
       return accumulator;
     }, {});
-  };
-
-  const getGrandTotal = () => {
-    let total = 0;
-    if (payWithCreditCard) {
-      total = getTotals().total;
-    } else {
-      total = getTotals().subtotal;
-    }
-    if (Object.keys(appliedCoupon).length > 0) {
-      total = Math.max(0, total - appliedCoupon.dollarsSaved);
-    }
-    return total;
   };
 
   const getTotalItemCount = () => {
@@ -225,7 +208,7 @@ function CheckoutForm({ pickupLocations, getTotals }) {
             <div>
               <h3>{appliedCoupon.code}:</h3>{" "}
               <span className="subtotal">
-                <h3>- {formatCurrency(appliedCoupon.dollarsSaved)}</h3>
+                <h3>- {formatCurrency(getTotals().couponSavings)}</h3>
               </span>
             </div>
           )}
@@ -244,7 +227,13 @@ function CheckoutForm({ pickupLocations, getTotals }) {
           <div className="total">
             <h2>Total: </h2>{" "}
             <span>
-              <h2>{formatCurrency(getGrandTotal())}</h2>
+              <h2>
+                {payWithCreditCard
+                  ? formatCurrency(getTotals().total)
+                  : formatCurrency(
+                      getTotals().subtotal - getTotals().couponSavings
+                    )}
+              </h2>
             </span>
           </div>
         </div>
@@ -265,8 +254,11 @@ function CheckoutForm({ pickupLocations, getTotals }) {
               To pay with Interac E-Transfer:
               <br />
               <span className="bold">
-                Send an E-Transfer of {formatCurrency(getGrandTotal())}$ to
-                maplegrovepermaculture@gmail.com
+                Send an E-Transfer of{" "}
+                {formatCurrency(
+                  getTotals().subtotal - getTotals().couponSavings
+                )}
+                $ to maplegrovepermaculture@gmail.com
               </span>
             </p>
             <br />

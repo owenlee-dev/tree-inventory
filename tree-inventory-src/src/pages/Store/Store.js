@@ -167,8 +167,9 @@ function Store() {
                   <p>
                     The purchase of all items in this store are for pickup in
                     April. Pickup locations are arranged across Nova Scotia
-                    including Halifax, East Hants, south shore, valley, Truro
-                    and potentially others.
+                    including Halifax, East Hants, south shore, valley, Truro,
+                    Antigonish and Cape Breton. And in New Brunswick in
+                    Sackville and Moncton.
                   </p>
                 </div>
               </div>
