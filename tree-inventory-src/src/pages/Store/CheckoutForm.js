@@ -81,7 +81,9 @@ function CheckoutForm({ pickupLocations, getTotals }) {
             formData.email,
             payWithCreditCard
               ? formatCurrency(getTotals().total)
-              : formatCurrency(getTotals().subtotal),
+              : formatCurrency(
+                  getTotals().subtotal - getTotals().couponSavings
+                ),
             cartItems
               .map((item) => `${item.title} (${item.numInCart})`)
               .join("\n"),
@@ -102,11 +104,15 @@ function CheckoutForm({ pickupLocations, getTotals }) {
       dispatch(clearCart());
 
       updateInventory(transformCartObject(cartItems), true);
+
+      const grandTotal = payWithCreditCard
+        ? getTotals().total
+        : getTotals().subtotal - getTotals().couponSavings;
+
       navigate(
-        `/thank-you?payWithCreditCard=${payWithCreditCard}&orderID=${
-          updatedFormData.orderID
-        }&grandTotal=${getTotals().total}`
+        `/thank-you?payWithCreditCard=${payWithCreditCard}&orderID=${updatedFormData.orderID}&grandTotal=${grandTotal}`
       );
+
       setSubmitting(false);
     } catch (error) {
       console.error("Error during form submission:", error);

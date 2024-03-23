@@ -109,6 +109,7 @@ function Store() {
                   }}
                 >
                   <p className="bold">Input these coupon codes at checkout!</p>
+                  <br />
                   <ul>{renderAdvertisedCoupons()}</ul>
                 </div>
               </div>

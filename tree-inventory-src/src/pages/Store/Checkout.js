@@ -40,7 +40,6 @@ const Checkout = () => {
     let totalInCents = Math.round(
       parseFloat(getTotals().total.toFixed(2)) * 100
     );
-    console.log(totalInCents);
     if (totalInCents > 0) {
       createPaymentIntent(totalInCents).then((res) => {
         setClientSecret(res);
