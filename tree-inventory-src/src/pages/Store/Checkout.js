@@ -14,7 +14,7 @@ const Checkout = () => {
   const navigate = useNavigate();
   const [clientSecret, setClientSecret] = useState("");
   const cartItems = useSelector((state) => state.storeSlice.cartContents);
-  const appliedCoupon = useSelector((state) => state.storeSlice.appliedCoupon);
+  const appliedCoupon = useSelector((state) => state.storeSlice.appliedCoupons);
   const { data } = useSelector((state) => ({
     data: state.storeSlice.pickupLocations,
   }));

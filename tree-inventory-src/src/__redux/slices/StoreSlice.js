@@ -58,13 +58,13 @@ export const storeSlice = createSlice({
     pickupLocations: [],
     validCoupons: [],
     cartContents: [],
-    appliedCoupon: {},
+    appliedCoupons: [],
     numItemsInCart: 0,
     status: "idle",
   },
   reducers: {
     changeAppliedCoupon: (state, action) => {
-      state.appliedCoupon = action.payload;
+      state.appliedCoupons = action.payload;
     },
     addToCart: (state, action) => {
       // make sure that there is inventory of the item before adding it to the cart

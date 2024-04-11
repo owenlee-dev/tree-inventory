@@ -22,7 +22,7 @@ const Cart = ({}) => {
     storeData: state.storeSlice.googleSheetData,
   }));
   const [couponInput, setCouponInput] = useState("");
-  const [appliedCoupon, setAppliedCoupon] = useState({});
+  const [appliedCoupons, setAppliedCoupons] = useState([]);
   const [showCouponInvalid, setShowCouponInvalid] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [outOfStockItems, setOutOfStockItems] = useState([]);
@@ -33,8 +33,8 @@ const Cart = ({}) => {
   }, [cartItems]);
 
   useEffect(() => {
-    dispatch(changeAppliedCoupon(appliedCoupon));
-  }, [appliedCoupon]);
+    dispatch(changeAppliedCoupon(appliedCoupons)); // Make sure the reducer accepts an array now
+  }, [appliedCoupons]);
 
   // avoid memory leaks or state updates on an unmounted component
   useEffect(() => {
@@ -45,27 +45,18 @@ const Cart = ({}) => {
 
   // get the totals for items in the cart
   const getTotals = () => {
-    let totals = { subtotal: 0, taxes: 0, total: 0 };
+    let totals = { subtotal: 0, credit: 0, total: 0 };
     cartItems.forEach((item) => {
-      for (let i = 0; i < item.numInCart; i++) {
-        totals.subtotal += parseFloat(item.price);
-      }
+      totals.subtotal += parseFloat(item.price) * item.numInCart;
     });
-    totals.credit = totals.subtotal * 0.03;
-    totals.total = totals.credit + totals.subtotal;
+    totals.credit = totals.subtotal * 0.03; // Assuming a global discount/credit of 3%
+    totals.total = totals.subtotal + totals.credit;
+
+    appliedCoupons.forEach((coupon) => {
+      totals.total -= parseFloat(coupon.dollarsSaved);
+    });
 
     return totals;
-  };
-
-  const totalAfterCoupon =
-    getTotals().total - parseFloat(appliedCoupon.dollarsSaved);
-  const linkClass =
-    cartItems.length <= 0 || totalAfterCoupon <= 0
-      ? "proceed-to-checkout-btn button-animation link-disabled"
-      : "proceed-to-checkout-btn button-animation";
-
-  const handleItemRemove = (product) => {
-    dispatch(removeFromCart(product.title));
   };
 
   // check the inventory for each item in the cart - do we have what they are trying to buy
@@ -111,34 +102,36 @@ const Cart = ({}) => {
   };
 
   const applyCoupon = () => {
-    // first check if coupon is valid
     const matchedCoupon = validCoupons.find(
-      (coupon) => coupon.code === couponInput
+      (coupon) => coupon.code === couponInput.trim()
     );
     if (matchedCoupon) {
-      // second check if there is conditional application for the coupon (ie buy x get y)
-      if (matchedCoupon.whenBuying.length > 0) {
-        let cartItemTitles = cartItems.flatMap((item) =>
-          Array(item.numInCart).fill(item.title)
-        );
-        // third check if the right items are in the cart
-        if (isCouponValid(cartItemTitles, matchedCoupon.whenBuying)) {
+      let cartItemTitles = cartItems.flatMap((item) =>
+        Array(item.numInCart).fill(item.title)
+      );
+      if (isCouponValid(cartItemTitles, matchedCoupon.whenBuying)) {
+        if (
+          !appliedCoupons.find((coupon) => coupon.code === matchedCoupon.code)
+        ) {
           console.log("Coupon applied, save: ", matchedCoupon.dollarsSaved);
-          setAppliedCoupon(matchedCoupon);
+          setAppliedCoupons([...appliedCoupons, matchedCoupon]); // Add to the list of applied coupons
         } else {
-          setAppliedCoupon({}); //they removed something from their cart
+          console.log("Coupon already applied.");
         }
       } else {
-        console.log("Coupon applied, save: ", matchedCoupon.dollarsSaved);
-        setAppliedCoupon(matchedCoupon);
+        console.log("Coupon conditions not met.");
       }
     } else {
       displayInvalidCouponMessage();
-      setCouponInput("");
-      setAppliedCoupon({});
     }
+    setCouponInput(""); // Clear the input regardless of the outcome
   };
+
   // ~~~~~~~~~~~~~~~~~ HELPER FUNCTIONS
+
+  const handleItemRemove = (product) => {
+    dispatch(removeFromCart(product.title));
+  };
 
   const showModal = (itemsWithInventory) => {
     setOutOfStockItems(itemsWithInventory);
@@ -146,7 +139,7 @@ const Cart = ({}) => {
   };
 
   const navigateToCheckout = () => {
-    navigate("/store/checkout", { state: { appliedCoupon: appliedCoupon } });
+    navigate("/store/checkout", { state: { appliedCoupons: appliedCoupons } });
   };
 
   const handleQuantityChange = (title, value) => {
@@ -173,6 +166,17 @@ const Cart = ({}) => {
       setShowCouponInvalid(false);
     }, 3000);
   };
+
+  const removeCoupon = (couponCode) => {
+    setAppliedCoupons(
+      appliedCoupons.filter((coupon) => coupon.code !== couponCode)
+    );
+  };
+
+  const linkClass =
+    cartItems.length === 0 || getTotals().total < 0
+      ? "proceed-to-checkout-btn button-animation link-disabled"
+      : "proceed-to-checkout-btn button-animation";
 
   return (
     <div className="cart-container">
@@ -237,22 +241,17 @@ const Cart = ({}) => {
             <div className="total">
               <h2>Total: </h2>{" "}
               <span>
-                <h2>{formatCurrency(getTotals().subtotal)}</h2>
+                <h2>{formatCurrency(getTotals().total)}</h2>
               </span>
             </div>
-            {!(
-              (
-                Object.keys(appliedCoupon).length === 0 &&
-                appliedCoupon.constructor === Object
-              ) // appliedCoupon is not empty empty
-            ) && (
-              <div className="conditional-coupon">
-                <h2>{appliedCoupon.code}</h2>
+            {appliedCoupons.map((coupon, index) => (
+              <div key={index} className="conditional-coupon">
+                <h2>{coupon.code}</h2>
                 <span>
-                  <h2>- {formatCurrency(appliedCoupon.dollarsSaved)}</h2>
+                  <h2>- {formatCurrency(coupon.dollarsSaved)}</h2>
                 </span>
               </div>
-            )}
+            ))}
             <p>**Credit card payments are subject to a 3% surcharge</p>
           </div>
           <div className="coupon-container">
@@ -278,9 +277,9 @@ const Cart = ({}) => {
           <div className="spacer"></div>
           <div>
             {cartItems.length <= 0 ? (
-              <div className={linkClass}>Proceed to Checkout</div>
+              <div>Proceed to Checkout</div>
             ) : (
-              <div onClick={handleProceedToCheckout} className={linkClass}>
+              <div className={linkClass} onClick={handleProceedToCheckout}>
                 Proceed to Checkout
               </div>
             )}
