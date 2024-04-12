@@ -53,16 +53,22 @@ const Cart = ({}) => {
 
   // get the totals for items in the cart
   const getTotals = () => {
-    let totals = { subtotal: 0, credit: 0, total: 0 };
+    let totals = { subtotal: 0, couponSavings: 0, total: 0 };
+
+    // Calculate the subtotal from the cart items
     cartItems.forEach((item) => {
       totals.subtotal += parseFloat(item.price) * item.numInCart;
     });
-    totals.credit = totals.subtotal * 0.03; // Assuming a global discount/credit of 3%
-    totals.total = totals.subtotal + totals.credit;
 
+    // Calculate the total coupon savings
     appliedCoupons.forEach((coupon) => {
-      totals.total -= parseFloat(coupon.dollarsSaved);
+      totals.couponSavings += parseFloat(coupon.dollarsSaved);
     });
+
+    // Calculate the final total: subtract coupon savings from subtotal, then add 3% of the new subtotal
+    let subtotalAfterCoupons = totals.subtotal - totals.couponSavings;
+    let credit = subtotalAfterCoupons * 0.03; // 3% credit based on the subtotal after coupon deductions
+    totals.total = subtotalAfterCoupons + credit;
 
     return totals;
   };
@@ -251,7 +257,11 @@ const Cart = ({}) => {
             <div className="total">
               <h2>Total: </h2>{" "}
               <span>
-                <h2>{formatCurrency(getTotals().total)}</h2>
+                <h2>
+                  {formatCurrency(
+                    getTotals().subtotal - getTotals().couponSavings
+                  )}
+                </h2>
               </span>
             </div>
             {appliedCoupons.map((coupon, index) => (
