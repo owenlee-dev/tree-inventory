@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "./checkout.scss";
 import { useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import CheckoutForm from "./CheckoutForm";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
@@ -14,7 +14,9 @@ const Checkout = () => {
   const navigate = useNavigate();
   const [clientSecret, setClientSecret] = useState("");
   const cartItems = useSelector((state) => state.storeSlice.cartContents);
-  const appliedCoupon = useSelector((state) => state.storeSlice.appliedCoupons);
+  // const appliedCoupon = useSelector((state) => state.storeSlice.appliedCoupons);
+  const { state } = useLocation(); // Assuming navigation state is used
+  const appliedCoupons = state?.appliedCoupons || [];
   const { data } = useSelector((state) => ({
     data: state.storeSlice.pickupLocations,
   }));
@@ -52,21 +54,22 @@ const Checkout = () => {
   const getTotals = () => {
     let totals = { subtotal: 0, credit: 0, couponSavings: 0, total: 0 };
 
-    // coupon savings
-    if (Object.keys(appliedCoupon).length > 0) {
-      totals.couponSavings = parseFloat(appliedCoupon.dollarsSaved);
-    }
-
-    // calculate subtotal
+    // Calculate the subtotal
     cartItems.forEach((item) => {
       totals.subtotal += parseFloat(item.price) * item.numInCart;
     });
 
-    //calculate tax
+    // Calculate the total coupon savings
+    appliedCoupons.forEach((coupon) => {
+      totals.couponSavings += parseFloat(coupon.dollarsSaved);
+    });
+
+    // Calculate the tax or additional credit
+    // Assuming the credit is based on the subtotal minus coupon savings
     totals.credit = (totals.subtotal - totals.couponSavings) * 0.03;
 
-    //grand total for credit card
-    totals.total = totals.subtotal + totals.credit - totals.couponSavings;
+    // Calculate the grand total for credit card
+    totals.total = totals.subtotal - totals.couponSavings + totals.credit;
     return totals;
   };
 
@@ -102,7 +105,11 @@ const Checkout = () => {
       </div>
       <div className="checkout-form-container">
         <Elements stripe={stripePromise} options={options}>
-          <CheckoutForm getTotals={getTotals} pickupLocations={data} />
+          <CheckoutForm
+            getTotals={getTotals}
+            pickupLocations={data}
+            appliedCoupons={appliedCoupons}
+          />
         </Elements>
       </div>
     </div>

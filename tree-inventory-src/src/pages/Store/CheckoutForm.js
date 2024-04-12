@@ -16,7 +16,7 @@ import {
 import { clearCart } from "../../__redux/slices/StoreSlice";
 import { formatCurrency } from "../../utility/UtilityFuncs";
 
-function CheckoutForm({ pickupLocations, getTotals }) {
+function CheckoutForm({ pickupLocations, getTotals, appliedCoupons }) {
   const [formData, setFormData] = useState({
     date: "",
     name: "",
@@ -209,15 +209,15 @@ function CheckoutForm({ pickupLocations, getTotals }) {
               <h3>{formatCurrency(getTotals().subtotal)}</h3>
             </span>
           </div>
-          {/* if there's a coupon render the line */}
-          {Object.keys(appliedCoupon).length > 0 && (
-            <div>
-              <h3>{appliedCoupon.code}:</h3>{" "}
-              <span className="subtotal">
-                <h3>- {formatCurrency(getTotals().couponSavings)}</h3>
-              </span>
-            </div>
-          )}
+          {appliedCoupons.length > 0 &&
+            appliedCoupons.map((coupon, index) => (
+              <div key={index}>
+                <h3>{coupon.code}:</h3>
+                <span className="subtotal">
+                  <h3>- {formatCurrency(coupon.dollarsSaved)}</h3>
+                </span>
+              </div>
+            ))}
           <div>
             <div>
               <h3>Credit Card Fee:</h3> <p>3% charge for credit card*</p>

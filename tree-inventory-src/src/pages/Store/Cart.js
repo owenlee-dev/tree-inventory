@@ -23,10 +23,14 @@ const Cart = ({}) => {
   }));
   const [couponInput, setCouponInput] = useState("");
   const [appliedCoupons, setAppliedCoupons] = useState([]);
-  const [showCouponInvalid, setShowCouponInvalid] = useState(false);
+  const [couponMessage, setCouponMessage] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
   const [outOfStockItems, setOutOfStockItems] = useState([]);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setAppliedCoupons([]);
+  }, [cartItems]);
 
   useEffect(() => {
     applyCoupon();
@@ -42,6 +46,10 @@ const Cart = ({}) => {
       clearTimeout(displayInvalidCouponMessage);
     };
   }, []);
+
+  useEffect(() => {
+    displayInvalidCouponMessage();
+  }, [couponMessage]);
 
   // get the totals for items in the cart
   const getTotals = () => {
@@ -109,20 +117,23 @@ const Cart = ({}) => {
       let cartItemTitles = cartItems.flatMap((item) =>
         Array(item.numInCart).fill(item.title)
       );
+      // check if the coupon is valid
       if (isCouponValid(cartItemTitles, matchedCoupon.whenBuying)) {
+        // check if the coupon is already applied
         if (
           !appliedCoupons.find((coupon) => coupon.code === matchedCoupon.code)
         ) {
           console.log("Coupon applied, save: ", matchedCoupon.dollarsSaved);
           setAppliedCoupons([...appliedCoupons, matchedCoupon]); // Add to the list of applied coupons
         } else {
-          console.log("Coupon already applied.");
+          setCouponMessage("Coupon already applied.");
         }
       } else {
-        console.log("Coupon conditions not met.");
+        setCouponMessage("Coupon conditions not met.");
       }
+      // If coupon is not valid then display "Coupon Invalid"
     } else {
-      displayInvalidCouponMessage();
+      setCouponMessage("No coupon found");
     }
     setCouponInput(""); // Clear the input regardless of the outcome
   };
@@ -139,7 +150,7 @@ const Cart = ({}) => {
   };
 
   const navigateToCheckout = () => {
-    navigate("/store/checkout", { state: { appliedCoupons: appliedCoupons } });
+    navigate("/store/checkout", { state: { appliedCoupons } });
   };
 
   const handleQuantityChange = (title, value) => {
@@ -161,9 +172,8 @@ const Cart = ({}) => {
   };
 
   const displayInvalidCouponMessage = () => {
-    setShowCouponInvalid(true);
     setTimeout(() => {
-      setShowCouponInvalid(false);
+      setCouponMessage("");
     }, 3000);
   };
 
@@ -263,8 +273,8 @@ const Cart = ({}) => {
               onChange={handleCouponChange}
               required
             />
-            {showCouponInvalid && (
-              <p className="invalid-coupon-message">Coupon invalid</p>
+            {couponMessage !== "" && (
+              <p className="invalid-coupon-message">{couponMessage}</p>
             )}
             <button
               className="apply-coupon-btn button-animation"
