@@ -203,9 +203,7 @@ async function confirmOrders(auth, pageName, ordersToRemove) {
           requests: requests,
         },
       });
-      console.log("Orders removed");
     } else {
-      console.log("No orders to remove");
     }
   } catch (error) {
     console.error("The API returned an error: " + error);
@@ -240,8 +238,7 @@ async function removeOrder(auth, pageName, orderID) {
     // Find the index of the row to remove
     const rowIndex = existingData.findIndex((row) => row[7] === orderID);
     if (rowIndex === -1) {
-      console.log("Order not found");
-      return;
+      return; //orders not found
     }
 
     // Create request to delete the row
@@ -263,8 +260,6 @@ async function removeOrder(auth, pageName, orderID) {
         requests: [request],
       },
     });
-
-    console.log("Order removed");
   } catch (error) {
     console.error("The API returned an error: " + error);
   }
@@ -300,7 +295,7 @@ async function appendData(auth, pageName, values) {
       },
     });
 
-    console.log(`Data written to row ${firstEmptyRow} of ${pageName}`);
+    //Data written to row ${firstEmptyRow} of ${pageName}
   } catch (error) {
     console.error("The API returned an error: " + error);
   }
@@ -309,7 +304,6 @@ async function appendData(auth, pageName, values) {
 // Function to make alterations to the inventory of items in the store tab
 // @param itemsPurchased = {title: 3, title2: 4} reduceInventory = true
 async function updateInventory(auth, itemsPurchased, reduceInventory) {
-  console.log("entered updateInventory", itemsPurchased, reduceInventory);
   const sheets = google.sheets({ version: "v4", auth });
   const spreadsheetId = "1IZ6oZOa7XAHnQV0ZNSGX9aujS6ugAwc_rUjcGESuYmM";
   const storePageName = "Store";
@@ -345,8 +339,6 @@ async function updateInventory(auth, itemsPurchased, reduceInventory) {
         values: inventoryData,
       },
     });
-
-    console.log("Inventory updated successfully");
   } catch (error) {
     console.error("Error updating inventory:", error);
   }

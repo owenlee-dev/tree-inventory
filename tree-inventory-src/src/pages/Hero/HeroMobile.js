@@ -60,17 +60,21 @@ function HeroMobile() {
   return (
     <div className="hero-mobile-container">
       <div className="hero-mobile-title-container">
-        <img className="__mobile-logo" src={mapleGrovePermaculture}></img>
+        <img
+          className="__mobile-logo"
+          src={mapleGrovePermaculture}
+          alt="mobile logo"
+        />
         {/* <h3 className="hero-mobile-subtitle">
           Where the vines are full and the dog is always happy to see you
         </h3> */}
       </div>
       <div className="hero-mobile-body-container">
-        <img className="__hero-mobile-bg" src={groveDome}></img>
+        <img className="__hero-mobile-bg" src={groveDome} alt="dome home" />
         <p className="mobile-intro-paragraph">
-          Welcome! Our tree and perennial sales for spring pick-up are now in
-          full swing. With limited inventory, we encourage you to visit our
-          store soon to prepare for the spring 2024 season. <br />
+          Welcome! Our tree and perennial sales for fall pick-up are now in full
+          swing. With limited inventory, we encourage you to visit our store
+          soon to prepare for the spring 2024 season. <br />
           <br /> We are also thrilled to announce the completion of our Earth &
           Aircrete Dome Home, available now along with several other unique
           retreat spaces.
@@ -79,7 +83,7 @@ function HeroMobile() {
       <div className="hero-buttons-container">
         <div className="hero-mobile-link-row">
           <div className="link-button" onClick={() => handleLinkClick("Store")}>
-            <img src={storeButton} alt="Store Button" alt="store button" />
+            <img src={storeButton} alt="Store Button" />
             <div className="text-overlay">Store</div>
           </div>
           <div

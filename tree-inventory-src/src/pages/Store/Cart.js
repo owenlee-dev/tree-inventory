@@ -129,7 +129,6 @@ const Cart = ({}) => {
         if (
           !appliedCoupons.find((coupon) => coupon.code === matchedCoupon.code)
         ) {
-          console.log("Coupon applied, save: ", matchedCoupon.dollarsSaved);
           setAppliedCoupons([...appliedCoupons, matchedCoupon]); // Add to the list of applied coupons
         } else {
           setCouponMessage("Coupon already applied.");

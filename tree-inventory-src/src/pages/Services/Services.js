@@ -130,8 +130,8 @@ function Services() {
             cooking utensils you need. A wood stove radiates heat throughout the
             space, creating a snug and inviting atmosphere.
           </p>
-          <a href="https://www.airbnb.ca/rooms/45376458?locale=en&_set_bev_on_new_domain=1706374858_ZWRiY2YzMzZjOTM5">
-            Book and Learn More on Airbnb
+          <a href="https://glampinghub.com/canada/novascotia/hantscounty/yurt-rental-weekend-getaway-in-nova-scotia-canada/">
+            Book and Learn More
           </a>
         </div>
       </div>

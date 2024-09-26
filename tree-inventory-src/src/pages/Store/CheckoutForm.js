@@ -26,6 +26,7 @@ function CheckoutForm({ pickupLocations, getTotals, appliedCoupons }) {
     pickupLocation: "",
     itemsPurchased: "",
     orderID: "",
+    paidWith: "",
   });
   const [payWithCreditCard, setPayWithCreditCard] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -49,17 +50,20 @@ function CheckoutForm({ pickupLocations, getTotals, appliedCoupons }) {
       ...formData,
       date: new Date().toLocaleDateString("en-CA"),
       total: formatCurrency(
-        payWithCreditCard ? getTotals().total : getTotals().subtotal
+        payWithCreditCard
+          ? getTotals().total - getTotals().couponSavings
+          : getTotals().subtotal - getTotals().couponSavings
       ),
+
       itemsPurchased: cartItems
         .map((item) => `${item.title} (${item.numInCart})`)
         .join("\n"),
       orderID: Math.floor(Math.random() * 9000000000) + 1000000000, // Random 10 digit number
+      paidWith: payWithCreditCard ? "Credit" : "Debit",
     };
 
     try {
       if (payWithCreditCard) {
-        console.log("paying with credit card");
         const result = await stripe.confirmPayment({
           elements,
           redirect: "if_required",
@@ -73,8 +77,6 @@ function CheckoutForm({ pickupLocations, getTotals, appliedCoupons }) {
           result.paymentIntent &&
           result.paymentIntent.status === "succeeded"
         ) {
-          console.log("Payment successful");
-
           // Send confirmation email only for credit card transactions
           const response = await sendOrderConfirmationEmail(
             formData.name,

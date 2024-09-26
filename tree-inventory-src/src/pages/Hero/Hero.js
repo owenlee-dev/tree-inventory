@@ -70,9 +70,9 @@ function Hero() {
           </h3> */}
         </div>
         <p className="intro-paragraph">
-          Welcome! Our tree and perennial sales for spring pick-up are now in
-          full swing. With limited inventory, we encourage you to visit our
-          store soon to prepare for the spring 2024 season. <br /> We are also
+          Welcome! Our tree and perennial sales for fall pick-up are now in full
+          swing. With limited inventory, we encourage you to visit our store
+          soon to prepare for the spring 2024 season. <br /> We are also
           thrilled to announce the completion of our Earth & Aircrete Dome Home,
           available now along with several other unique retreat spaces.
         </p>

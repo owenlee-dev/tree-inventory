@@ -42,7 +42,6 @@ export const postPendingEtransfer = async (formData) => {
     }
 
     const data = await response.json();
-    console.log("posted etransfer data to google sheets: ", formData);
     return data;
   } catch (error) {
     console.error("api.js: Error posting etransfer:", error);
@@ -50,7 +49,6 @@ export const postPendingEtransfer = async (formData) => {
 };
 
 export const updateInventory = async (itemsPurchased, reduceInventory) => {
-  console.log("updating inventory");
   try {
     const response = await fetch(
       `${process.env.REACT_APP_BACKEND_URL}/google-sheets/update-inventory`,
@@ -69,8 +67,6 @@ export const updateInventory = async (itemsPurchased, reduceInventory) => {
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-
-    console.log("successfully updated inventory: ", itemsPurchased);
   } catch (error) {
     console.error("api.js: Error updating inventory:", error);
   }
@@ -143,7 +139,6 @@ export const sendOrderConfirmationEmail = async (
       emailParams,
       process.env.REACT_APP_EMAILJS_PUBLIC_KEY
     );
-    console.log("Email sent:", emailResponse.text);
     return true;
   } catch (error) {
     console.error("api.js: Failed to send email:", error);

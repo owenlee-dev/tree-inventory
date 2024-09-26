@@ -150,7 +150,7 @@ function Store() {
                   className=" accordion-header"
                   onClick={() => toggleSection("pickup")}
                 >
-                  Spring Pickup {activeSections.includes("pickup") ? "⤴" : "⤵"}
+                  Fall Pickup {activeSections.includes("pickup") ? "⤴" : "⤵"}
                 </span>
                 <div
                   ref={pickupRef}
@@ -164,13 +164,11 @@ function Store() {
                         : "0",
                   }}
                 >
-                  {" "}
                   <p>
                     The purchase of all items in this store are for pickup in
-                    April. Pickup locations are arranged across Nova Scotia
-                    including Halifax, East Hants, south shore, valley, Truro,
-                    Antigonish and Cape Breton. And in New Brunswick in
-                    Sackville and Moncton.
+                    November. Pickup locations in Nova Scotia include Halifax,
+                    East Hants and Truro. <br /> In New Brunswick pickup is
+                    available in Sackville and Moncton.
                   </p>
                 </div>
               </div>

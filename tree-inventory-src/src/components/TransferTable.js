@@ -100,7 +100,7 @@ const TransferTable = ({ data, onSelectedRowsChange }) => {
         }
       );
       if (response.ok) {
-        console.log("Removed Order Successfully");
+        //removed order successfully
       }
     } catch (error) {
       console.error("Error Removing Order:", error);

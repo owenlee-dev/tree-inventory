@@ -23,7 +23,7 @@ const CouponModal = ({ storeData, formData, setFormData, show, onClose }) => {
         }
       );
       if (response.ok) {
-        console.log("added coupon");
+        //added coupon
       }
     } catch (error) {
       console.error("Error confirming orders:", error);
