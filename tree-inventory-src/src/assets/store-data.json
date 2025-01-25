@@ -198,7 +198,7 @@
     ],
     "apricot trees": [
       {
-        "variety": "Goldcot",
+        "variety": "Golden Boycot",
         "price": 40.0,
         "inventory": 30.0,
         "size": null,
@@ -382,7 +382,7 @@
       "img-path": "./store-images/sugar-maple.png"
     },
     {
-      "variety": "Paw Paw",
+      "variety": "Pawpaw",
       "size": null,
       "rootstock": null,
       "pollination": null,
@@ -390,7 +390,7 @@
       "inventory": null,
       "description": "Paw Paw trees bear unique, tropical-flavored fruit that's often described as a cross between a banana and a mango. These trees offer a delectable taste experience, especially when the ripe fruit is savored fresh.",
       "form": null,
-      "img-path": "./store-images/paw-paw.png"
+      "img-path": "./store-images/pawpaw.png"
     },
     {
       "variety": "Persimmons",

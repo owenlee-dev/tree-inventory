@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./about.scss";
-import Carousel from "../../components/Carousel";
-import carousel_1 from "../../assets/images/about_3.jpg";
-import carousel_2 from "../../assets/images/about_2.jpg";
-import carousel_3 from "../../assets/images/about_1.jpg";
+import about_1 from "../../assets/images/about1.png";
+import about_2 from "../../assets/images/about2.png";
 function About() {
-  const imageList = [carousel_2, carousel_1, carousel_3];
   const [apiKey, setApiKey] = useState("");
   useEffect(() => {
     // Fetch the API key from the backend
@@ -24,9 +21,11 @@ function About() {
           Story
         </div>
         <div className="grid-item big-img">
-          <Carousel images={imageList} fixedSize={true} bigCarousel={true} />
+          <img src={about_2} alt="about" />
         </div>
-        <div className="grid-item small-img"></div>
+        <div className="grid-item small-img">
+          <img src={about_1} alt="about" />
+        </div>
       </div>
       <section className="about-content-container">
         <h2>Welcome To Our Home</h2>
@@ -66,30 +65,7 @@ function About() {
           others and envision the world we are working towards.
         </p>
       </section>
-      {/* <section className="meet-the-gang">
-        <h2>Meet the Gang</h2>
-        <div className="gang-container">
-          <div className="gang-member">
-            <div className="member-img aaron"></div>
-            <h2>Aaron</h2>
-            <p>
-              A certified outdoorsy guy, who likes plants and trees and plants.
-              He is a lover of plants and trees and when it becomes night time,
-              you guessed it. more plants and trees -except at night
-            </p>
-          </div>
-          <div className="gang-member">
-            <div className="member-img morghain"></div>
-            <h2>Morghain</h2>
-            <p>
-              A registered massage therapist, birth keeper and Reiki master who
-              you bet your ass likes plants and trees! She fills her time with
-              massaging plants as they grow into trees and wowee does it work.
-              Look at all those plants and trees.
-            </p>
-          </div>
-        </div>
-      </section> */}
+
       <section className="about-content-container come-visit">
         <div className="come-visit-section">
           <div>

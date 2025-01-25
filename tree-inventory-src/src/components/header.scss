@@ -8,11 +8,12 @@
   gap: 6em;
   padding: 2em;
   padding-right: 3em;
-  top: 0;
-  left: 0;
+  top: 0.5em;
+  left: 0.5em;
   height: calc(9em + (30 - 9) * ((100vw - 945px) / (945 - 480)));
   min-height: 9em;
-  border-radius: $borderRadius;
+  border-radius: 20px;
+  box-shadow: inset 0 0 5px 0 rgba(80, 57, 6, 0.781);
 
   @media (max-width: 590px) {
     gap: 2em;
@@ -55,7 +56,7 @@
       color: $text;
       text-decoration: none;
       cursor: pointer;
-      font-size: max(1vw, 16px);
+      font-size: 0.75rem;
       text-align: center;
       text-decoration: none;
       transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
@@ -66,14 +67,14 @@
     .active {
       transform: scale(1.1);
       color: $lightBrown;
+      border-bottom: 2px solid $lightBrown;
     }
     // sidebar
     @media (max-width: 1100px) {
-      // background:linear-gradient(175deg, $lightBrown,$lightBrown, $orange);
-      background-color: $lightGray;
-      opacity: 0.9;
+      background-image: url("../../src/assets/images/bg.png");
+      opacity: 0.99;
       position: fixed;
-      border-left: 4px solid #372613a4;
+      border-left: 15px double $darkBrown;
       top: 0;
       right: 0;
       height: 100%;

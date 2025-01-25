@@ -38,10 +38,7 @@ function Services() {
       <div className="possible-rentals">
         <div>
           <h2>Short Term Rentals</h2>
-          <p>
-            Available on a night by night basis, boasting "Guest Favorite"
-            status on AirBNB
-          </p>
+          <p>Available on a night by night basis</p>
           <ul>
             <li>
               <Link
@@ -95,13 +92,12 @@ function Services() {
           <h1>Earth and Aircrete Dome Home</h1>
           {isMobile && <Carousel images={domeImages} fixedSize={false} />}
           <p>
-            Creative, charming, and cozy. this dome is constructed from aircrete
-            and boasts finishes of clay plaster and natural earthen flooring.
-            Equipped with all essentials for cooking, staying cozy, and ensuring
-            a restful sleep, it's situated close to trails for hiking and skiing
-            that meander towards rivers and cliffs. A wood stove provides
-            warmth, while an external composting toilet is located 50 yards from
-            the dome.
+            Creative, charming, and cozy, this dome is constructed from aircrete
+            and finished with clay plaster and a natural earthen floor. Equipped
+            with all essentials for cooking, staying cozy, and sleeping deeply,
+            it's situated close to trails for hiking and skiing that meander
+            towards rivers and cliffs. A wood stove provides warmth, while an
+            external composting toilet is located 15 yards outside.
           </p>
           <a href="https://www.airbnb.ca/rooms/1041725069586524761?locale=en&_set_bev_on_new_domain=1706701673_OTUzYTdkNDcxZTA3&source_impression_id=p3_1706701674_wGkUSFcldcHG1x8B">
             Book and Learn More on Airbnb
@@ -141,7 +137,7 @@ function Services() {
           {isMobile && <Carousel images={busImages} fixedSize={false} />}
           <p>
             The nostalgia of a school bus meets modern comfort and style. We've
-            transformed a classic school bus into a cozy retreat space. Boasting
+            transformed a classic school bus into a cozy retreat space. With
             high-speed onboard wifi, a propane stove, and a woodstove for when
             the evening chill sets in.
           </p>

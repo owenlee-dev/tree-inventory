@@ -5,7 +5,7 @@ import groveDome from "../../assets/images/grove-dome.png";
 import mapleGrovePermaculture from "../../assets/images/maple-grove-permaculture.png";
 import storeButton from "../../assets/images/store-button.jpg";
 import servicesButton from "../../assets/images/services-button.jpg";
-import aboutButton from "../../assets/images/about-button.jpg";
+import aboutButton from "../../assets/images/about3.png";
 import { changeTab } from "../../__redux/slices/AppSlice";
 import { useDispatch } from "react-redux";
 function Hero() {
@@ -72,9 +72,9 @@ function Hero() {
         <p className="intro-paragraph">
           Welcome! Our tree and perennial sales for fall pick-up are now in full
           swing. With limited inventory, we encourage you to visit our store
-          soon to prepare for the spring 2024 season. <br /> We are also
-          thrilled to announce the completion of our Earth & Aircrete Dome Home,
-          available now along with several other unique retreat spaces.
+          soon to prepare for the spring 2024 season. <br />
+          <br /> Our Earth & Aircrete Dome Home is now available for booking
+          along with several other unique retreat spaces.
         </p>
       </div>
       <div className="hero-bot">

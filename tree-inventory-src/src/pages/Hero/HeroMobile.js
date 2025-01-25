@@ -7,7 +7,7 @@ import servicesButton from "../../assets/images/services-button.jpg";
 import storeButton from "../../assets/images/store-button.jpg";
 import { changeTab } from "../../__redux/slices/AppSlice";
 import { useDispatch } from "react-redux";
-import aboutButton from "../../assets/images/about-button.jpg";
+import aboutButton from "../../assets/images/about3.png";
 
 function HeroMobile() {
   const [divHeight, setDivHeight] = useState("80vh"); // Default height
@@ -83,7 +83,11 @@ function HeroMobile() {
       <div className="hero-buttons-container">
         <div className="hero-mobile-link-row">
           <div className="link-button" onClick={() => handleLinkClick("Store")}>
-            <img src={storeButton} alt="Store Button" />
+            <img
+              className="link-button-img"
+              src={storeButton}
+              alt="Store Button"
+            />
             <div className="text-overlay">Store</div>
           </div>
           <div
@@ -101,7 +105,11 @@ function HeroMobile() {
             className="link-button"
             onClick={() => handleLinkClick("About Us")}
           >
-            <img src={aboutButton} alt="About Button" />
+            <img
+              className="link-button-img"
+              src={aboutButton}
+              alt="About Button"
+            />
             <div className="text-overlay">About Us</div>
           </div>
         </div>

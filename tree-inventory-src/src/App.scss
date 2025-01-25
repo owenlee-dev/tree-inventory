@@ -8,7 +8,7 @@
   flex-direction: column;
   align-items: center;
   color: $text;
-  background: linear-gradient(180deg, $lightBrown, $darkBrown);
+  background: linear-gradient(to top left, $lightBrown, $darkBrown);
   // background-image: url("./assets/images/green-bg.png");
   font-family: "Montserrat", sans-serif;
   overflow-x: hidden;

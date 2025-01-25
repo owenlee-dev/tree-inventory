@@ -10,12 +10,13 @@
   z-index: 1;
   margin-top: 9em;
   margin-bottom: 2em;
+  box-shadow: 0 0 15px 0 rgba(63, 63, 63, 0.781);
   @media screen and (max-width: 950px) {
     margin-bottom: 0;
   }
   width: 90%;
   min-height: 100vh;
-  border-radius: $borderRadius;
+  border-radius: 20px;
 }
 
 @media (max-width: 945px) {

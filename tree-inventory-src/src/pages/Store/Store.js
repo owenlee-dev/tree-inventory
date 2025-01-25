@@ -166,9 +166,9 @@ function Store() {
                 >
                   <p>
                     The purchase of all items in this store are for pickup in
-                    November. Pickup locations in Nova Scotia include Halifax,
-                    East Hants and Truro. <br /> In New Brunswick pickup is
-                    available in Sackville and Moncton.
+                    April. Pickup locations in Nova Scotia include Halifax, East
+                    Hants, Truro, South Shore, Annapolis Valley, Moncton and
+                    Sackville NB.
                   </p>
                 </div>
               </div>
