@@ -150,7 +150,7 @@ function Store() {
                   className=" accordion-header"
                   onClick={() => toggleSection("pickup")}
                 >
-                  Fall Pickup {activeSections.includes("pickup") ? "⤴" : "⤵"}
+                  Spring Pickup {activeSections.includes("pickup") ? "⤴" : "⤵"}
                 </span>
                 <div
                   ref={pickupRef}

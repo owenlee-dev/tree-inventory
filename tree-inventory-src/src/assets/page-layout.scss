@@ -1,9 +1,9 @@
 @font-face {
   font-family: "Railey";
-  src: url("./fonts/Railey-PersonalUse.ttf")format('truetype');
+  src: url("./fonts/Railey-PersonalUse.ttf") format("truetype");
 }
-.Loader{
-  font-family: "Railey",sans-serif;
+.Loader {
+  font-family: "Railey", sans-serif;
 }
 .content-container {
   background-color: $white;
@@ -12,6 +12,8 @@
   margin-bottom: 2em;
   box-shadow: 0 0 15px 0 rgba(63, 63, 63, 0.781);
   @media screen and (max-width: 950px) {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
     margin-bottom: 0;
   }
   width: 90%;

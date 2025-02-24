@@ -1,18 +1,17 @@
-import React, { useState, useEffect, useTransition } from "react";
-import "./cart.scss";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import {
+  changeAppliedCoupon,
   removeFromCart,
   updateCartItemQuantity,
-  changeAppliedCoupon,
 } from "../../__redux/slices/StoreSlice";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import MissingInventoryModal from "../../components/MissingInventoryModal";
 import {
   formatCurrency,
   getInventoryForVariety,
 } from "../../utility/UtilityFuncs";
-import MissingInventoryModal from "../../components/MissingInventoryModal";
+import "./cart.scss";
 
 const Cart = ({}) => {
   const dispatch = useDispatch();
@@ -33,22 +32,46 @@ const Cart = ({}) => {
   }, [cartItems]);
 
   useEffect(() => {
-    applyCoupon();
-  }, [cartItems]);
+    let isSubscribed = true;
 
-  useEffect(() => {
-    dispatch(changeAppliedCoupon(appliedCoupons)); // Make sure the reducer accepts an array now
-  }, [appliedCoupons]);
+    const updateAppliedCoupons = async () => {
+      try {
+        if (isSubscribed) {
+          await dispatch(changeAppliedCoupon(appliedCoupons));
+        }
+      } catch (error) {
+        console.error("Error updating applied coupons:", error);
+      }
+    };
+
+    updateAppliedCoupons();
+
+    return () => {
+      isSubscribed = false;
+    };
+  }, [appliedCoupons, dispatch]);
 
   // avoid memory leaks or state updates on an unmounted component
   useEffect(() => {
+    let isSubscribed = true;
+
     return () => {
-      clearTimeout(displayInvalidCouponMessage);
+      isSubscribed = false;
     };
   }, []);
 
   useEffect(() => {
-    displayInvalidCouponMessage();
+    let messageTimer;
+    if (couponMessage) {
+      messageTimer = setTimeout(() => {
+        setCouponMessage("");
+      }, 3000);
+    }
+    return () => {
+      if (messageTimer) {
+        clearTimeout(messageTimer);
+      }
+    };
   }, [couponMessage]);
 
   // get the totals for items in the cart
@@ -78,9 +101,17 @@ const Cart = ({}) => {
     let isStockAvailable = true;
     let outOfStockItems = [];
 
-    // Step 2: Check each item in the cart against inventory
     for (const item of cartItems) {
       const inventory = getInventoryForVariety(item.title, storeData);
+
+      if (inventory === null || inventory === undefined) {
+        console.warn(`Inventory not found for variety "${item.title}"`);
+        isStockAvailable = false;
+        const itemWithInventory = { ...item, actualInventory: 0 };
+        outOfStockItems.push(itemWithInventory);
+        continue;
+      }
+
       if (item.numInCart > inventory) {
         isStockAvailable = false;
         const itemWithInventory = { ...item, actualInventory: inventory };
@@ -88,59 +119,69 @@ const Cart = ({}) => {
       }
     }
 
-    // Step 3: Display modal if there are out-of-stock items
     if (!isStockAvailable) {
       showModal(outOfStockItems);
     } else {
-      // Step 4: Navigate to checkout if all items are in stock
       navigateToCheckout();
     }
   };
 
   // Iterates over each condition in whenBuying, when a condition is met then the item is removed from the cart
   const isCouponValid = (cartItemTitles, whenBuying) => {
-    let remainingCartTitles = [...cartItemTitles];
+    let remainingCartTitles = cartItemTitles.map((title) =>
+      title.toLowerCase().trim()
+    );
 
     return whenBuying.every((conditionGroup) => {
-      const conditionMet = conditionGroup.some((item) => {
-        const index = remainingCartTitles.indexOf(item);
+      return conditionGroup.some((item) => {
+        const normalizedItem = item.toLowerCase().trim();
+        const index = remainingCartTitles.indexOf(normalizedItem);
         if (index > -1) {
-          // Remove the used item from the remaining cart titles
           remainingCartTitles.splice(index, 1);
           return true;
         }
         return false;
       });
-      return conditionMet;
     });
   };
 
-  const applyCoupon = () => {
-    const matchedCoupon = validCoupons.find(
-      (coupon) => coupon.code === couponInput.trim()
-    );
-    if (matchedCoupon) {
-      let cartItemTitles = cartItems.flatMap((item) =>
-        Array(item.numInCart).fill(item.title)
+  const applyCoupon = async () => {
+    try {
+      const matchedCoupon = validCoupons.find(
+        (coupon) =>
+          coupon.code.toLowerCase() === couponInput.trim().toLowerCase()
       );
-      // check if the coupon is valid
-      if (isCouponValid(cartItemTitles, matchedCoupon.whenBuying)) {
-        // check if the coupon is already applied
-        if (
-          !appliedCoupons.find((coupon) => coupon.code === matchedCoupon.code)
-        ) {
-          setAppliedCoupons([...appliedCoupons, matchedCoupon]); // Add to the list of applied coupons
+
+      if (matchedCoupon) {
+        let cartItemTitles = cartItems.flatMap((item) =>
+          Array(item.numInCart).fill(item.title.toLowerCase().trim())
+        );
+
+        if (isCouponValid(cartItemTitles, matchedCoupon.whenBuying)) {
+          if (
+            !appliedCoupons.find(
+              (coupon) =>
+                coupon.code.toLowerCase() === matchedCoupon.code.toLowerCase()
+            )
+          ) {
+            // Wrap state updates in Promise.resolve to handle them synchronously
+            await Promise.resolve(
+              setAppliedCoupons([...appliedCoupons, matchedCoupon])
+            );
+          } else {
+            setCouponMessage("Coupon already applied.");
+          }
         } else {
-          setCouponMessage("Coupon already applied.");
+          setCouponMessage("Coupon conditions not met.");
         }
       } else {
-        setCouponMessage("Coupon conditions not met.");
+        setCouponMessage("No coupon found");
       }
-      // If coupon is not valid then display "Coupon Invalid"
-    } else {
-      setCouponMessage("No coupon found");
+      setCouponInput("");
+    } catch (error) {
+      console.error("Error applying coupon:", error);
+      setCouponMessage("Error applying coupon");
     }
-    setCouponInput(""); // Clear the input regardless of the outcome
   };
 
   // ~~~~~~~~~~~~~~~~~ HELPER FUNCTIONS
@@ -175,23 +216,6 @@ const Cart = ({}) => {
   const handleCouponChange = (e) => {
     setCouponInput(e.target.value);
   };
-
-  const displayInvalidCouponMessage = () => {
-    setTimeout(() => {
-      setCouponMessage("");
-    }, 3000);
-  };
-
-  const removeCoupon = (couponCode) => {
-    setAppliedCoupons(
-      appliedCoupons.filter((coupon) => coupon.code !== couponCode)
-    );
-  };
-
-  const linkClass =
-    cartItems.length === 0 || getTotals().total < 0
-      ? "proceed-to-checkout-btn button-animation link-disabled"
-      : "proceed-to-checkout-btn button-animation";
 
   return (
     <div className="cart-container">
@@ -296,9 +320,12 @@ const Cart = ({}) => {
           <div className="spacer"></div>
           <div>
             {cartItems.length <= 0 ? (
-              <div>Proceed to Checkout</div>
+              <div>Cart is empty</div>
             ) : (
-              <div className={linkClass} onClick={handleProceedToCheckout}>
+              <div
+                className="proceed-to-checkout-btn button-animation"
+                onClick={handleProceedToCheckout}
+              >
                 Proceed to Checkout
               </div>
             )}

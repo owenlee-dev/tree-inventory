@@ -1,32 +1,43 @@
 export function getInventoryForVariety(variety, storeData) {
-  // Loop through each category in storeData
   for (const categoryKey in storeData) {
     const category = storeData[categoryKey];
 
-    // Check if the category has subcategories
     if (categoryKey === "fruit trees") {
-      // Handle subcategories for fruit trees
       for (const subcategoryKey in category) {
         const items = category[subcategoryKey];
-        // Find the item in the current subcategory's items array
+
+        if (!Array.isArray(items)) {
+          console.warn(
+            `Expected an array for subcategory "${subcategoryKey}" in "fruit trees", but got ${typeof items}`
+          );
+          continue; // Skip to the next subcategory
+        }
+
         const item = items.find((item) => item.Variety === variety);
         if (item) {
-          // If the item is found, return its Inventory
-          return parseInt(item.Inventory, 10);
+          const inventory = parseInt(item.Inventory, 10);
+          return inventory;
         }
       }
     } else {
-      // Handle categories without subcategories
       const items = category;
+
+      if (!Array.isArray(items)) {
+        console.warn(
+          `Expected an array for category "${categoryKey}", but got ${typeof items}`
+        );
+        continue; // Skip to the next category
+      }
+
       const item = items.find((item) => item.Variety === variety);
       if (item) {
-        // If the item is found, return its Inventory
-        return parseInt(item.Inventory, 10);
+        const inventory = parseInt(item.Inventory, 10);
+        return inventory;
       }
     }
   }
 
-  // If the item is not found in any category or subcategory, return null
+  console.warn(`Variety "${variety}" not found in storeData.`);
   return null;
 }
 

@@ -181,5 +181,14 @@ function stringToArrayOfArrays(str) {
     return [];
   }
 
-  return str.split("\nAND \n").map((group) => group.split(", "));
+  // Use regex to split by "AND", case-insensitive, and allow for varying whitespace
+  return str
+    .split(/\band\b/i)
+    .map((group) =>
+      group
+        .split(",")
+        .map((item) => item.trim())
+        .filter((item) => item !== "")
+    )
+    .filter((group) => group.length > 0);
 }

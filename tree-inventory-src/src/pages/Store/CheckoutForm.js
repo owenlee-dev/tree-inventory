@@ -1,20 +1,20 @@
-import React, { useState, useEffect } from "react";
-import "./checkoutForm.scss"; // Make sure to create a Form.css file for the CSS
 import {
   PaymentElement,
-  useStripe,
   useElements,
+  useStripe,
 } from "@stripe/react-stripe-js";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { clearCart } from "../../__redux/slices/StoreSlice";
 import {
   postFormData,
   postPendingEtransfer,
   sendOrderConfirmationEmail,
   updateInventory,
 } from "../../components/api/api";
-import { clearCart } from "../../__redux/slices/StoreSlice";
 import { formatCurrency } from "../../utility/UtilityFuncs";
+import "./checkoutForm.scss";
 
 function CheckoutForm({ pickupLocations, getTotals, appliedCoupons }) {
   const [formData, setFormData] = useState({
